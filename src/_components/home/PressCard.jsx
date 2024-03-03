@@ -54,7 +54,6 @@ const Description = styled.p`
 `;
 
 const PressCard = ({ id, news_url, title, desc, img }) => {
-  console.log(id);
   return (
     <Link to={`lingopress/${id}`}>
       <PressCardWrapper>

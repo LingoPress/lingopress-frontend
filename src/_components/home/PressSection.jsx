@@ -7,13 +7,11 @@ const PressSection = () => {
 
   useEffect(() => {
     // 뉴스 fetch
-    console.log(dummydata);
     setPressData(dummydata);
   }, []);
 
   return (
     <div>
-      <h1>Press</h1>
       <ul>
         {pressData.map((news) => (
           <PressCard key={news.id} {...news} />
