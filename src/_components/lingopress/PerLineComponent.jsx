@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button } from "react-bootstrap";
+import translateText from "../../utils/translateText";
 
 const LineWrapper = styled.div`
   width: 90%;
@@ -31,7 +31,7 @@ const LineOuterWrapper = styled.div`
   align-items: end;
 `;
 
-const CheckButton = styled(Button)`
+const CheckButton = styled.button`
   width: 3rem;
   height: 3rem;
   border-radius: 30%;
@@ -39,6 +39,13 @@ const CheckButton = styled(Button)`
 `;
 
 const PerLineComponent = ({ line }) => {
+  const handleTranslate = () => {
+    // 1. 번역
+    const translatedText = translateText(line);
+    // 2. db에 번역한 기록 등록
+    console.log(translatedText);
+  };
+
   return (
     <LineOuterWrapper>
       {line ? (
@@ -47,7 +54,7 @@ const PerLineComponent = ({ line }) => {
             <OriginalLine>{line}</OriginalLine>
             <ConvertLine></ConvertLine>
           </LineWrapper>
-          <CheckButton variant="primary">확인하기</CheckButton>
+          <CheckButton onClick={() => handleTranslate()}>확인하기</CheckButton>
         </>
       ) : null}
     </LineOuterWrapper>
