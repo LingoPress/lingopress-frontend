@@ -6,8 +6,10 @@ const PressCardWrapper = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   display: flex;
-  min-height: 10rem;
+  height: 10rem;
   background-color: whitesmoke;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
 
   &:hover {
     transform: translateY(-5px);
@@ -39,15 +41,22 @@ const Title = styled.h2`
 `;
 
 const Description = styled.p`
-  margin: 10px 0 0;
-  font-size: 1rem;
+  margin-top: 10px;
+  line-height: normal;
   color: #666;
-  text-overflow: ellipsis;
+  max-height: 6rem;
+  white-space: normal;
+  overflow: hidden;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /*보여줄 줄의 수를 정함*/
+  -webkit-box-orient: vertical; /*box의 배열 방향을 정함*/
 `;
 
 const PressCard = ({ id, news_url, title, desc, img }) => {
+  console.log(id);
   return (
-    <Link to={news_url}>
+    <Link to={`lingopress/${id}`}>
       <PressCardWrapper>
         {img ? (
           <ImageContainer>

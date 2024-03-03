@@ -35,7 +35,24 @@ const data = [
       "https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=102&oid=001&aid=0013823655",
     title:
       "민주당, 윤 대통령 '거리 통치' 비판에 \"국민 무시…국정농단 책임 물어야\"",
-    desc: "민주당은 18일 윤석열 대통령이 5·18민주화운동 기념식에서 민주당의 '거리 통치'를",
+    desc:
+      "Yoon added that all types of independence efforts — from armed struggle and diplomatic efforts to educational and cultural movements — must be fairly recognized, and their history should be passed down correctly from generation to generation.\n" +
+      "\n" +
+      '"Following the defeat of imperialism, we were able to gain independence thanks to all these pioneering endeavors … No one is allowed to monopolize history," Yoon said.\n' +
+      "\n" +
+      "Though Yoon did not directly mention the name, some construe the remarks as him underscoring the need to reevaluate former President Syngman Rhee, controversial for his 12-year dictatorial rule as South Korea's first president and his hardline anti-communist views, despite his contributions to the country's independence movement.\n" +
+      "\n" +
+      "The Yoon administration has been making efforts to bring up the former president's achievements by, for example, supporting the construction of Rhee's memorial.\n" +
+      "\n" +
+      'Regarding relations with Japan, Yoon said that the two nations have become partners in pursuing global peace and prosperity and are working together to overcome the "painful past" and move toward a new future.\n' +
+      "\n" +
+      '"The security cooperation between the two countries against North Korea\'s nuclear and missile threats has been strengthened further," Yoon said. "Korea and Japan are building a closer partnership in industry, finance and cutting-edge technologies, and 9.28 million people traveled back and forth between our two countries last year."\n' +
+      "\n" +
+      "Yoon also mentioned rescue operations conducted during armed conflicts in the Middle East and Africa, during which both countries helped evacuate each other's citizens.\n" +
+      "\n" +
+      '"I hope that the 60th anniversary of Korea and Japan normalizing diplomatic relations next year will serve as an opportunity to take our bilateral relationship to a higher level, one that is more productive and constructive."\n' +
+      "\n" +
+      "A high-level official at the presidential office said the reciprocal visits by leaders of the two nations last year — after a 12-year hiatus — mean the two can meet at any time, though there is no immediate plan for a Seoul-Tokyo summit.",
   },
 ];
 
