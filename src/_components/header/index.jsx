@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Container = styled.header`
   background-color: #2f2f2f; /* 헤더 배경색 변경 */
@@ -34,9 +34,17 @@ const StyledLink = styled(Link)`
 `;
 
 export const Header = () => {
+  const naviagte = useNavigate();
   return (
     <Container>
-      <h1>LingoPress</h1>
+      <h1
+        style={{
+          cursor: "pointer",
+        }}
+        onClick={() => naviagte("/")}
+      >
+        LingoPress
+      </h1>
       <Nav>
         <StyledLink to="/">번역하러 가기</StyledLink>
         <StyledLink to="/lingo-press-retry">틀린 문장 다시 도전하기</StyledLink>
