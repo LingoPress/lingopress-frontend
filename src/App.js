@@ -14,7 +14,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/lingopress/*" element={<Lingopress />} />
+        <Route path="/lingopress/:press_id" element={<Lingopress />} />
         <Route
           path={"*"}
           element={
