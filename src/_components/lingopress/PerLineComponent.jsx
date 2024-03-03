@@ -13,7 +13,7 @@ const ConvertLine = styled.textarea`
   border-radius: 1rem;
   padding: 0.1rem 1rem;
   margin-top: 1rem;
-  width: 100%;
+  width: 95%;
   border: 1px solid #000;
   height: 2.6rem;
   resize: none;
@@ -34,6 +34,8 @@ const LineOuterWrapper = styled.div`
 const CheckButton = styled(Button)`
   width: 3rem;
   height: 3rem;
+  border-radius: 30%;
+  background-color: #fff;
 `;
 
 const PerLineComponent = ({ line }) => {

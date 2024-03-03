@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import dummydata from "../../mock/dummydata";
 import TranslateSection from "./TranslateSection";
+import styled from "@emotion/styled";
 
+const PressTitle = styled.h1`
+  font-size: 1.3rem;
+`;
 const PressSection = () => {
   const props = useParams();
   const [pressData, setPressData] = useState([]);
@@ -18,7 +22,11 @@ const PressSection = () => {
   }, []);
   return (
     <div>
-      <h1>{pressData.length > 0 ? pressData[0].title : null}</h1>
+      <PressTitle>
+        {pressData.length > 0 ? pressData[0].title : null}
+      </PressTitle>
+      <br />
+      <br />
       <TranslateSection pressData={pressData} />
     </div>
   );

@@ -34,7 +34,7 @@ const data = [
     news_url:
       "https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=102&oid=001&aid=0013823655",
     title:
-      "민주당, 윤 대통령 '거리 통치' 비판에 \"국민 무시…국정농단 책임 물어야\"",
+      "President labels Japan as ‘partner’ in overcoming ‘painful past’ together\n",
     desc:
       "Yoon added that all types of independence efforts — from armed struggle and diplomatic efforts to educational and cultural movements — must be fairly recognized, and their history should be passed down correctly from generation to generation.\n" +
       "\n" +
