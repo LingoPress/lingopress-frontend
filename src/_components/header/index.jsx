@@ -7,11 +7,17 @@ const Container = styled.header`
   padding: 20px;
   display: flex;
   justify-content: right;
+  padding-top: 40px;
+
+  & > h1 {
+    position: absolute;
+    left: 2rem;
+  }
 `;
 
 const Nav = styled.nav`
   width: 60%; /* 네비게이션 너비 조정 */
-  margin-top: 10px;
+
   display: flex;
   justify-content: space-around; /* 간격 균등하게 조정 */
 `;
@@ -30,6 +36,7 @@ const StyledLink = styled(Link)`
 export const Header = () => {
   return (
     <Container>
+      <h1>LingoPress</h1>
       <Nav>
         <StyledLink to="/">번역하러 가기</StyledLink>
         <StyledLink to="/lingo-press-retry">틀린 문장 다시 도전하기</StyledLink>
