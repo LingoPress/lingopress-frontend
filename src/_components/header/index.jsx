@@ -30,7 +30,13 @@ const StyledLink = styled(Link)`
 export const Header = () => {
   return (
     <Container>
-      <Nav></Nav>
+      <Nav>
+        <StyledLink to="/">번역하러 가기</StyledLink>
+        <StyledLink to="/lingo-press-retry">틀린 문장 다시 도전하기</StyledLink>
+        <StyledLink to="/lingo-words">단어장</StyledLink>
+        <StyledLink to="/my-lingo-press">내가 번역한 뉴스들</StyledLink>
+        <StyledLink to="/my-page">마이페이지</StyledLink>
+      </Nav>
     </Container>
   );
 };
