@@ -18,14 +18,14 @@ const PressCardWrapper = styled.div`
 
 const ImageContainer = styled.div`
   overflow: hidden;
-  width: 10rem;
+  width: 15rem;
 `;
 
 const Image = styled.img`
   border-radius: 10px;
-  width: 10rem;
+  width: 100%;
   height: 10rem;
-  object-fit: fill;
+  object-fit: cover;
 `;
 
 const Content = styled.div`
@@ -53,18 +53,18 @@ const Description = styled.p`
   -webkit-box-orient: vertical; /*box의 배열 방향을 정함*/
 `;
 
-const PressCard = ({ id, news_url, title, desc, img }) => {
+const PressCard = ({ id, news_url, title, content, imageUrl }) => {
   return (
     <Link to={`lingopress/${id}`}>
       <PressCardWrapper>
-        {img ? (
+        {imageUrl ? (
           <ImageContainer>
-            <Image src={img} alt={title} />
+            <Image src={imageUrl} alt={title} />
           </ImageContainer>
         ) : null}
         <Content>
           <Title>{title}</Title>
-          <Description>{desc}</Description>
+          <Description>{content}</Description>
         </Content>
       </PressCardWrapper>
     </Link>
