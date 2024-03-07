@@ -2,22 +2,26 @@ import { useEffect, useState } from "react";
 import PerLineComponent from "./PerLineComponent";
 
 const TranslateSection = ({ pressData }) => {
-  const [PressContent, setPressContent] = useState([]);
+  const [originalContent, setOriginalContent] = useState([]);
+  const [translatedContent, setTranslatedContent] = useState([]);
   useEffect(() => {
-    if (pressData.length > 0) {
-      const content = pressData[0].desc;
-
-      const convert = content.split("\n");
-      setPressContent(convert);
+    if (pressData) {
+      console.log("hola");
+      setOriginalContent(pressData.originalContent);
+      setTranslatedContent(pressData.translatedContent);
     }
   }, [pressData]);
 
   return (
     <>
-      {PressContent ? (
+      {originalContent ? (
         <div>
-          {PressContent.map((item, index) => (
-            <PerLineComponent key={index} line={item} />
+          {originalContent.map((item, index) => (
+            <PerLineComponent
+              key={index}
+              originalContent={item}
+              translatedContent={translatedContent[index]}
+            />
           ))}
         </div>
       ) : null}

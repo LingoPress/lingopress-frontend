@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
-import translateText from "../../utils/translateText";
 import { useState } from "react";
 
 const LineWrapper = styled.div`
-  width: 85%;
+  width: 77vw;
 `;
 
 const OriginalLine = styled.p`
@@ -14,11 +13,12 @@ const ConvertLine = styled.textarea`
   border-radius: 0.5rem;
   padding: 0.7rem 1rem;
   margin-top: 1rem;
-  width: 100%;
+  width: 77vw;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 1rem;
   resize: none;
+  height: 2.4rem;
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
@@ -35,11 +35,13 @@ const LineOuterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: end;
+  margin-bottom: 5rem;
 `;
 
 const CheckButton = styled.button`
   width: 3rem;
   height: 3rem;
+
   background-color: #fff;
   border: 0.1rem solid #ccc;
   border-radius: 0.3rem;
@@ -67,6 +69,8 @@ const MachineTranslatedLine = styled.p`
   line-height: normal;
   position: absolute;
   margin-left: 1rem;
+  margin-top: 0.5rem;
+  width: 77vw;
 `;
 
 const VerifyZone = styled.div`
@@ -74,7 +78,7 @@ const VerifyZone = styled.div`
   margin-bottom: 1rem;
 `;
 
-const PerLineComponent = ({ line }) => {
+const PerLineComponent = ({ originalContent, translatedContent }) => {
   const [machineTranslatedText, setMachineTranslatedText] = useState("");
   const [userTranslatedText, setUserTranslatedText] = useState("");
   const [userTranslatedTextColor, setUserTranslatedTextColor] = useState(null);
@@ -84,13 +88,9 @@ const PerLineComponent = ({ line }) => {
       alert("텍스트를 입력해주세요.");
       return;
     }
-    // 1. 번역
-    const translatedText = translateText(line);
-    // TODO: 2. db에 번역한 기록 등록 - 추후 인공지능 이용시.
-    //
 
     // 3. 번역 확인 문구 출력
-    setMachineTranslatedText(translatedText);
+    setMachineTranslatedText(translatedContent);
   };
 
   /**
@@ -110,10 +110,10 @@ const PerLineComponent = ({ line }) => {
 
   return (
     <LineOuterWrapper>
-      {line ? (
+      {originalContent ? (
         <>
           <LineWrapper>
-            <OriginalLine>{line}</OriginalLine>
+            <OriginalLine>{originalContent}</OriginalLine>
             <ConvertLine
               value={userTranslatedText}
               onChange={(e) => setUserTranslatedText(e.target.value)}
