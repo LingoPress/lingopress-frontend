@@ -1,5 +1,8 @@
 import styled from "@emotion/styled";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
+import { authAtom } from "../../atom/user";
+import { useEffect } from "react";
 
 const Container = styled.header`
   background-color: #2f2f2f; /* 헤더 배경색 변경 */
@@ -34,14 +37,35 @@ const StyledLink = styled(Link)`
 `;
 
 export const Header = () => {
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [authStatus, setAuthStatus] = useAtom(authAtom);
+  // 첫 접속시 로컬스토리지 값으로 로그인 여부 확인
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setAuthStatus({ is_logged_in: true });
+    }
+  }, []);
+
+  // TODO: 개발 완료 후 제거
+  useEffect(() => {
+    console.log("location: ", location.pathname);
+  }, [location]);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setAuthStatus({ is_logged_in: false });
+  };
+
   return (
     <Container>
       <h1
         style={{
           cursor: "pointer",
         }}
-        onClick={() => naviagte("/")}
+        onClick={() => navigate("/")}
       >
         LingoPress
       </h1>
@@ -50,7 +74,19 @@ export const Header = () => {
         <StyledLink to="/lingo-press-retry">틀린 문장 다시 도전하기</StyledLink>
         <StyledLink to="/lingo-words">단어장</StyledLink>
         <StyledLink to="/my-lingo-press">내가 번역한 뉴스들</StyledLink>
-        <StyledLink to="/my-page">마이페이지</StyledLink>
+
+        {authStatus.is_logged_in ? (
+          <StyledLink
+            onClick={() => {
+              handleLogout();
+            }}
+            to="/"
+          >
+            로그아웃
+          </StyledLink>
+        ) : (
+          <StyledLink to="/login">로그인</StyledLink>
+        )}
       </Nav>
     </Container>
   );

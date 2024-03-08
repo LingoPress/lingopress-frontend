@@ -27,6 +27,27 @@ const PressSection = () => {
       <br />
       <br />
       <TranslateSection pressData={pressData} />
+      <br />
+      <br />
+      <a
+        style={{
+          textDecoration: "none",
+          color: "black",
+          fontSize: "0.8rem",
+          fontWeight: "bold",
+          padding: "10px",
+          border: "1px solid black",
+          borderRadius: "10px",
+          marginTop: "1rem",
+          marginBottom: "1rem",
+        }}
+        href={pressData.originalUrl}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {" "}
+        원문 보기{" "}
+      </a>
     </div>
   );
 };

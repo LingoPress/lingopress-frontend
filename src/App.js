@@ -4,6 +4,7 @@ import Home from "./_pages/home/Home";
 import Lingopress from "./_pages/lingopress/Lingopress";
 import styled from "@emotion/styled";
 import { Layout } from "./_layout/defaultLayout";
+import Login from "./_pages/login/Login";
 
 const NotFound = styled.div`
   text-align: center;
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/lingopress/:press_id" element={<Lingopress />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path={"*"}
           element={

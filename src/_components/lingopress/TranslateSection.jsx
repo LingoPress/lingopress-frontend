@@ -6,7 +6,6 @@ const TranslateSection = ({ pressData }) => {
   const [translatedContent, setTranslatedContent] = useState([]);
   useEffect(() => {
     if (pressData) {
-      console.log("hola");
       setOriginalContent(pressData.originalContent);
       setTranslatedContent(pressData.translatedContent);
     }

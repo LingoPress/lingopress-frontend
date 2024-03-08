@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { useAtomValue } from "jotai";
+import { authAtom } from "../../atom/user";
+import { useNavigate } from "react-router-dom";
+import { axiosPrivate } from "../../utils/axiosMethod";
 
 const LineWrapper = styled.div`
   width: 77vw;
@@ -79,17 +83,40 @@ const VerifyZone = styled.div`
 `;
 
 const PerLineComponent = ({ originalContent, translatedContent }) => {
+  const navigate = useNavigate();
   const [machineTranslatedText, setMachineTranslatedText] = useState("");
   const [userTranslatedText, setUserTranslatedText] = useState("");
   const [userTranslatedTextColor, setUserTranslatedTextColor] = useState(null);
+  const authStatus = useAtomValue(authAtom);
   const handleTranslate = () => {
+    if (authStatus.is_logged_in === false) {
+      alert("로그인 후 이용해주세요");
+      navigate("/login");
+    }
     // 텍스트 입력 여부 확인
-    if (userTranslatedText === "") {
+    else if (userTranslatedText === "") {
       alert("텍스트를 입력해주세요.");
       return;
     }
-
-    // 3. 번역 확인 문구 출력
+    axiosPrivate({
+      method: "get",
+      url: "/api/v1/press/status",
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // axiosPrivate
+    //   .get("/api/v1/users/status")
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // 번역 확인 문구 출력
     setMachineTranslatedText(translatedContent);
   };
 

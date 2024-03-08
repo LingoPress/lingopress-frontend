@@ -10,7 +10,7 @@ const PressSection = () => {
       const result = await axios.get(
         `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/press`,
       );
-      console.log(result.data.data.content);
+      // console.log(result.data.data.content);
       setPressData(result.data.data.content);
     };
     responseData();
