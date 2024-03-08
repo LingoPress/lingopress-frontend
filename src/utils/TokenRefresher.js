@@ -23,7 +23,6 @@ export default function TokenRefresher() {
         const originalConfig = error.config;
         const msg = error.response.data.message;
         const status = error.response.status;
-        console.log("에러가 발생");
         if (status === 401) {
           if (msg === "만료된 JWT 토큰입니다.") {
             await axios({
