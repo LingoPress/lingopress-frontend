@@ -1,4 +1,4 @@
-import LoginForm from "../../_components/login/LoginForm";
+import LoginForm from "../../_components/auth/LoginForm";
 import { authAtom } from "../../atom/user";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";

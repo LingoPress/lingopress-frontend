@@ -37,6 +37,11 @@ const styles = {
     fontSize: "1.5rem",
     marginBottom: "2rem",
   },
+  signup: {
+    marginTop: "10px",
+    fontSize: "0.8rem",
+    cursor: "pointer",
+  },
 };
 
 function LoginForm() {
@@ -94,6 +99,9 @@ function LoginForm() {
       <button onClick={handleLogin} style={styles.button}>
         로그인
       </button>
+      <p onClick={() => navigate("/signup")} style={styles.signup}>
+        회원가입
+      </p>
     </div>
   );
 }
