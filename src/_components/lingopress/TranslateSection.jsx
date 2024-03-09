@@ -6,8 +6,8 @@ const TranslateSection = ({ pressData }) => {
   const [translatedContent, setTranslatedContent] = useState([]);
   useEffect(() => {
     if (pressData) {
-      setOriginalContent(pressData.originalContent);
-      setTranslatedContent(pressData.translatedContent);
+      setOriginalContent(pressData.originalText);
+      setTranslatedContent(pressData.translatedText);
     }
   }, [pressData]);
 
