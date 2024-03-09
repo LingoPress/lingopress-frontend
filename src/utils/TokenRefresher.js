@@ -48,6 +48,7 @@ export default function TokenRefresher() {
             //   window.location.reload();
             // });
           } else if (code === "EXPIRED_REFRESH_TOKEN") {
+            setAuthStatus({ is_logged_in: false });
             localStorage.clear();
             navigate("/login");
             window.alert("토큰이 만료되어 자동으로 로그아웃 되었습니다.");
