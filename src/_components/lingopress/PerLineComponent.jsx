@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { useAtomValue } from "jotai";
 import { authAtom } from "../../atom/user";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { axiosPrivate } from "../../utils/axiosMethod";
 
 const LineWrapper = styled.div`
@@ -82,8 +82,13 @@ const VerifyZone = styled.div`
   margin-bottom: 1rem;
 `;
 
-const PerLineComponent = ({ originalContent, translatedContent }) => {
+const PerLineComponent = ({
+  originalContent,
+  translatedContent,
+  lineNumber,
+}) => {
   const navigate = useNavigate();
+  const props = useParams();
   const [machineTranslatedText, setMachineTranslatedText] = useState("");
   const [userTranslatedText, setUserTranslatedText] = useState("");
   const [userTranslatedTextColor, setUserTranslatedTextColor] = useState(null);
@@ -98,24 +103,6 @@ const PerLineComponent = ({ originalContent, translatedContent }) => {
       alert("텍스트를 입력해주세요.");
       return;
     }
-    axiosPrivate({
-      method: "get",
-      url: "/api/v1/press/status",
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // axiosPrivate
-    //   .get("/api/v1/users/status")
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
     // 번역 확인 문구 출력
     setMachineTranslatedText(translatedContent);
   };
@@ -133,6 +120,26 @@ const PerLineComponent = ({ originalContent, translatedContent }) => {
       // TODO: 번역 확인 기록 등록(틀림)
       setUserTranslatedTextColor(false);
     }
+
+    const requestData = {
+      pressId: props.press_id,
+      isCorrect: isCorrect,
+      contentLineNumber: lineNumber,
+      translateText: userTranslatedText,
+    };
+    console.log(requestData);
+
+    axiosPrivate({
+      method: "post",
+      url: "/api/v1/press/translate",
+      data: requestData,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

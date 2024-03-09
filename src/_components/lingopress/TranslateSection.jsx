@@ -18,6 +18,8 @@ const TranslateSection = ({ pressData }) => {
           {originalContent.map((item, index) => (
             <PerLineComponent
               key={index}
+              // lineNumber는 1부터 시작해야함.
+              lineNumber={index + 1}
               originalContent={item}
               translatedContent={translatedContent[index]}
             />
