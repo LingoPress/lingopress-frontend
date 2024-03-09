@@ -2,9 +2,12 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { axiosPrivate } from "./axiosMethod";
+import { useAtom } from "jotai/index";
+import { authAtom } from "../atom/user";
 
 export default function TokenRefresher() {
   const navigate = useNavigate();
+  const [authStatus, setAuthStatus] = useAtom(authAtom);
 
   useEffect(() => {
     const refreshAPI = axios.create({
@@ -21,10 +24,11 @@ export default function TokenRefresher() {
       },
       async function (error) {
         const originalConfig = error.config;
+        const code = error.response.data.code;
         const msg = error.response.data.message;
         const status = error.response.status;
         if (status === 401) {
-          if (msg === "만료된 JWT 토큰입니다.") {
+          if (code === "EXPIRED_TOKEN") {
             await axios({
               url: `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/users/reissue`,
               method: "post",
@@ -43,7 +47,7 @@ export default function TokenRefresher() {
             // .then((res) => {
             //   window.location.reload();
             // });
-          } else if (msg === "만료된 JWT 토큰입니다.") {
+          } else if (code === "EXPIRED_REFRESH_TOKEN") {
             localStorage.clear();
             navigate("/login");
             window.alert("토큰이 만료되어 자동으로 로그아웃 되었습니다.");
