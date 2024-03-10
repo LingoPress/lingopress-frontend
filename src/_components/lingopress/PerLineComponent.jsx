@@ -86,12 +86,17 @@ const PerLineComponent = ({
   originalContent,
   translatedContent,
   lineNumber,
+  userTranslatedContent,
+  isCorrect,
 }) => {
   const navigate = useNavigate();
   const props = useParams();
   const [machineTranslatedText, setMachineTranslatedText] = useState("");
-  const [userTranslatedText, setUserTranslatedText] = useState("");
-  const [userTranslatedTextColor, setUserTranslatedTextColor] = useState(null);
+  const [userTranslatedText, setUserTranslatedText] = useState(
+    userTranslatedContent,
+  );
+  const [choiceOne, setChoiceOne] = useState(false);
+  const [isUserTranslatedText, setIsUserTranslatedText] = useState(isCorrect);
   const authStatus = useAtomValue(authAtom);
   const handleTranslate = () => {
     if (authStatus.is_logged_in === false) {
@@ -115,11 +120,12 @@ const PerLineComponent = ({
   const handleVerifyText = (isCorrect) => {
     if (isCorrect) {
       // TODO: 번역 확인 기록 등록 (맞음)
-      setUserTranslatedTextColor(true);
+      setIsUserTranslatedText(true);
     } else {
       // TODO: 번역 확인 기록 등록(틀림)
-      setUserTranslatedTextColor(false);
+      setIsUserTranslatedText(false);
     }
+    setChoiceOne(true);
 
     const requestData = {
       pressId: props.press_id,
@@ -153,9 +159,9 @@ const PerLineComponent = ({
               onChange={(e) => setUserTranslatedText(e.target.value)}
               disabled={machineTranslatedText}
               style={{
-                backgroundColor: userTranslatedTextColor
+                backgroundColor: isUserTranslatedText
                   ? "lightgreen"
-                  : userTranslatedTextColor === false
+                  : isUserTranslatedText === false
                     ? "lightcoral"
                     : "white",
               }}
@@ -165,7 +171,7 @@ const PerLineComponent = ({
             </MachineTranslatedLine>
           </LineWrapper>
           <VerifyBox>
-            {machineTranslatedText ? (
+            {machineTranslatedText && !choiceOne ? (
               <div>
                 올바르게 번역했나요?
                 <VerifyZone>
