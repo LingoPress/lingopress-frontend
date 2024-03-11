@@ -44,7 +44,11 @@ export const Header = () => {
   // 첫 접속시 로컬스토리지 값으로 로그인 여부 확인
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    console.log("@@@ localStorage: ", localStorage.getItem("token"));
+    if (
+      localStorage.getItem("token") !== null &&
+      localStorage.getItem("token") !== undefined
+    ) {
       setAuthStatus({ is_logged_in: true });
     }
   }, []);
