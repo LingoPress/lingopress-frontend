@@ -27,6 +27,7 @@ export default function TokenRefresher() {
         const code = error.response.data.code;
         const msg = error.response.data.message;
         const status = error.response.status;
+        console.log("@@@ error: ", error.response);
         if (status === 401) {
           if (code === "EXPIRED_TOKEN") {
             await axios({
@@ -36,22 +37,32 @@ export default function TokenRefresher() {
                 accessToken: localStorage.getItem("token"),
                 refreshToken: localStorage.getItem("refreshToken"),
               },
-            }).then((res) => {
-              localStorage.setItem("token", res.data.data.accessToken);
-              localStorage.setItem("refreshToken", res.data.data.refreshToken);
-              originalConfig.headers["Authorization"] =
-                "Bearer " + res.data.data.accessToken;
+            })
+              .then((res) => {
+                localStorage.setItem("token", res.data.data.accessToken);
+                localStorage.setItem(
+                  "refreshToken",
+                  res.data.data.refreshToken,
+                );
+                originalConfig.headers["Authorization"] =
+                  "Bearer " + res.data.data.accessToken;
 
-              return refreshAPI(originalConfig);
-            });
-            // .then((res) => {
-            //   window.location.reload();
-            // });
-          } else if (code === "EXPIRED_REFRESH_TOKEN") {
-            setAuthStatus({ is_logged_in: false });
-            localStorage.clear();
-            navigate("/login");
-            window.alert("토큰이 만료되어 자동으로 로그아웃 되었습니다.");
+                return refreshAPI(originalConfig);
+              })
+              .then((res) => {
+                window.location.reload();
+              })
+              .catch((err) => {
+                if (
+                  err.response.data.code === "EXPIRED_REFRESH_TOKEN" ||
+                  err.response.data.code === "INVALID_REFRESH_TOKEN"
+                ) {
+                  setAuthStatus({ is_logged_in: false });
+                  localStorage.clear();
+                  navigate("/login");
+                  window.alert("토큰이 만료되어 자동으로 로그아웃 되었습니다.");
+                }
+              });
           }
         } else if (
           status === 400 ||
@@ -64,8 +75,6 @@ export default function TokenRefresher() {
         return Promise.reject(error);
       },
     );
-
-    console.log("interceptor", interceptor);
     return () => {
       axios.interceptors.response.eject(interceptor);
     };
