@@ -8,7 +8,6 @@ export default function Login() {
   const navigate = useNavigate();
   const [authStatus, setAuthStatus] = useAtom(authAtom);
   useEffect(() => {
-    console.log(authStatus);
     if (authStatus.is_logged_in) {
       alert("이미 로그인 되어있습니다.");
       navigate("/");

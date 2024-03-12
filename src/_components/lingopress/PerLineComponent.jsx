@@ -133,19 +133,14 @@ const PerLineComponent = ({
       contentLineNumber: lineNumber,
       translateText: userTranslatedText,
     };
-    console.log(requestData);
 
     axiosPrivate({
       method: "post",
       url: "/api/v1/press/translate",
       data: requestData,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).catch((err) => {
+      console.log("@@@ error: ", err.response);
+    });
   };
 
   return (

@@ -18,7 +18,6 @@ const PressSection = () => {
     const responseData = async () => {
       let result;
       if (authStatus.is_logged_in !== null) {
-        console.log(authStatus.is_logged_in);
         if (authStatus.is_logged_in === false) {
           result = await axiosPublic.get(
             `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/press/${props.press_id}`,
@@ -28,7 +27,6 @@ const PressSection = () => {
             `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/press/${props.press_id}`,
           );
         }
-        console.log(result.data.data);
         setPressData(result.data.data);
       }
     };
