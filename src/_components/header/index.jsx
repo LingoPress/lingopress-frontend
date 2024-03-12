@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { authAtom } from "../../atom/user";
 import { useEffect } from "react";
@@ -38,25 +38,20 @@ const StyledLink = styled(Link)`
 
 export const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [authStatus, setAuthStatus] = useAtom(authAtom);
   // 첫 접속시 로컬스토리지 값으로 로그인 여부 확인
 
   useEffect(() => {
-    console.log("@@@ localStorage: ", localStorage.getItem("token"));
     if (
       localStorage.getItem("token") !== null &&
       localStorage.getItem("token") !== undefined
     ) {
       setAuthStatus({ is_logged_in: true });
+    } else {
+      setAuthStatus({ is_logged_in: false });
     }
   }, []);
-
-  // TODO: 개발 완료 후 제거
-  useEffect(() => {
-    console.log("location: ", location.pathname);
-  }, [location]);
 
   const handleLogout = () => {
     localStorage.clear();
