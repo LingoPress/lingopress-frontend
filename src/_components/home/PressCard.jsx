@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const PressCardWrapper = styled.div`
   border-radius: 10px;
@@ -53,18 +53,29 @@ const Description = styled.p`
   -webkit-box-orient: vertical; /*box의 배열 방향을 정함*/
 `;
 
-const PressCard = ({ id, news_url, title, content, imageUrl }) => {
+const PublishedTime = styled.p`
+  margin-top: 10px;
+  color: #999;
+  font-size: 0.8rem;
+  text-align: right;
+`;
+
+const PressCard = ({id, publishedAt, title, content, imageUrl}) => {
+  const dateObject = new Date(publishedAt);
+  const formattedDate = dateObject.toLocaleDateString();
+
   return (
     <Link to={`lingopress/${id}`}>
       <PressCardWrapper>
         {imageUrl ? (
           <ImageContainer>
-            <Image src={imageUrl} alt={title} />
+            <Image src={imageUrl} alt={title}/>
           </ImageContainer>
         ) : null}
         <Content>
           <Title>{title}</Title>
           <Description>{content}</Description>
+          <PublishedTime>{formattedDate}</PublishedTime>
         </Content>
       </PressCardWrapper>
     </Link>
