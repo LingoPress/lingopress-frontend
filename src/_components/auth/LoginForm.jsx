@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from "axios";
-import { useAtom } from "jotai/index";
-import { authAtom } from "../../atom/user";
-import { useNavigate } from "react-router-dom";
+import {useAtom} from "jotai/index";
+import {authAtom} from "../../atom/user";
+import {useNavigate} from "react-router-dom";
 
 const styles = {
   container: {
@@ -67,11 +67,12 @@ function LoginForm() {
         localStorage.setItem("token", result.data.data.accessToken);
         localStorage.setItem("refreshToken", result.data.data.refreshToken);
         navigate(-1);
-        setAuthStatus({ is_logged_in: true });
+        setAuthStatus({is_logged_in: true});
         return result.data.data;
       }
     } catch (error) {
       console.error(error);
+      alert(error.response.data.message)
     }
   };
 
