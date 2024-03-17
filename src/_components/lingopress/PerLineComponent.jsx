@@ -4,6 +4,7 @@ import {useAtomValue} from "jotai";
 import {authAtom} from "../../atom/user";
 import {useNavigate, useParams} from "react-router-dom";
 import {axiosPrivate} from "../../utils/axiosMethod";
+import countWords from "../../utils/wordCount";
 
 const LineWrapper = styled.div`
   width: 77vw;
@@ -192,11 +193,18 @@ const PerLineComponent = ({
       if (selectedText !== text) {
         setWordMeaning('단어장에 등록하고 뜻 보기');
       }
+      if (countWords(text) > 4) {
+        alert("4단어 이상 선택할 수 없습니다.");
+        handleCloseModal();
+        return;
+      }
 
       setSelectedText(text);
       setShowModal(true);
       setCoords({x: e.clientX, y: e.clientY});
 
+    } else {
+      handleCloseModal();
     }
   };
 
