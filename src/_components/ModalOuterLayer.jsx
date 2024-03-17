@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 const FullOuter = styled.div`
   z-index: 100;
   display: block;
-  background: rgba(0, 0, 0, 0.2);
+  //background: rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
   left: 0;
