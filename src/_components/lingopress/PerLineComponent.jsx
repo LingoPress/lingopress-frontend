@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
-import { useAtomValue } from "jotai";
-import { authAtom } from "../../atom/user";
-import { useNavigate, useParams } from "react-router-dom";
-import { axiosPrivate } from "../../utils/axiosMethod";
+import {useState} from "react";
+import {useAtomValue} from "jotai";
+import {authAtom} from "../../atom/user";
+import {useNavigate, useParams} from "react-router-dom";
+import {axiosPrivate} from "../../utils/axiosMethod";
 
 const LineWrapper = styled.div`
   width: 77vw;
@@ -23,9 +23,8 @@ const ConvertLine = styled.textarea`
   font-size: 1rem;
   resize: none;
   height: 2.4rem;
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: border-color 0.3s ease,
+  box-shadow 0.3s ease;
 
   &:focus {
     outline: none;
@@ -82,13 +81,51 @@ const VerifyZone = styled.div`
   margin-bottom: 1rem;
 `;
 
+const WordSearchModal = styled.div`
+  position: fixed;
+  top: ${({coords}) => coords.y - 110}px;
+  left: ${({coords}) => coords.x}px;
+  padding: .6rem;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  p {
+    margin: .4rem 0 0;
+    color: #333333;
+    font-size: 16px;
+  }
+
+  button {
+    margin-top: .5rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+
+    &:first-of-type {
+      margin-right: 8px;
+      background-color: #ff0000;
+
+      &:hover {
+        background-color: #8d0000;
+      }
+    }
+
+
+  }
+`;
 const PerLineComponent = ({
-  originalContent,
-  translatedContent,
-  lineNumber,
-  userTranslatedContent,
-  isCorrect,
-}) => {
+                            originalContent,
+                            translatedContent,
+                            lineNumber,
+                            userTranslatedContent,
+                            isCorrect,
+                          }) => {
   const navigate = useNavigate();
   const props = useParams();
   const [machineTranslatedText, setMachineTranslatedText] = useState("");
@@ -143,12 +180,84 @@ const PerLineComponent = ({
     });
   };
 
+  // 단어 검색 모달
+  const [showModal, setShowModal] = useState(false);
+  const [selectedText, setSelectedText] = useState('');
+  const [coords, setCoords] = useState({x: 0, y: 0});
+  const [wordMeaning, setWordMeaning] = useState('단어장에 등록하고 뜻 보기');
+
+  const handleMouseUp = (e) => {
+    const text = window.getSelection().toString().trim();
+    if (text.length > 0) {
+      if (selectedText !== text) {
+        setWordMeaning('단어장에 등록하고 뜻 보기');
+      }
+
+      setSelectedText(text);
+      setShowModal(true);
+      setCoords({x: e.clientX, y: e.clientY});
+
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setWordMeaning('단어장에 등록하고 뜻 보기')
+  };
+
+  // edge의 미니 메뉴 기능 끄기.
+  window.addEventListener('mouseup', function (event) {
+    // if (window.navigator.userAgent.includes('Edg/')) {
+    event.preventDefault();
+    // }
+  });
+
+
+  const handleMyWord = () => {
+    if (authStatus.is_logged_in === false) {
+      alert("로그인 후 이용해주세요");
+      navigate("/login");
+    }
+    // 텍스트 입력 여부 확인
+    else if (selectedText === "" || selectedText === " ") {
+      alert("텍스트를 입력해주세요.");
+      return;
+    }
+    // 모르는 단어 등록. 이때 단어,문장, 문장 라인 번호, 뉴스 번호 등이 기록되어야함.
+
+    axiosPrivate({
+      method: "post",
+      url: "/api/v1/words/need-to-learn",
+      data: {
+        word: selectedText,
+        originalText: originalContent,
+        lineNumber: lineNumber,
+        pressId: props.press_id,
+      },
+    }).then((res) => {
+      console.log(res);
+      setWordMeaning(res.data.data.translatedWord);
+    }).catch((err) => {
+      console.log(err.response);
+
+    })
+
+
+  }
   return (
     <LineOuterWrapper>
       {originalContent ? (
         <>
           <LineWrapper>
-            <OriginalLine>{originalContent}</OriginalLine>
+            {showModal && (
+              <WordSearchModal coords={coords}>
+                <h1>{selectedText}</h1>
+                <p>{wordMeaning}</p>
+                <button onClick={handleMyWord}>O</button>
+                <button onClick={handleCloseModal}>X</button>
+              </WordSearchModal>
+            )}
+            <OriginalLine onMouseUp={handleMouseUp}>{originalContent}</OriginalLine>
             <ConvertLine
               value={userTranslatedText}
               onChange={(e) => setUserTranslatedText(e.target.value)}
