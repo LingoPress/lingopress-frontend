@@ -5,6 +5,7 @@ import {authAtom} from "../../atom/user";
 import {useNavigate, useParams} from "react-router-dom";
 import {axiosPrivate} from "../../utils/axiosMethod";
 import countWords from "../../utils/wordCount";
+import ModalOuterLayer from "../ModalOuterLayer";
 
 const LineWrapper = styled.div`
   width: 77vw;
@@ -243,11 +244,8 @@ const PerLineComponent = ({
         pressId: props.press_id,
       },
     }).then((res) => {
-      console.log(res);
       setWordMeaning(res.data.data.translatedWord);
     }).catch((err) => {
-      console.log(err.response);
-
     })
 
 
@@ -258,12 +256,15 @@ const PerLineComponent = ({
         <>
           <LineWrapper>
             {showModal && (
-              <WordSearchModal coords={coords}>
-                <h1>{selectedText}</h1>
-                <p>{wordMeaning}</p>
-                <button onClick={handleMyWord}>O</button>
-                <button onClick={handleCloseModal}>X</button>
-              </WordSearchModal>
+              <>
+                <ModalOuterLayer handleCloseModal={handleCloseModal}/>
+                <WordSearchModal coords={coords}>
+                  <h1>{selectedText}</h1>
+                  <p>{wordMeaning}</p>
+                  <button onClick={handleMyWord}>O</button>
+                  <button onClick={handleCloseModal}>X</button>
+                </WordSearchModal>
+              </>
             )}
             <OriginalLine onMouseUp={handleMouseUp}>{originalContent}</OriginalLine>
             <ConvertLine
