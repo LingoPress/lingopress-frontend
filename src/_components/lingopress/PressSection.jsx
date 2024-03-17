@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 import TranslateSection from "./TranslateSection";
 import styled from "@emotion/styled";
-import { useAtom } from "jotai/index";
-import { authAtom } from "../../atom/user";
-import { axiosPrivate, axiosPublic } from "../../utils/axiosMethod";
+import {useAtom} from "jotai/index";
+import {authAtom} from "../../atom/user";
+import {axiosPrivate, axiosPublic} from "../../utils/axiosMethod";
 
 const PressTitle = styled.h1`
   font-size: 1.3rem;
@@ -33,13 +33,15 @@ const PressSection = () => {
     responseData();
   }, [authStatus]);
   return (
-    <div>
+    <section style={{
+      width: "78vw"
+    }}>
       <PressTitle>{pressData ? pressData.title : null}</PressTitle>
-      <br />
-      <br />
-      <TranslateSection pressData={pressData} />
-      <br />
-      <br />
+      <br/>
+      <br/>
+      <TranslateSection pressData={pressData}/>
+      <br/>
+      <br/>
       <a
         style={{
           textDecoration: "none",
@@ -59,7 +61,7 @@ const PressSection = () => {
         {" "}
         원문 보기{" "}
       </a>
-    </div>
+    </section>
   );
 };
 

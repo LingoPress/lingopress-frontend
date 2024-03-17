@@ -8,7 +8,7 @@ import countWords from "../../utils/wordCount";
 import ModalOuterLayer from "../ModalOuterLayer";
 
 const LineWrapper = styled.div`
-  width: 77vw;
+  width: 90%;
 `;
 
 const OriginalLine = styled.p`
@@ -19,7 +19,7 @@ const ConvertLine = styled.textarea`
   border-radius: 0.5rem;
   padding: 0.7rem 1rem;
   margin-top: 1rem;
-  width: 77vw;
+  width: 90%;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 1rem;
@@ -44,14 +44,16 @@ const LineOuterWrapper = styled.div`
 `;
 
 const CheckButton = styled.button`
-  width: 3rem;
-  height: 3rem;
+  // width: 3rem;
+  // height: 3rem;
+  padding: 0.4rem 0.8rem;
 
   background-color: #fff;
   border: 0.1rem solid #ccc;
   border-radius: 0.3rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 1rem;
+  color: black;
 `;
 
 const VerifyBox = styled.div`
@@ -75,7 +77,7 @@ const MachineTranslatedLine = styled.p`
   position: absolute;
   margin-left: 1rem;
   margin-top: 0.5rem;
-  width: 77vw;
+  width: 90%;
 `;
 
 const VerifyZone = styled.div`
@@ -101,8 +103,7 @@ const WordSearchModal = styled.div`
 
   button {
     margin-top: .5rem;
-    width: 1.3rem;
-    height: 1.3rem;
+    padding: .3rem .5rem;
     border: none;
     border-radius: 4px;
     background-color: #007bff;
@@ -298,8 +299,8 @@ const PerLineComponent = ({
               </div>
             ) : null}
 
-            <CheckButton onClick={() => handleTranslate()}>
-              확인하기
+            <CheckButton type={"button"} onClick={() => handleTranslate()}>
+              확인<br/>하기
             </CheckButton>
           </VerifyBox>
         </>
