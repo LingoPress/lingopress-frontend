@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { Link, useNavigate } from "react-router-dom";
-import { useAtom } from "jotai";
-import { authAtom } from "../../atom/user";
-import { useEffect } from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {useAtom} from "jotai";
+import {authAtom} from "../../atom/user";
+import {useEffect} from "react";
 
 const Container = styled.header`
   background-color: #2f2f2f; /* 헤더 배경색 변경 */
@@ -47,15 +47,15 @@ export const Header = () => {
       localStorage.getItem("token") !== null &&
       localStorage.getItem("token") !== undefined
     ) {
-      setAuthStatus({ is_logged_in: true });
+      setAuthStatus({is_logged_in: true});
     } else {
-      setAuthStatus({ is_logged_in: false });
+      setAuthStatus({is_logged_in: false});
     }
   }, []);
 
   const handleLogout = () => {
     localStorage.clear();
-    setAuthStatus({ is_logged_in: false });
+    setAuthStatus({is_logged_in: false});
   };
 
   return (
@@ -70,9 +70,9 @@ export const Header = () => {
       </h1>
       <Nav>
         <StyledLink to="/">번역하러 가기</StyledLink>
-        <StyledLink to="/lingo-press-retry">틀린 문장 다시 도전하기</StyledLink>
-        <StyledLink to="/lingo-words">단어장</StyledLink>
-        <StyledLink to="/my-lingo-press">내가 번역한 뉴스들</StyledLink>
+        <StyledLink to="/retry-lingopress">틀린 문장 다시 도전하기</StyledLink>
+        <StyledLink to="/vocabulary">단어장</StyledLink>
+        <StyledLink to="/my-lingopress">내가 번역한 뉴스들</StyledLink>
 
         {authStatus.is_logged_in ? (
           <StyledLink
