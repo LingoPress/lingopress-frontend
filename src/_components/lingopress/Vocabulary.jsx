@@ -1,4 +1,9 @@
 import styled from "@emotion/styled";
+import {axiosPrivate} from "../../utils/axiosMethod";
+import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useAtom} from "jotai/index";
+import {needToRefreshWordAtom} from "../../atom/needToRefresh";
 
 const VocabularyCard = styled.div`
   padding: 0.4rem 0.8rem;
@@ -51,6 +56,19 @@ const VocabularyOuterWrapper = styled.section`
 `;
 
 const Vocabulary = () => {
+  const props = useParams();
+  const [wordToLearnList, setWordToLearnList] = useState([]);
+  const [needToRefreshWord, setNeedToRefreshWord] = useAtom(needToRefreshWordAtom);
+
+  useEffect(() => {
+    axiosPrivate({
+      method: "get",
+      url: `/api/v1/words/need-to-learn/${props.press_id}`,
+    }).then((response) => {
+      setWordToLearnList(response.data.data);
+      setNeedToRefreshWord(false);
+    });
+  }, [props.press_id]);
   return (
     <VocabularyOuterWrapper>
       <h2>Vocabulary</h2>
@@ -58,10 +76,11 @@ const Vocabulary = () => {
       <p>Drag the words to add them to the vocabulary.</p>
       <p className={"warning"}>단어 번역기능은 실험 중입니다! <br/>뜻이 정확하지 않거나 번역되지 않을 수 있어요.</p>
 
-      {dummyWord.map((word) => (
+
+      {wordToLearnList.map((word) => (
         <VocabularyCard key={word.id}>
           <div>{word.word}</div>
-          <div>{word.meaning}</div>
+          <div>{word.translatedWord}</div>
         </VocabularyCard>
       ))}
     </VocabularyOuterWrapper>
@@ -69,22 +88,3 @@ const Vocabulary = () => {
 }
 
 export default Vocabulary;
-
-
-const dummyWord = [
-  {
-    id: 1,
-    word: "apple",
-    meaning: "사과"
-  },
-  {
-    id: 2,
-    word: "tower",
-    meaning: "솟아있다."
-  },
-  {
-    id: 3,
-    word: "computer",
-    meaning: "컴퓨터"
-  }
-]
