@@ -72,39 +72,73 @@ const MyLingopressWrapper = styled.div`
 
 
 const MyLingopress = () => {
+  const [isLast, setIsLast] = useState(false);
+  const [page, setPage] = useState(0);
+
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const [myPressList, setMyPressList] = useState([])
+
+  // 페이지 타이틀 변경
   useEffect(() => {
     document.title = "내가 번역한 뉴스들";
-
-    axiosPrivate({
-        url: "/api/v1/press/learned",
-        method: "get"
-      }
-    ).then((response) => {
-      setMyPressList(response.data.data.content);
-    }).catch((error) => {
-      console.log(error);
-    });
-
-
     return () => {
       document.title = "Lingopress";
     }
   }, []);
 
 
-  const hoverLearningRate = () => {
+  // 무한 스크롤
+  const handleObserver = (entries) => {
+    const target = entries[0];
+    if (target.isIntersecting && !isLoading && !isLast) {
+      setPage((currentPage) => currentPage + 1);
+    }
+  };
 
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      threshold: 0,
+    });
+    const observerTarget = document.getElementById("observer");
+    if (observerTarget) {
+      observer.observe(observerTarget);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [page]);
+
+
+  const fetchData = async () => {
+    if (isLast) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    const result = await axiosPrivate({
+      url: "/api/v1/press/learned",
+      method: "get",
+      params: {
+        page: page,
+      }
+    });
+    setMyPressList((pressData) => [...pressData, ...result.data.data.content]);
+    setIsLast(result.data.data.last);
+    setIsLoading(false);
   }
+
   return (
     <MyLingopressWrapper>
       <br/>
       <h1>내가 번역한 뉴스들</h1>
 
       <br/>
-      <p className="learning-rate" onMouseUp={hoverLearningRate}>학습률?
+      <p className="learning-rate">학습률?
         <p className="learning-rate-desc">학습률은 "옳게 번역한 문장 수 / 전체 문장 수" 입니다.</p>
       </p>
       {myPressList.length > 0 && myPressList.map((learnedPress) => (
@@ -118,6 +152,8 @@ const MyLingopress = () => {
 
         </LearnedPressBox>
       ))}
+      {isLoading && <p>Loading...</p>}
+      <div id="observer" style={{height: "10px"}}></div>
 
     </MyLingopressWrapper>
   )
