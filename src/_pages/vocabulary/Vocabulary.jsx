@@ -6,7 +6,6 @@ import {useNavigate} from "react-router-dom";
 import styled from "@emotion/styled";
 
 const MyWordBox = styled.div`
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -55,7 +54,6 @@ const MyWordBox = styled.div`
     position: absolute;
     right: 20px;
     top: 20px;
-
   }
 `;
 
