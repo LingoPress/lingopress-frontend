@@ -31,7 +31,7 @@ const Image = styled.img`
 
 const Content = styled.div`
   padding: 20px;
-  width: 80%;
+  width: 100%;
 `;
 
 const Title = styled.h2`
