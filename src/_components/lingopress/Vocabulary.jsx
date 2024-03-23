@@ -68,7 +68,7 @@ const Vocabulary = () => {
       setWordToLearnList(response.data.data);
       setNeedToRefreshWord(false);
     });
-  }, [props.press_id]);
+  }, [props.press_id, needToRefreshWord]);
   return (
     <VocabularyOuterWrapper>
       <h2>Vocabulary</h2>

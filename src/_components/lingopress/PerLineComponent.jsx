@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import {useState} from "react";
-import {useAtomValue} from "jotai";
+import {useAtom, useAtomValue} from "jotai";
 import {authAtom} from "../../atom/user";
 import {useNavigate, useParams} from "react-router-dom";
 import {axiosPrivate} from "../../utils/axiosMethod";
 import countWords from "../../utils/wordCount";
 import ModalOuterLayer from "../ModalOuterLayer";
+import {needToRefreshWordAtom} from "../../atom/needToRefresh";
 
 const LineWrapper = styled.div`
   width: 90%;
@@ -188,7 +189,7 @@ const PerLineComponent = ({
   const [selectedText, setSelectedText] = useState('');
   const [coords, setCoords] = useState({x: 0, y: 0});
   const [wordMeaning, setWordMeaning] = useState('단어장에 등록하고 뜻 보기');
-
+  const [needToRefreshWord, setNeedToRefreshWord] = useAtom(needToRefreshWordAtom);
   const handleMouseUp = (e) => {
     const text = window.getSelection().toString().trim();
     if (text.length > 0) {
@@ -246,6 +247,7 @@ const PerLineComponent = ({
       },
     }).then((res) => {
       setWordMeaning(res.data.data.translatedWord);
+      setNeedToRefreshWord(true);
     }).catch((err) => {
     })
 
