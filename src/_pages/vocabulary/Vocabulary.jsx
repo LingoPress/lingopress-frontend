@@ -114,10 +114,10 @@ const Vocabulary = () => {
       <MyWordsWrapper>
         {myWords.map((word) => (
           <MyWordBox key={word.id}>
-            <p className={"영단어"}>{word.word}</p>
+            <h1 className={"영단어"}>{word.word}</h1>
             <p className={"뜻"}>{word.translatedWord}</p>
             <p className={"원문"}>원문: {word.originalLineText}</p>
-            <p className={"학습유무"}>학습 유무: {String(word.isLearned)} </p>
+            <p className={"학습유무"}>학습 유무: {(word.isLearned ? "O" : "X")} </p>
             <p className={"뉴스보러가기"} onClick={() => navigate(`/lingopress/${word.pressId}`)}>해당 뉴스 보러가기</p>
           </MyWordBox>
         ))}
