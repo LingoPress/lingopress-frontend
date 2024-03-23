@@ -33,6 +33,39 @@ const LearnedPressBox = styled.div`
     color: #666;
     line-height: 1.6;
   }
+
+  .etcWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .updatedAt {
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+`
+
+const MyLingopressWrapper = styled.div`
+  .learning-rate {
+    text-align: right;
+    font-size: 0.8rem;
+    color: #666;
+    position: relative;
+    right: 20px;
+  }
+
+  .learning-rate-desc {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .learning-rate:hover .learning-rate-desc {
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+
+  }
 `
 
 
@@ -60,22 +93,31 @@ const MyLingopress = () => {
   }, []);
 
 
+  const hoverLearningRate = () => {
+
+  }
   return (
-    <div>
+    <MyLingopressWrapper>
       <br/>
       <h1>내가 번역한 뉴스들</h1>
 
+      <br/>
+      <p className="learning-rate" onMouseUp={hoverLearningRate}>학습률?
+        <p className="learning-rate-desc">학습률은 "옳게 번역한 문장 수 / 전체 문장 수" 입니다.</p>
+      </p>
       {myPressList.length > 0 && myPressList.map((learnedPress) => (
         <LearnedPressBox key={learnedPress.id} onClick={() => navigate(`/lingopress/${learnedPress.press.id}`)}>
           <h1>{learnedPress.press.title}</h1>
           <p>{learnedPress.press.published_at}</p>
-          <p> 학습률: {(learnedPress.learnedContentLine / learnedPress.press.totalContentLine).toFixed(2)}</p>
-          <p>최근 학습일 {formatDate(learnedPress.updatedAt)}</p>
+          <div className={"etcWrapper"}>
+            <p> 학습률: {(learnedPress.learnedContentLine / learnedPress.press.totalContentLine).toFixed(2)}</p>
+            <p className={"updatedAt"}>최근 학습일 {formatDate(learnedPress.updatedAt)}</p>
+          </div>
 
         </LearnedPressBox>
       ))}
 
-    </div>
+    </MyLingopressWrapper>
   )
 }
 
