@@ -3,6 +3,8 @@ import {axiosPrivate} from "../../utils/axiosMethod";
 import styled from "@emotion/styled";
 import formatDate from "../../utils/formatDate";
 import {useNavigate} from "react-router-dom";
+import {useAtomValue} from "jotai/index";
+import {authAtom} from "../../atom/user";
 
 
 const LearnedPressBox = styled.div`
@@ -72,6 +74,8 @@ const MyLingopressWrapper = styled.div`
 
 
 const MyLingopress = () => {
+  const authStatus = useAtomValue(authAtom);
+
   const [isLast, setIsLast] = useState(false);
   const [page, setPage] = useState(0);
 
@@ -109,6 +113,11 @@ const MyLingopress = () => {
   }, []);
 
   useEffect(() => {
+    if (!authStatus.is_logged_in) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+      return;
+    }
     fetchData();
   }, [page]);
 
