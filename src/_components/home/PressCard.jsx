@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import {Link} from "react-router-dom";
+import formatDate from "../../utils/formatDate";
 
 const PressCardWrapper = styled.div`
   border-radius: 10px;
@@ -61,8 +62,7 @@ const PublishedTime = styled.p`
 `;
 
 const PressCard = ({id, publishedAt, title, content, imageUrl}) => {
-  const dateObject = new Date(publishedAt);
-  const formattedDate = dateObject.toLocaleDateString();
+  const formattedDate = formatDate(publishedAt);
 
   return (
     <Link to={`lingopress/${id}`}>
