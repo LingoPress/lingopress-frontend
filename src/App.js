@@ -7,6 +7,7 @@ import {Layout} from "./_layout/defaultLayout";
 import Login from "./_pages/login/Login";
 import SignUp from "./_pages/signUp/SignUp";
 import MyLingopress from "./_pages/myLingopress/MyLingopress";
+import Vocabulary from "./_pages/vocabulary/Vocabulary";
 
 const NotFound = styled.div`
   text-align: center;
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/my-lingopress" element={<MyLingopress/>}/>
+        <Route path="/vocabulary" element={<Vocabulary/>}/>
         <Route
           path={"*"}
           element={
