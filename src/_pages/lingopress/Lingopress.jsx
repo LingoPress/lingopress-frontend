@@ -12,7 +12,7 @@ export default function Lingopress() {
     }}>
       <br/>
       <PressSection authStatus={authStatus}/>
-      {authStatus ? <Vocabulary/> : null}
+      {authStatus.is_logged_in ? <Vocabulary/> : null}
     </div>
   );
 }
