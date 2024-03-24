@@ -10,6 +10,7 @@ import {needToRefreshWordAtom} from "../../atom/needToRefresh";
 
 const LineWrapper = styled.div`
   width: 90%;
+  position: relative;
 `;
 
 const OriginalLine = styled.p`
@@ -20,7 +21,7 @@ const ConvertLine = styled.textarea`
   border-radius: 0.5rem;
   padding: 0.7rem 1rem;
   margin-top: 1rem;
-  width: 90%;
+  width: 95%;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 1rem;
@@ -37,7 +38,7 @@ const ConvertLine = styled.textarea`
 `;
 
 const LineOuterWrapper = styled.div`
-  min-height: 3rem;
+  min-height: 8rem;
   display: flex;
   justify-content: space-between;
   align-items: end;
@@ -83,7 +84,6 @@ const MachineTranslatedLine = styled.p`
 
 const VerifyZone = styled.div`
   display: flex;
-  margin-bottom: 1rem;
 `;
 
 const WordSearchModal = styled.div`
@@ -119,10 +119,18 @@ const WordSearchModal = styled.div`
         background-color: #8d0000;
       }
     }
-
-
   }
 `;
+
+const VerifyWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.8rem;
+
+`;
+
 const PerLineComponent = ({
                             originalContent,
                             translatedContent,
@@ -288,7 +296,7 @@ const PerLineComponent = ({
           </LineWrapper>
           <VerifyBox>
             {machineTranslatedText && !choiceOne ? (
-              <div>
+              <VerifyWrapper>
                 올바르게 번역했나요?
                 <VerifyZone>
                   <VerifyButton onClick={() => handleVerifyText(true)}>
@@ -298,7 +306,7 @@ const PerLineComponent = ({
                     X
                   </VerifyButton>
                 </VerifyZone>
-              </div>
+              </VerifyWrapper>
             ) : null}
 
             <CheckButton type={"button"} onClick={() => handleTranslate()}>
