@@ -155,7 +155,7 @@ const MyLingopress = () => {
           <h1>{learnedPress.press.title}</h1>
           <p>{learnedPress.press.published_at}</p>
           <div className={"etcWrapper"}>
-            <p> 학습률: {(learnedPress.learnedContentLine / learnedPress.press.totalContentLine).toFixed(2)}</p>
+            <p> 학습률: {(learnedPress.learnedContentLine / learnedPress.press.totalContentLine).toFixed(2) * 100}%</p>
             <p className={"updatedAt"}>최근 학습일 {formatDate(learnedPress.updatedAt)}</p>
           </div>
 
