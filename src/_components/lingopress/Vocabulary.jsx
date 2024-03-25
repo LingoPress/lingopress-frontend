@@ -68,7 +68,22 @@ const Vocabulary = () => {
       setWordToLearnList(response.data.data);
       setNeedToRefreshWord(false);
     });
-  }, [props.press_id, needToRefreshWord]);
+  }, [props.press_id]);
+
+  useEffect(() => {
+    if (needToRefreshWord) {
+      axiosPrivate({
+        method: "get",
+        url: `/api/v1/words/need-to-learn/${props.press_id}`,
+      }).then((response) => {
+        setWordToLearnList(response.data.data);
+        setNeedToRefreshWord(false);
+      });
+    }
+
+  }, [needToRefreshWord]);
+
+
   return (
     <VocabularyOuterWrapper>
       <h2>Vocabulary</h2>
