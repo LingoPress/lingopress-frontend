@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# lingopress-frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+`링고프레스` 프로젝트의 프론트엔드 저장소입니다.
 
-## Available Scripts
+### 홈페이지 링크
 
-In the project directory, you can run:
+https://lingopress.kro.kr/
 
-### `npm start`
+### 프로젝트 소개
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**링고프레스!** 당신의 영어 학습을 위한 새로운 파트너! 📘✨
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+링고프레스는 번역을 중심으로 영자뉴스를 통해 영어 학습을 지원하는 웹 서비스입니다. 원하는 영자신문을 선택하고, 기사를 번역하며 모르는 단어를 클릭하면 바로 그 뜻을 확인할 수 있습니다. 🗞️🔍
 
-### `npm test`
+독해, 어휘, 시사까지, 기사를 읽으며 다양한 영역의 영어를 한 번에 학습하세요. 발견한 새로운 단어들은 개인 단어장에 저장되어, 언제든지 복습할 수 있습니다. 📚💼
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+읽었던 기사들과 번역에 도전했던 내용들은 별도로 모아, 학습의 효과를 극대화할 수 있도록 도와드립니다. 📋🎓
 
-### `npm run build`
+### 시연 영상
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+추가예정
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 개발 환경 및 도구
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+언어: JavaScript
 
-### `npm run eject`
+UI 라이브러리: React
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+상태관리: Jotai
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+CSS 라이브러리: emotion
