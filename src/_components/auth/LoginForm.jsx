@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import {useAtom} from "jotai/index";
-import {authAtom} from "../../atom/user";
-import {useNavigate} from "react-router-dom";
+import { useAtom } from "jotai/index";
+import { authAtom } from "../../atom/user";
+import { useNavigate } from "react-router-dom";
 
 const styles = {
   container: {
@@ -50,7 +50,8 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [authStatus, setAuthStatus] = useAtom(authAtom);
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
     await fetchLogin();
   };
 
@@ -67,17 +68,17 @@ function LoginForm() {
         localStorage.setItem("token", result.data.data.accessToken);
         localStorage.setItem("refreshToken", result.data.data.refreshToken);
         navigate(-1);
-        setAuthStatus({is_logged_in: true});
+        setAuthStatus({ is_logged_in: true });
         return result.data.data;
       }
     } catch (error) {
       console.error(error);
-      alert(error.response.data.message)
+      alert(error.response.data.message);
     }
   };
 
   return (
-    <div style={styles.container}>
+    <form onSubmit={handleLogin} style={styles.container}>
       <h1 style={styles.h1}>LingoPress</h1>
       <h2 style={styles.h2}>
         링고프레스로 번역, 독해, 어휘, 시사까지 한번에 공부하세요!
@@ -97,13 +98,13 @@ function LoginForm() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleLogin} style={styles.button}>
+      <button type={"submit"} style={styles.button}>
         로그인
       </button>
       <p onClick={() => navigate("/signup")} style={styles.signup}>
         회원가입
       </p>
-    </div>
+    </form>
   );
 }
 
