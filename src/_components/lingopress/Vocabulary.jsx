@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import {axiosPrivate} from "../../utils/axiosMethod";
-import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {useAtom} from "jotai/index";
-import {needToRefreshWordAtom} from "../../atom/needToRefresh";
+import { axiosPrivate } from "../../utils/axiosMethod";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useAtom } from "jotai/index";
+import { needToRefreshWordAtom } from "../../atom/needToRefresh";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 const VocabularyCard = styled.div`
   padding: 0.4rem 0.8rem;
@@ -13,15 +14,23 @@ const VocabularyCard = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 1rem;
   color: black;
+  display: flex;
+  justify-content: space-between;
 
-  & > div:nth-of-type(1) {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
+  .text {
+    & > div {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
 
-  & > div:nth-of-type(2) {
-    font-size: 0.9rem;
-    color: #666;
+    & > input {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    & > input:focus {
+      outline: none;
+    }
   }
 
   margin-top: 1rem;
@@ -29,7 +38,7 @@ const VocabularyCard = styled.div`
 
 const VocabularyOuterWrapper = styled.section`
   position: fixed;
-  right: .5rem;
+  right: 0.5rem;
   width: 15vw;
   padding: 1rem;
   margin-left: 2rem;
@@ -49,7 +58,7 @@ const VocabularyOuterWrapper = styled.section`
   }
 
   & > p.warning {
-    margin-top: .4rem;
+    margin-top: 0.4rem;
     color: red;
     font-size: 0.7rem;
   }
@@ -58,7 +67,9 @@ const VocabularyOuterWrapper = styled.section`
 const Vocabulary = () => {
   const props = useParams();
   const [wordToLearnList, setWordToLearnList] = useState([]);
-  const [needToRefreshWord, setNeedToRefreshWord] = useAtom(needToRefreshWordAtom);
+  const [needToRefreshWord, setNeedToRefreshWord] = useAtom(
+    needToRefreshWordAtom,
+  );
 
   useEffect(() => {
     axiosPrivate({
@@ -80,26 +91,71 @@ const Vocabulary = () => {
         setNeedToRefreshWord(false);
       });
     }
-
   }, [needToRefreshWord]);
 
+  const handleEdit = (wordId, word) => {
+    if (word) {
+      axiosPrivate({
+        method: "put",
+        url: `/api/v1/words/${wordId}`,
+        data: {
+          word,
+        },
+      }).then(() => {
+        setNeedToRefreshWord(true);
+      });
+    }
+  };
+
+  const handleDelete = (wordId) => {
+    axiosPrivate({
+      method: "delete",
+      url: `/api/v1/words/${wordId}`,
+    }).then(() => {
+      setNeedToRefreshWord(true);
+    });
+  };
 
   return (
     <VocabularyOuterWrapper>
       <h2>Vocabulary</h2>
-      <br/>
+      <br />
       <p>Drag the words to add them to the vocabulary.</p>
-      <p className={"warning"}>단어 번역기능은 실험 중입니다! <br/>뜻이 정확하지 않거나 번역되지 않을 수 있어요.</p>
-
+      <p className={"warning"}>
+        단어 번역기능은 실험 중입니다! <br />
+        뜻이 정확하지 않거나 번역되지 않을 수 있어요. <br />
+        번역이 잘못된 경우 직접 수정해주세요.
+      </p>
 
       {wordToLearnList.map((word) => (
         <VocabularyCard key={word.id}>
-          <div>{word.word}</div>
-          <div>{word.translatedWord}</div>
+          <div className={"text"}>
+            <div>{word.word}</div>
+            <input
+              type="text"
+              value={word.translatedWord}
+              onChange={(e) => {
+                const newWordToLearnList = wordToLearnList.map((item) => {
+                  if (item.id === word.id) {
+                    return {
+                      ...item,
+                      translatedWord: e.target.value,
+                    };
+                  }
+                  return item;
+                });
+                setWordToLearnList(newWordToLearnList);
+              }}
+            />
+          </div>
+          <div>
+            <FaEdit onClick={() => handleEdit(word.id, word.translatedWord)} />
+            <FaTrashAlt onClick={() => handleDelete(word.id)} />
+          </div>
         </VocabularyCard>
       ))}
     </VocabularyOuterWrapper>
   );
-}
+};
 
 export default Vocabulary;
