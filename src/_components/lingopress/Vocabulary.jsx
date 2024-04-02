@@ -7,6 +7,7 @@ import { needToRefreshWordAtom } from "../../atom/needToRefresh";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 const VocabularyCard = styled.div`
+  position: relative;
   padding: 0.4rem 0.8rem;
   background-color: #fff;
   border: 0.1rem solid #ccc;
@@ -18,6 +19,8 @@ const VocabularyCard = styled.div`
   justify-content: space-between;
 
   .text {
+    width: 80%;
+
     & > div {
       font-weight: bold;
       margin-bottom: 0.5rem;
@@ -26,10 +29,23 @@ const VocabularyCard = styled.div`
     & > input {
       font-size: 0.9rem;
       color: #666;
+      width: 80%;
     }
 
     & > input:focus {
       outline: none;
+    }
+  }
+
+  & > .editBox {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
+    & svg {
+      cursor: pointer;
+      margin: 0.2rem;
     }
   }
 
@@ -40,7 +56,7 @@ const VocabularyOuterWrapper = styled.section`
   position: fixed;
   right: 0.5rem;
   width: 15vw;
-  padding: 1rem;
+  padding: 0.8rem;
   margin-left: 2rem;
   border: 1px solid #ccc;
   border-radius: 0.3rem;
@@ -148,7 +164,7 @@ const Vocabulary = () => {
               }}
             />
           </div>
-          <div>
+          <div className="editBox">
             <FaEdit onClick={() => handleEdit(word.id, word.translatedWord)} />
             <FaTrashAlt onClick={() => handleDelete(word.id)} />
           </div>

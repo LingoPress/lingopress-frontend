@@ -1,15 +1,15 @@
 import styled from "@emotion/styled";
-import {useState} from "react";
-import {useAtom, useAtomValue} from "jotai";
-import {authAtom} from "../../atom/user";
-import {useNavigate, useParams} from "react-router-dom";
-import {axiosPrivate} from "../../utils/axiosMethod";
+import { useState } from "react";
+import { useAtom, useAtomValue } from "jotai";
+import { authAtom } from "../../atom/user";
+import { useNavigate, useParams } from "react-router-dom";
+import { axiosPrivate } from "../../utils/axiosMethod";
 import countWords from "../../utils/wordCount";
 import ModalOuterLayer from "../ModalOuterLayer";
-import {needToRefreshWordAtom} from "../../atom/needToRefresh";
+import { needToRefreshWordAtom } from "../../atom/needToRefresh";
 
 const LineWrapper = styled.div`
-  width: 90%;
+  width: 93%;
   position: relative;
 `;
 
@@ -27,8 +27,9 @@ const ConvertLine = styled.textarea`
   font-size: 1rem;
   resize: none;
   height: 2.4rem;
-  transition: border-color 0.3s ease,
-  box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:focus {
     outline: none;
@@ -88,23 +89,23 @@ const VerifyZone = styled.div`
 
 const WordSearchModal = styled.div`
   position: fixed;
-  top: ${({coords}) => coords.y - 110}px;
-  left: ${({coords}) => coords.x}px;
-  padding: .6rem;
+  top: ${({ coords }) => coords.y - 110}px;
+  left: ${({ coords }) => coords.x}px;
+  padding: 0.6rem;
   border-radius: 8px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 
   p {
-    margin: .4rem 0 0;
+    margin: 0.4rem 0 0;
     color: #333333;
     font-size: 16px;
   }
 
   button {
-    margin-top: .5rem;
-    padding: .3rem .5rem;
+    margin-top: 0.5rem;
+    padding: 0.3rem 0.5rem;
     border: none;
     border-radius: 4px;
     background-color: #007bff;
@@ -128,16 +129,15 @@ const VerifyWrapper = styled.div`
   align-items: center;
   margin-bottom: 0.8rem;
   font-size: 0.8rem;
-
 `;
 
 const PerLineComponent = ({
-                            originalContent,
-                            translatedContent,
-                            lineNumber,
-                            userTranslatedContent,
-                            isCorrect,
-                          }) => {
+  originalContent,
+  translatedContent,
+  lineNumber,
+  userTranslatedContent,
+  isCorrect,
+}) => {
   const navigate = useNavigate();
   const props = useParams();
   const [machineTranslatedText, setMachineTranslatedText] = useState("");
@@ -194,15 +194,17 @@ const PerLineComponent = ({
 
   // 단어 검색 모달
   const [showModal, setShowModal] = useState(false);
-  const [selectedText, setSelectedText] = useState('');
-  const [coords, setCoords] = useState({x: 0, y: 0});
-  const [wordMeaning, setWordMeaning] = useState('단어장에 등록하고 뜻 보기');
-  const [needToRefreshWord, setNeedToRefreshWord] = useAtom(needToRefreshWordAtom);
+  const [selectedText, setSelectedText] = useState("");
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [wordMeaning, setWordMeaning] = useState("단어장에 등록하고 뜻 보기");
+  const [needToRefreshWord, setNeedToRefreshWord] = useAtom(
+    needToRefreshWordAtom,
+  );
   const handleMouseUp = (e) => {
     const text = window.getSelection().toString().trim();
     if (text.length > 0) {
       if (selectedText !== text) {
-        setWordMeaning('단어장에 등록하고 뜻 보기');
+        setWordMeaning("단어장에 등록하고 뜻 보기");
       }
       if (countWords(text) > 4) {
         alert("4단어 이상 선택할 수 없습니다.");
@@ -212,8 +214,7 @@ const PerLineComponent = ({
 
       setSelectedText(text);
       setShowModal(true);
-      setCoords({x: e.clientX, y: e.clientY});
-
+      setCoords({ x: e.clientX, y: e.clientY });
     } else {
       handleCloseModal();
     }
@@ -221,16 +222,15 @@ const PerLineComponent = ({
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setWordMeaning('단어장에 등록하고 뜻 보기')
+    setWordMeaning("단어장에 등록하고 뜻 보기");
   };
 
   // edge의 미니 메뉴 기능 끄기.
-  window.addEventListener('mouseup', function (event) {
+  window.addEventListener("mouseup", function (event) {
     // if (window.navigator.userAgent.includes('Edg/')) {
     event.preventDefault();
     // }
   });
-
 
   const handleMyWord = () => {
     if (authStatus.is_logged_in === false) {
@@ -243,7 +243,6 @@ const PerLineComponent = ({
       return;
     }
     // 모르는 단어 등록. 이때 단어,문장, 문장 라인 번호, 뉴스 번호 등이 기록되어야함.
-
     axiosPrivate({
       method: "post",
       url: "/api/v1/words/need-to-learn",
@@ -253,14 +252,13 @@ const PerLineComponent = ({
         lineNumber: lineNumber,
         pressId: props.press_id,
       },
-    }).then((res) => {
-      setWordMeaning(res.data.data.translatedWord);
-      setNeedToRefreshWord(true);
-    }).catch((err) => {
     })
-
-
-  }
+      .then((res) => {
+        setWordMeaning(res.data.data.translatedWord);
+        setNeedToRefreshWord(true);
+      })
+      .catch((err) => {});
+  };
   return (
     <LineOuterWrapper>
       {originalContent ? (
@@ -268,7 +266,7 @@ const PerLineComponent = ({
           <LineWrapper>
             {showModal && (
               <>
-                <ModalOuterLayer handleCloseModal={handleCloseModal}/>
+                <ModalOuterLayer handleCloseModal={handleCloseModal} />
                 <WordSearchModal coords={coords}>
                   <h1>{selectedText}</h1>
                   <p>{wordMeaning}</p>
@@ -277,7 +275,9 @@ const PerLineComponent = ({
                 </WordSearchModal>
               </>
             )}
-            <OriginalLine onMouseUp={handleMouseUp}>{originalContent}</OriginalLine>
+            <OriginalLine onMouseUp={handleMouseUp}>
+              {originalContent}
+            </OriginalLine>
             <ConvertLine
               value={userTranslatedText}
               onChange={(e) => setUserTranslatedText(e.target.value)}
@@ -297,7 +297,8 @@ const PerLineComponent = ({
           <VerifyBox>
             {machineTranslatedText && !choiceOne ? (
               <VerifyWrapper>
-                올바르게 번역했나요?
+                올바르게 <br />
+                번역했나요?
                 <VerifyZone>
                   <VerifyButton onClick={() => handleVerifyText(true)}>
                     O
@@ -310,7 +311,9 @@ const PerLineComponent = ({
             ) : null}
 
             <CheckButton type={"button"} onClick={() => handleTranslate()}>
-              확인<br/>하기
+              확인
+              <br />
+              하기
             </CheckButton>
           </VerifyBox>
         </>

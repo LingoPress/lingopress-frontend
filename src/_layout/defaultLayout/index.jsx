@@ -15,7 +15,7 @@ const Content = styled.div`
 
 const Main = styled.main`
   flex: 1;
-  padding: 20px;
+  padding: 1rem;
 `;
 
 export const Layout = (props) => {
