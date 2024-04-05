@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          
+
 
       # docker build & push to production
       - name: Docker build & push to prod
@@ -28,7 +28,7 @@ jobs:
           docker build -f Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/lingopress-frontend .
           docker push ${{ secrets.DOCKER_USERNAME }}/lingopress-frontend
 
-          
+
       ## deploy to production
       - name: Deploy to prod
         uses: appleboy/ssh-action@master
@@ -40,6 +40,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             sudo docker stop lingopress-frontend
+                  while sudo docker inspect -f '{{.State.Running}}' lingopress-frontend; do
+                sleep 1
+            done
             sudo docker ps
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/lingopress-frontend
             sudo docker run --rm --name lingopress-frontend \
