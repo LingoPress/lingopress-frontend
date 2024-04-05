@@ -1,0 +1,50 @@
+# github repository actions 페이지에 나타날 이름
+name: CI/CD using github actions & docker
+
+# event trigger
+# main브랜치에 push가 되었을 때 실행
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  CI-CD:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          
+
+      # docker build & push to production
+      - name: Docker build & push to prod
+        if: contains(github.ref, 'main')
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -f Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/lingopress-frontend .
+          docker push ${{ secrets.DOCKER_USERNAME }}/lingopress-frontend
+
+          
+      ## deploy to production
+      - name: Deploy to prod
+        uses: appleboy/ssh-action@master
+        id: deploy-prod
+        if: contains(github.ref, 'main')
+        with:
+          host: ${{ secrets.HOST_PROD }} # EC2 퍼블릭 IPv4 DNS
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo docker ps
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/lingopress-frontend
+            sudo docker run --rm --name lingopress-frontend \
+                    -e TZ=Asia/Seoul \
+                    --network lingopress_network \
+                    -v lingopress-nginx-setting:/etc/nginx \
+                    -v lingopress-nginx-letsencrypt:/etc/letsencrypt \
+                    -d -p 80:80 -p 443:443 kidchanghyun/lingopress-frontend
+            sudo docker image prune -f
