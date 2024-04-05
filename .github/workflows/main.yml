@@ -39,6 +39,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            sudo docker stop lingopress-frontend
             sudo docker ps
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/lingopress-frontend
             sudo docker run --rm --name lingopress-frontend \
