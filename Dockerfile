@@ -22,9 +22,6 @@ FROM nginx:1.25.4
 # 이전 빌드 단계에서 빌드한 결과물을 /usr/share/nginx/html 으로 복사한다.
 COPY --from=build /app/build /usr/share/nginx/html
 
-# 기본 nginx 설정 파일을 삭제한다. 컨테이너를 실행할 때 nginx 설정 파일을 볼륨 마운트로 연결할 것이기 때문
-RUN rm -rf /etc/nginx
-
 RUN apt-get update && apt-get -y install cron && apt-get -y install dos2unix
 
 # crontab 설정 파일을 복사한다.
