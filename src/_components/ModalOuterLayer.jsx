@@ -11,10 +11,10 @@ const FullOuter = styled.div`
   bottom: 0;
 `;
 
-const ModalOuterLayer = ({handleCloseModal}) => {
+const ModalOuterLayer = ({ handleCloseModal, background }) => {
   return (
-    <FullOuter onClick={handleCloseModal}/>
+    <FullOuter style={{ background: background }} onClick={handleCloseModal} />
   );
-}
+};
 
 export default ModalOuterLayer;
