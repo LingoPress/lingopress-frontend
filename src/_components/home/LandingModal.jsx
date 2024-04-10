@@ -45,16 +45,23 @@ const LandingModal = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const showModal = localStorage.getItem("showModal");
-    if (authStatus.is_logged_in) {
+    console.log(authStatus.is_logged_in);
+    if (
+      authStatus.is_logged_in === true ||
+      localStorage.getItem("token") !== null
+    ) {
+      setShowModal(false);
       return;
     }
+
+    const showModal = localStorage.getItem("showModal");
+
     const today = new Date();
 
     if (showModal !== today.toLocaleDateString()) {
       setShowModal(true);
     }
-  }, []);
+  }, [authStatus]);
   const handleCloseModal = (notToday) => {
     setShowModal(false);
     if (notToday) {
