@@ -249,6 +249,7 @@ const PerLineComponent = ({
       data: {
         word: selectedText,
         originalText: originalContent,
+        translatedText: translatedContent,
         lineNumber: lineNumber,
         pressId: props.press_id,
       },
