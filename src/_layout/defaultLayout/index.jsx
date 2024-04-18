@@ -6,18 +6,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
   background-color: black;
 `;
 
-const Content = styled.div`
-  display: flex;
-  flex: 1;
-`;
+const Content = styled.div``;
 
-const Main = styled.main`
-  flex: 1;
-`;
+const Main = styled.main``;
 
 export const Layout = (props) => {
   return (

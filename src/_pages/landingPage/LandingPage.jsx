@@ -10,7 +10,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   flex: none;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   height: 60rem;
   justify-content: center;
   overflow: hidden;
@@ -69,8 +69,9 @@ const ExplainWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  width: 100rem;
+  justify-content: center;
+  margin: 10rem 7rem;
+  gap: 5rem;
 
   & h2 {
     font-size: 3.2rem;
@@ -100,7 +101,6 @@ const OurPromiseWrapper = styled.div`
   justify-content: center;
   margin-top: 10rem;
   margin-bottom: 10rem;
-  width: 100rem;
 
   & p {
     color: ${customColors.text.title["900"]};
