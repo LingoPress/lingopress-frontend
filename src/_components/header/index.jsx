@@ -5,12 +5,13 @@ import { authAtom } from "../../atom/user";
 import { useEffect } from "react";
 
 const Container = styled.header`
-  background-color: #2f2f2f; /* 헤더 배경색 변경 */
-  color: #fff;
+  background-color: #e2711d; /* 헤더 배경색 변경 */
+  color: #000000;
   padding: 20px;
   display: flex;
   justify-content: right;
   padding-top: 40px;
+  z-index: 10;
 
   & > h1 {
     position: absolute;

@@ -9,6 +9,7 @@ import SignUp from "./_pages/signUp/SignUp";
 import MyLingopress from "./_pages/myLingopress/MyLingopress";
 import Vocabulary from "./_pages/vocabulary/Vocabulary";
 import RouteChangeTracker from "./utils/RouteChangeTracker";
+import LandingPage from "./_pages/landingPage/LandingPage";
 
 const NotFound = styled.div`
   text-align: center;
@@ -19,7 +20,8 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/lingopress" element={<Home />} />
         <Route path="/lingopress/:press_id" element={<Lingopress />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

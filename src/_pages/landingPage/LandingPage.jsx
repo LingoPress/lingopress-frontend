@@ -1,0 +1,189 @@
+import styled from "@emotion/styled";
+import { customColors } from "../../styles/color";
+import VerticalCard from "../../_components/common/VerticalCard";
+import { useNavigate } from "react-router-dom";
+
+const HeaderWrapper = styled.div`
+  align-content: center;
+  align-items: end;
+  background-color: ${customColors.background.subBg["100"]};
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 60rem;
+  justify-content: center;
+  overflow: hidden;
+  padding: 10rem 0;
+  position: relative;
+  width: 100%;
+  color: ${customColors.text.explain["500"]};
+
+  & p {
+    font-size: 6rem;
+    text-align: left;
+    font-family: "Margarine", sans-serif;
+    line-height: 7rem;
+  }
+`;
+
+const DiveInWrapper = styled.div`
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10rem;
+
+  & p {
+    color: ${customColors.text.subTitle["700"]};
+    font-size: 1.6rem;
+    text-align: center;
+    line-height: 3rem;
+  }
+
+  & button {
+    background-color: ${customColors.background.button};
+  }
+
+  #Dive {
+    font-family: "Margarine", sans-serif;
+    font-weight: 700;
+    font-size: 4.8rem;
+    margin-bottom: 4rem;
+  }
+
+  & button {
+    padding: 1.2rem 2.4rem;
+    border-radius: 0.6rem;
+    font-size: 1.6rem;
+    color: white;
+    background-color: ${customColors.background.button["300"]};
+    border: none;
+    cursor: pointer;
+    margin-top: 6rem;
+    font-family: "Space Mono", sans-serif;
+  }
+`;
+const ExplainWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100rem;
+
+  & h2 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: ${customColors.text.title["900"]};
+  }
+
+  & p {
+    font-size: 1.6rem;
+    color: ${customColors.text.explain["500"]};
+    text-align: center;
+    margin-top: 2rem;
+  }
+`;
+
+const LandingPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
+
+const OurPromiseWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  width: 100rem;
+
+  & p {
+    color: ${customColors.text.title["900"]};
+  }
+
+  #promise {
+    font-family: "Space Mono", sans-serif;
+
+    font-size: 2rem;
+    margin-bottom: 5rem;
+    text-align: left;
+  }
+
+  #explain {
+    font-family: "Margarine", sans-serif;
+    font-size: 7rem;
+  }
+`;
+
+const LandingPage = () => {
+  const navigate = useNavigate();
+  return (
+    <LandingPageWrapper>
+      <HeaderWrapper>
+        <div>
+          <p>
+            Dive into the multi-language <br />
+            news ocean.
+          </p>
+          <p>
+            다양한 언어로 이루어진 뉴스의 바다에
+            <br />
+            뛰어들어 보세요.
+          </p>
+        </div>
+      </HeaderWrapper>
+      <DiveInWrapper>
+        <p id={"Dive"}>Dive in</p>
+        <p>
+          여러 뉴스들과 함께 공부할 준비가 되셨나요?
+          <br />
+          아래 버튼을 눌러 여러분들을 기다리고 있는 수많은 뉴스들을 만나보세요!
+        </p>
+        <button onClick={() => navigate("/lingopress")}>Explore Now</button>
+      </DiveInWrapper>
+
+      <ExplainWrapper>
+        <VerticalCard
+          title={"단어를 선택해서 검색과 동시에\n내 단어장에 넣어보세요!"}
+          description={"CHAT GPT가 문장에 적한 단어를 알려줍니다!"}
+          image={"https://via.placeholder.com/150"}
+        />{" "}
+        <VerticalCard
+          title={
+            "내가 번역한 문장과 인공지능이 번역해준 문장을\n비교하면서 학습하세요!"
+          }
+          description={"추후 인공지능이 번역 정확도도 판단해주도록 준비이에요!"}
+          image={"https://via.placeholder.com/150"}
+        />{" "}
+        <VerticalCard
+          title={"문장을 해석할 때 기호를 넣어\n문장을 해석해보세요!"}
+          description={"추후"}
+          image={"https://via.placeholder.com/150"}
+        />{" "}
+        <VerticalCard
+          title={
+            "다양한 언어를 학습하세요!\n여러 나라의 뉴스를 매일매일 업데이트해요!"
+          }
+          description={"영자 한국뉴스 외에 추후 제공됩니다!"}
+          image={"https://via.placeholder.com/150"}
+        />
+      </ExplainWrapper>
+
+      <OurPromiseWrapper>
+        <p id={"promise"}>Our promise</p>
+        <p id={"explain"}>
+          Study with news to <br />
+          get more familiar with
+          <br /> learning another language.
+        </p>
+      </OurPromiseWrapper>
+    </LandingPageWrapper>
+  );
+};
+
+export default LandingPage;
