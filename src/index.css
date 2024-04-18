@@ -132,7 +132,42 @@ button {
     sans-serif;
 }
 
+/* Mobile - Portrait */
+@media (max-width: 575px) {
+    html {
+        font-size: 35%;
+    }
+}
+
+/* Mobile - Landscape */
+@media (min-width: 100px) and (max-width: 739px) {
+    html {
+        font-size: 45%;
+    }
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 991px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+/* Desktop */
+@media (min-width: 992px) and (max-width: 1199px) {
+    html {
+        font-size: 62.5%;
+    }
+}
+
+/* Desktop (Large) */
+@media (min-width: 1200px) {
+    html {
+        font-size: 62.5%;
+    }
+}
+
+
 html {
-    font-size: 62.5%;
     color: white;
 }
