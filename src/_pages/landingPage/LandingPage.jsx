@@ -2,6 +2,9 @@ import styled from "@emotion/styled";
 import { customColors } from "../../styles/color";
 import VerticalCard from "../../_components/common/VerticalCard";
 import { useNavigate } from "react-router-dom";
+import NewNews from "../../assets/new_news.gif";
+import WordSearch from "../../assets/word_search.gif";
+import NewsDetail from "../../assets/news_detail.gif";
 
 const HeaderWrapper = styled.div`
   align-content: center;
@@ -151,26 +154,28 @@ const LandingPage = () => {
         <VerticalCard
           title={"단어를 선택해서 검색과 동시에\n내 단어장에 넣어보세요!"}
           description={"CHAT GPT가 문장에 적한 단어를 알려줍니다!"}
-          image={"https://via.placeholder.com/150"}
+          image={WordSearch}
         />{" "}
         <VerticalCard
           title={
             "내가 번역한 문장과 인공지능이 번역해준 문장을\n비교하면서 학습하세요!"
           }
           description={"추후 인공지능이 번역 정확도도 판단해주도록 준비이에요!"}
-          image={"https://via.placeholder.com/150"}
+          image={NewsDetail}
         />{" "}
-        <VerticalCard
+        {/*
+              <VerticalCard
           title={"문장을 해석할 때 기호를 넣어\n문장을 해석해보세요!"}
           description={"추후"}
           image={"https://via.placeholder.com/150"}
-        />{" "}
+        />
+        */}{" "}
         <VerticalCard
           title={
             "다양한 언어를 학습하세요!\n여러 나라의 뉴스를 매일매일 업데이트해요!"
           }
           description={"영자 한국뉴스 외에 추후 제공됩니다!"}
-          image={"https://via.placeholder.com/150"}
+          image={NewNews}
         />
       </ExplainWrapper>
 
