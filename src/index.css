@@ -163,6 +163,6 @@ button {
 /* Desktop (Large) */
 @media (min-width: 1200px) {
     html {
-        font-size: 62.5%;
+        font-size: 70%;
     }
 }
