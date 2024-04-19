@@ -36,7 +36,7 @@ const VerticalCardWrapper = styled.div`
   }
 
   p {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: ${customColors.text.cardTitle["200"]};
   }
 `;

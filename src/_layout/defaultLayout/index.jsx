@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
 import { Header } from "../../_components/header";
 import { Footer } from "../../_components/footer";
+import { customColors } from "../../styles/color";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100vw;
-  background-color: black;
+  background-color: ${customColors.background.mainBg[0]};
 `;
 
 const Content = styled.div``;

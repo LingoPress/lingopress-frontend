@@ -1,11 +1,10 @@
-import {useEffect, useState} from "react";
-import {axiosPrivate} from "../../utils/axiosMethod";
+import { useEffect, useState } from "react";
+import { axiosPrivate } from "../../utils/axiosMethod";
 import styled from "@emotion/styled";
 import formatDate from "../../utils/formatDate";
-import {useNavigate} from "react-router-dom";
-import {useAtomValue} from "jotai/index";
-import {authAtom} from "../../atom/user";
-
+import { useNavigate } from "react-router-dom";
+import { useAtomValue } from "jotai/index";
+import { authAtom } from "../../atom/user";
 
 const LearnedPressBox = styled.div`
   cursor: pointer;
@@ -43,21 +42,20 @@ const LearnedPressBox = styled.div`
   }
 
   .updatedAt {
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     color: #999;
   }
-
-`
+`;
 
 const MyLingopressWrapper = styled.div`
   position: relative;
 
   .learning-rate {
     text-align: right;
-    font-size: 0.8rem;
+    font-size: 1.4rem;
     color: #666;
     position: absolute;
-    right: 20px;
+    right: 2rem;
   }
 
   .learning-rate-desc {
@@ -68,10 +66,8 @@ const MyLingopressWrapper = styled.div`
   .learning-rate:hover .learning-rate-desc {
     opacity: 1;
     transition: 0.5s ease-in-out;
-
   }
-`
-
+`;
 
 const MyLingopress = () => {
   const authStatus = useAtomValue(authAtom);
@@ -82,16 +78,15 @@ const MyLingopress = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const [myPressList, setMyPressList] = useState([])
+  const [myPressList, setMyPressList] = useState([]);
 
   // 페이지 타이틀 변경
   useEffect(() => {
     document.title = "내가 번역한 뉴스들";
     return () => {
       document.title = "Lingopress";
-    }
+    };
   }, []);
-
 
   // 무한 스크롤
   const handleObserver = (entries) => {
@@ -100,7 +95,6 @@ const MyLingopress = () => {
       setPage((currentPage) => currentPage + 1);
     }
   };
-
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleObserver, {
@@ -121,7 +115,6 @@ const MyLingopress = () => {
     fetchData();
   }, [page]);
 
-
   const fetchData = async () => {
     if (isLast) {
       return;
@@ -134,38 +127,53 @@ const MyLingopress = () => {
       method: "get",
       params: {
         page: page,
-      }
+      },
     });
     setMyPressList((pressData) => [...pressData, ...result.data.data.content]);
     setIsLast(result.data.data.last);
     setIsLoading(false);
-  }
+  };
 
   return (
     <MyLingopressWrapper>
-      <br/>
+      <br />
       <h1>내가 번역한 뉴스들</h1>
 
-      <br/>
-      <p className="learning-rate">학습률?
-        <p className="learning-rate-desc">학습률은 "옳게 번역한 문장 수 / 전체 문장 수" 입니다.</p>
+      <br />
+      <p className="learning-rate">
+        학습률?
+        <p className="learning-rate-desc">
+          학습률은 "옳게 번역한 문장 수 / 전체 문장 수" 입니다.
+        </p>
       </p>
-      {myPressList.length > 0 && myPressList.map((learnedPress) => (
-        <LearnedPressBox key={learnedPress.id} onClick={() => navigate(`/lingopress/${learnedPress.press.id}`)}>
-          <h1>{learnedPress.press.title}</h1>
-          <p>{learnedPress.press.published_at}</p>
-          <div className={"etcWrapper"}>
-            <p> 학습률: {(learnedPress.learnedContentLine / learnedPress.press.totalContentLine).toFixed(2) * 100}%</p>
-            <p className={"updatedAt"}>최근 학습일 {formatDate(learnedPress.updatedAt)}</p>
-          </div>
-
-        </LearnedPressBox>
-      ))}
+      {myPressList.length > 0 &&
+        myPressList.map((learnedPress) => (
+          <LearnedPressBox
+            key={learnedPress.id}
+            onClick={() => navigate(`/lingopress/${learnedPress.press.id}`)}
+          >
+            <h1>{learnedPress.press.title}</h1>
+            <p>{learnedPress.press.published_at}</p>
+            <div className={"etcWrapper"}>
+              <p>
+                {" "}
+                학습률:{" "}
+                {(
+                  learnedPress.learnedContentLine /
+                  learnedPress.press.totalContentLine
+                ).toFixed(2) * 100}
+                %
+              </p>
+              <p className={"updatedAt"}>
+                최근 학습일 {formatDate(learnedPress.updatedAt)}
+              </p>
+            </div>
+          </LearnedPressBox>
+        ))}
       {isLoading && <p>Loading...</p>}
-      <div id="observer" style={{height: "10px"}}></div>
-
+      <div id="observer" style={{ height: "10px" }}></div>
     </MyLingopressWrapper>
-  )
-}
+  );
+};
 
 export default MyLingopress;

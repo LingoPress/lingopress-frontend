@@ -9,7 +9,7 @@ const PressCardWrapper = styled.div`
   align-items: center;
   padding: 2rem;
   border-radius: 0.5rem;
-  background-color: ${customColors.background.boxBg["0"]};
+  background-color: ${customColors.background.boxBg["100"]};
   overflow: hidden;
   width: 40rem;
   // height: 45rem;
@@ -44,13 +44,13 @@ const Title = styled.h2`
   font-size: 2rem;
   color: #333;
   text-overflow: ellipsis;
-  color: ${customColors.text.cardTitle["100"]};
+  color: ${customColors.text.title["900"]};
 `;
 
 const Description = styled.p`
   margin-top: 1rem;
   line-height: normal;
-  color: ${customColors.text.subExplain["400"]};
+  color: ${customColors.text.explain["500"]};
   max-height: 6rem;
   white-space: normal;
   overflow: hidden;

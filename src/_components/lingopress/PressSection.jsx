@@ -1,13 +1,14 @@
-import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import TranslateSection from "./TranslateSection";
 import styled from "@emotion/styled";
-import {axiosPrivate, axiosPublic} from "../../utils/axiosMethod";
+import { axiosPrivate, axiosPublic } from "../../utils/axiosMethod";
 
 const PressTitle = styled.h1`
-  font-size: 1.3rem;
+  font-size: 2.3rem;
+  margin-bottom: 5rem;
 `;
-const PressSection = ({authStatus}) => {
+const PressSection = ({ authStatus }) => {
   const props = useParams();
   const [pressData, setPressData] = useState([]);
   useEffect(() => {
@@ -30,24 +31,23 @@ const PressSection = ({authStatus}) => {
     responseData();
   }, [authStatus]);
   return (
-    <section style={{
-      width: "78vw"
-    }}>
+    <section
+      style={{
+        width: "78vw",
+      }}
+    >
       <PressTitle>{pressData ? pressData.title : null}</PressTitle>
-      <br/>
-      <br/>
-      <TranslateSection pressData={pressData}/>
-      <br/>
-      <br/>
+      <TranslateSection pressData={pressData} />
+
       <a
         style={{
           textDecoration: "none",
           color: "black",
           fontSize: "0.8rem",
           fontWeight: "bold",
-          padding: "10px",
-          border: "1px solid black",
-          borderRadius: "10px",
+          padding: "1rem",
+          border: "0.1rem solid black",
+          borderRadius: "1rem",
           marginTop: "1rem",
           marginBottom: "1rem",
         }}

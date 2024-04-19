@@ -8,12 +8,12 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 const VocabularyCard = styled.div`
   position: relative;
-  padding: 0.4rem 0.8rem;
+  padding: 0.8rem 1.2rem;
   background-color: #fff;
   border: 0.1rem solid #ccc;
   border-radius: 0.3rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1rem;
+  font-size: 1.6rem;
   color: black;
   display: flex;
   justify-content: space-between;
@@ -27,7 +27,7 @@ const VocabularyCard = styled.div`
     }
 
     & > input {
-      font-size: 0.9rem;
+      font-size: 1.5rem;
       color: #666;
       width: 80%;
     }
@@ -56,7 +56,7 @@ const VocabularyOuterWrapper = styled.section`
   position: fixed;
   right: 0.5rem;
   width: 15vw;
-  padding: 0.8rem;
+  padding: 1.4rem;
   margin-left: 2rem;
   border: 1px solid #ccc;
   border-radius: 0.3rem;
@@ -66,17 +66,17 @@ const VocabularyOuterWrapper = styled.section`
   max-height: 80vh;
 
   & > h2 {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
 
   & > p {
-    font-size: 1rem;
+    font-size: 1.6rem;
   }
 
   & > p.warning {
     margin-top: 0.4rem;
     color: red;
-    font-size: 0.7rem;
+    font-size: 1.3rem;
   }
 `;
 

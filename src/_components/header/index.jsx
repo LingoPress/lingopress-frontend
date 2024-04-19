@@ -20,6 +20,7 @@ const Container = styled.header`
     cursor: pointer;
     font-size: 2rem;
     font-family: "Margarine", sans-serif;
+    color: #fff;
   }
 `;
 
@@ -31,7 +32,6 @@ const Nav = styled.nav`
 `;
 
 const StyledLink = styled(Link)`
-  color: #fff;
   font-size: 2rem;
   text-decoration: none;
   font-weight: bold;
@@ -40,6 +40,8 @@ const StyledLink = styled(Link)`
   &:hover {
     color: ${customColors.text.subTitle["700"]};
   }
+
+  color: #fff;
 `;
 
 export const Header = () => {

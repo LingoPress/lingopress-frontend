@@ -17,7 +17,7 @@ const HeaderWrapper = styled.div`
   padding: 10rem 0;
   position: relative;
   width: 100%;
-  color: ${customColors.text.explain["500"]};
+  color: ${customColors.text.explain["900"]};
 
   & p {
     font-size: 6rem;
@@ -37,7 +37,7 @@ const DiveInWrapper = styled.div`
 
   & p {
     color: ${customColors.text.subTitle["700"]};
-    font-size: 1.6rem;
+    font-size: 2rem;
     text-align: center;
     line-height: 3rem;
   }

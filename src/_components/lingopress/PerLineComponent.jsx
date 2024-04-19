@@ -7,6 +7,7 @@ import { axiosPrivate } from "../../utils/axiosMethod";
 import countWords from "../../utils/wordCount";
 import ModalOuterLayer from "../ModalOuterLayer";
 import { needToRefreshWordAtom } from "../../atom/needToRefresh";
+import { customColors } from "../../styles/color";
 
 const LineWrapper = styled.div`
   width: 93%;
@@ -15,26 +16,25 @@ const LineWrapper = styled.div`
 
 const OriginalLine = styled.p`
   line-height: normal;
+  font-size: 2rem;
 `;
 
 const ConvertLine = styled.textarea`
-  border-radius: 0.5rem;
-  padding: 0.7rem 1rem;
+  border-radius: 1rem;
+  padding: 1rem 1.6rem;
   margin-top: 1rem;
   width: 95%;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1rem;
+  box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.1);
+  font-size: 1.8rem;
   resize: none;
-  height: 2.4rem;
+  height: 5.4rem;
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 
   &:focus {
     outline: none;
-    border-color: #80ff92;
-    box-shadow: 0 0 0 3px rgb(187, 255, 197);
+    box-shadow: 0 0 0 3px rgb(226, 113, 29);
   }
 `;
 
@@ -49,14 +49,13 @@ const LineOuterWrapper = styled.div`
 const CheckButton = styled.button`
   // width: 3rem;
   // height: 3rem;
-  padding: 0.4rem 0.8rem;
+  padding: 1rem 1.6rem;
 
-  background-color: #fff;
-  border: 0.1rem solid #ccc;
+  background-color: ${customColors.background.button[100]};
   border-radius: 0.3rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1rem;
-  color: black;
+  font-size: 1.6rem;
+  color: white;
 `;
 
 const VerifyBox = styled.div`
@@ -97,6 +96,12 @@ const WordSearchModal = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 
+  h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+  }
+
   p {
     margin: 0.4rem 0 0;
     color: #333333;
@@ -104,16 +109,16 @@ const WordSearchModal = styled.div`
   }
 
   button {
-    margin-top: 0.5rem;
-    padding: 0.3rem 0.5rem;
+    margin-top: 0.8rem;
+    padding: 0.6rem 1rem;
     border: none;
     border-radius: 4px;
     background-color: #007bff;
-    color: white;
     cursor: pointer;
+    color: #ffffff;
 
     &:first-of-type {
-      margin-right: 8px;
+      margin-right: 0.6rem;
       background-color: #ff0000;
 
       &:hover {
