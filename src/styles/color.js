@@ -1,15 +1,14 @@
 export const customColors = {
   background: {
     button: {
-      100: "#e0833d",
+      100: "#fab33e",
       300: "#cc5803",
     },
     subBg: {
-      100: "#e2711d",
+      100: "#fab33e",
     },
     mainBg: {
       0: "#ffffff",
-      100: "#FFF",
     },
     boxBg: {
       0: "#f6f1f1",
@@ -21,7 +20,7 @@ export const customColors = {
       900: "#000000",
     },
     subTitle: {
-      700: "#fab33e",
+      700: "#e2711d",
     },
     explain: {
       0: "#000000",

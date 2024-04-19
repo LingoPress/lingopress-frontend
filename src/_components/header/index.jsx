@@ -6,7 +6,9 @@ import { useEffect } from "react";
 import { customColors } from "../../styles/color";
 
 const Container = styled.header`
-  background-color: #e2711d; /* 헤더 배경색 변경 */
+  background-color: ${customColors.background.subBg[
+    "100"
+  ]}; /* 헤더 배경색 변경 */
   color: #000000;
   padding: 20px;
   display: flex;
