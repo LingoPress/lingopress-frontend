@@ -43,7 +43,7 @@ const LineOuterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: end;
-  margin-bottom: 5rem;
+  margin-bottom: 8rem;
 `;
 
 const CheckButton = styled.button`
@@ -70,8 +70,8 @@ const VerifyButton = styled.button`
   background-color: #fff;
   border: 0.1rem solid #ccc;
   border-radius: 0.3rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  font-size: 1.6rem;
 `;
 
 const MachineTranslatedLine = styled.p`
@@ -80,6 +80,7 @@ const MachineTranslatedLine = styled.p`
   margin-left: 1rem;
   margin-top: 0.5rem;
   width: 90%;
+  font-size: 1.8rem;
 `;
 
 const VerifyZone = styled.div`
@@ -132,8 +133,8 @@ const VerifyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 0.8rem;
-  font-size: 0.8rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
 `;
 
 const PerLineComponent = ({
