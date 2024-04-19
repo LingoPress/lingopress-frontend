@@ -3,18 +3,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { authAtom } from "../../atom/user";
 import { useEffect } from "react";
+import { customColors } from "../../styles/color";
 
 const Container = styled.header`
-  background-color: #2f2f2f; /* 헤더 배경색 변경 */
-  color: #fff;
+  background-color: #e2711d; /* 헤더 배경색 변경 */
+  color: #000000;
   padding: 20px;
   display: flex;
   justify-content: right;
   padding-top: 40px;
+  z-index: 10;
 
   & > h1 {
     position: absolute;
     left: 2rem;
+    cursor: pointer;
+    font-size: 2rem;
+    font-family: "Margarine", sans-serif;
+    color: #fff;
   }
 `;
 
@@ -26,14 +32,16 @@ const Nav = styled.nav`
 `;
 
 const StyledLink = styled(Link)`
-  color: #fff;
+  font-size: 2rem;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease; /* 링크 색상 변화 효과 */
 
   &:hover {
-    color: #25ff99; /* 호버 시 색상 변경 */
+    color: ${customColors.text.subTitle["700"]};
   }
+
+  color: #fff;
 `;
 
 export const Header = () => {
@@ -60,16 +68,9 @@ export const Header = () => {
 
   return (
     <Container>
-      <h1
-        style={{
-          cursor: "pointer",
-        }}
-        onClick={() => navigate("/")}
-      >
-        LingoPress
-      </h1>
+      <h1 onClick={() => navigate("/")}>LingoPress</h1>
       <Nav>
-        <StyledLink to="/">번역하러 가기</StyledLink>
+        <StyledLink to="/lingopress">번역하러 가기</StyledLink>
         {/* <StyledLink to="/retry-lingopress">틀린 문장 다시 도전하기</StyledLink> */}
         <StyledLink to="/vocabulary">단어장</StyledLink>
         <StyledLink to="/my-lingopress">내가 번역한 뉴스들</StyledLink>

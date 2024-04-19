@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAtom } from "jotai/index";
 import { authAtom } from "../../atom/user";
 import { useNavigate } from "react-router-dom";
+import { customColors } from "../../styles/color";
 
 const styles = {
   container: {
@@ -14,32 +15,35 @@ const styles = {
     // backgroundColor: "#f9f9f9",
   },
   input: {
-    marginBottom: "10px",
-    padding: "8px",
-    width: "250px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
+    marginBottom: "2rem",
+    padding: "1rem",
+    width: "40rem",
+    borderRadius: "0.5rem",
+    border: "0.1rem solid #ccc",
+    fontSize: "1.6rem",
   },
   button: {
-    padding: "10px",
-    width: "100px",
-    borderRadius: "5px",
-    backgroundColor: "#241f1f",
+    padding: "1rem",
+    width: "10rem",
+    borderRadius: ".5rem",
+    backgroundColor: customColors.background.button["300"],
     color: "#fff",
     border: "none",
     cursor: "pointer",
+    fontSize: "1.6rem",
   },
   h1: {
-    fontSize: "3rem",
+    fontSize: "5rem",
     marginBottom: "1rem",
+    fontFamily: "Margarine",
   },
   h2: {
     fontSize: "1.5rem",
     marginBottom: "2rem",
   },
   signup: {
-    marginTop: "10px",
-    fontSize: "0.8rem",
+    marginTop: "2rem",
+    fontSize: "1.6rem",
     cursor: "pointer",
   },
 };

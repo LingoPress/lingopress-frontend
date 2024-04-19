@@ -1,6 +1,14 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import PressCard from "./PressCard";
+import styled from "@emotion/styled";
+
+const PressSectionWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5rem;
+`;
 
 const PressSection = () => {
   const [pressData, setPressData] = useState([]);
@@ -15,7 +23,6 @@ const PressSection = () => {
       setPage((currentPage) => currentPage + 1);
     }
   };
-
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleObserver, {
@@ -49,19 +56,17 @@ const PressSection = () => {
     setPressData((pressData) => [...pressData, ...result.data.data.content]);
     setIsLast(result.data.data.last);
     setIsLoading(false);
-
   };
 
   return (
-    <div>
-      <ul>
-        {pressData.length > 0
-          ? pressData.map((news) => <PressCard key={news.id} {...news} />)
-          : null}
-      </ul>
+    <PressSectionWrapper>
+      {pressData.length > 0
+        ? pressData.map((news) => <PressCard key={news.id} {...news} />)
+        : null}
+
       {isLoading && <p>Loading...</p>}
-      <div id="observer" style={{height: "10px"}}></div>
-    </div>
+      <div id="observer" style={{ height: "10px" }}></div>
+    </PressSectionWrapper>
   );
 };
 
