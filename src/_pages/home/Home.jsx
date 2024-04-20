@@ -24,6 +24,7 @@ const LandingPageMark = styled.p`
   font-family: "Space Mono", sans-serif;
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out;
+  color: white;
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
