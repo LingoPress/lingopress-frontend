@@ -212,11 +212,6 @@ const PerLineComponent = ({
       if (selectedText !== text) {
         setWordMeaning("단어장에 등록하고 뜻 보기");
       }
-      if (countWords(text) > 4) {
-        alert("4단어 이상 선택할 수 없습니다.");
-        handleCloseModal();
-        return;
-      }
 
       setSelectedText(text);
       setShowModal(true);
@@ -246,6 +241,12 @@ const PerLineComponent = ({
     // 텍스트 입력 여부 확인
     else if (selectedText === "" || selectedText === " ") {
       alert("텍스트를 입력해주세요.");
+      return;
+    }
+
+    if (countWords(selectedText) > 4) {
+      alert("4단어 이상 선택할 수 없습니다.");
+      handleCloseModal();
       return;
     }
     // 모르는 단어 등록. 이때 단어,문장, 문장 라인 번호, 뉴스 번호 등이 기록되어야함.
