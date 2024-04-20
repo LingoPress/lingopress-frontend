@@ -14,7 +14,7 @@ const HeaderWrapper = styled.div`
   flex: none;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 60rem;
+  height: 10rem;
   justify-content: center;
   overflow: hidden;
   padding: 10rem 0;
@@ -31,7 +31,6 @@ const HeaderWrapper = styled.div`
 `;
 
 const DiveInWrapper = styled.div`
-  margin-top: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -133,22 +132,8 @@ const LandingPage = () => {
             Dive into the multi-language <br />
             news ocean.
           </p>
-          <p>
-            다양한 언어로 이루어진 뉴스의 바다에
-            <br />
-            뛰어들어 보세요.
-          </p>
         </div>
       </HeaderWrapper>
-      <DiveInWrapper>
-        <p id={"Dive"}>Dive in</p>
-        <p>
-          여러 뉴스들과 함께 공부할 준비가 되셨나요?
-          <br />
-          아래 버튼을 눌러 여러분들을 기다리고 있는 수많은 뉴스들을 만나보세요!
-        </p>
-        <button onClick={() => navigate("/lingopress")}>Explore Now</button>
-      </DiveInWrapper>
 
       <ExplainWrapper>
         <VerticalCard
@@ -186,6 +171,15 @@ const LandingPage = () => {
           image={NewNews}
         />
       </ExplainWrapper>
+      <DiveInWrapper>
+        <p id={"Dive"}>Dive in</p>
+        <p>
+          여러 뉴스들과 함께 공부할 준비가 되셨나요?
+          <br />
+          아래 버튼을 눌러 여러분들을 기다리고 있는 수많은 뉴스들을 만나보세요!
+        </p>
+        <button onClick={() => navigate("/")}>Explore Now</button>
+      </DiveInWrapper>
 
       <OurPromiseWrapper>
         <p id={"promise"}>Our promise</p>

@@ -20,8 +20,8 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/lingopress" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/whatis" element={<LandingPage />} />
         <Route path="/lingopress/:press_id" element={<Lingopress />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

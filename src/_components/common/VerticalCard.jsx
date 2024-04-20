@@ -11,7 +11,7 @@ const VerticalCardWrapper = styled.div`
   overflow: hidden;
   //  width: 40rem;
   height: 41rem;
-  margin-bottom: 10rem;
+  margin-bottom: 3rem;
   white-space: pre-line;
   line-height: 2.3rem;
   font-weight: 300;

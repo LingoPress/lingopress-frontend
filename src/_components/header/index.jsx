@@ -72,7 +72,7 @@ export const Header = () => {
     <Container>
       <h1 onClick={() => navigate("/")}>LingoPress</h1>
       <Nav>
-        <StyledLink to="/lingopress">번역하러 가기</StyledLink>
+        <StyledLink to="/">번역하러 가기</StyledLink>
         {/* <StyledLink to="/retry-lingopress">틀린 문장 다시 도전하기</StyledLink> */}
         <StyledLink to="/vocabulary">단어장</StyledLink>
         <StyledLink to="/my-lingopress">내가 번역한 뉴스들</StyledLink>
