@@ -14,11 +14,12 @@ const styles = {
     // backgroundColor: "#f9f9f9",
   },
   input: {
-    marginBottom: "10px",
-    padding: "8px",
-    width: "250px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
+    marginBottom: "1rem",
+    padding: "1rem",
+    width: "20rem",
+    borderRadius: "0.5rem",
+    border: "0.1rem solid #ccc",
+    fontSize: "1.6rem",
   },
   button: {
     padding: "10px",
@@ -30,8 +31,9 @@ const styles = {
     cursor: "pointer",
   },
   h1: {
-    fontSize: "3rem",
+    fontSize: "5rem",
     marginBottom: "1rem",
+    fontFamily: "Margarine",
   },
   h2: {
     fontSize: "1.5rem",
@@ -79,7 +81,17 @@ function SignInForm() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.h1}>LingoPress</h1>
+      <h1 style={styles.h1}>
+        Lingo
+        <br />
+        Press
+      </h1>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <h2 style={styles.h2}>
         링고프레스로 번역, 독해, 어휘, 시사까지 한번에 공부하세요!
       </h2>

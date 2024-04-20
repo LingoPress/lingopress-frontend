@@ -15,9 +15,9 @@ const styles = {
     // backgroundColor: "#f9f9f9",
   },
   input: {
-    marginBottom: "2rem",
+    marginBottom: "1rem",
     padding: "1rem",
-    width: "40rem",
+    width: "20rem",
     borderRadius: "0.5rem",
     border: "0.1rem solid #ccc",
     fontSize: "1.6rem",
@@ -83,7 +83,17 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleLogin} style={styles.container}>
-      <h1 style={styles.h1}>LingoPress</h1>
+      <h1 style={styles.h1}>
+        Lingo
+        <br />
+        Press
+      </h1>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <h2 style={styles.h2}>
         링고프레스로 번역, 독해, 어휘, 시사까지 한번에 공부하세요!
       </h2>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import NewNews from "../../assets/new_news.gif";
 import WordSearch from "../../assets/word_search.gif";
 import NewsDetail from "../../assets/news_detail.gif";
+import InsertSymbol from "../../assets/insert_symbol.gif";
 
 const HeaderWrapper = styled.div`
   align-content: center;
@@ -14,7 +15,7 @@ const HeaderWrapper = styled.div`
   flex: none;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 60rem;
+  height: 10rem;
   justify-content: center;
   overflow: hidden;
   padding: 10rem 0;
@@ -31,7 +32,6 @@ const HeaderWrapper = styled.div`
 `;
 
 const DiveInWrapper = styled.div`
-  margin-top: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -133,22 +133,8 @@ const LandingPage = () => {
             Dive into the multi-language <br />
             news ocean.
           </p>
-          <p>
-            다양한 언어로 이루어진 뉴스의 바다에
-            <br />
-            뛰어들어 보세요.
-          </p>
         </div>
       </HeaderWrapper>
-      <DiveInWrapper>
-        <p id={"Dive"}>Dive in</p>
-        <p>
-          여러 뉴스들과 함께 공부할 준비가 되셨나요?
-          <br />
-          아래 버튼을 눌러 여러분들을 기다리고 있는 수많은 뉴스들을 만나보세요!
-        </p>
-        <button onClick={() => navigate("/lingopress")}>Explore Now</button>
-      </DiveInWrapper>
 
       <ExplainWrapper>
         <VerticalCard
@@ -156,7 +142,7 @@ const LandingPage = () => {
             "단어를 선택해서 간편하게 뜻을 확인하고\n내 단어장에 바로 넣어보세요!"
           }
           description={
-            "CHAT GPT가 선택한 단어를 문장에 적절한 뜻으로 알려줍니다!"
+            "CHAT GPT가 선택한 단어를 '문장에 적절한 뜻'으로 알려줍니다!"
           }
           image={WordSearch}
         />{" "}
@@ -165,27 +151,32 @@ const LandingPage = () => {
             "내가 번역한 문장과 인공지능이 번역해준 문장을\n비교하면서 학습하세요!"
           }
           description={
-            "추후 인공지능이 번역 정확도도 판단해주도록 준비중이에요!"
+            "추후 인공지능이 번역 정확도도 판단해주도록 준비중이에요."
           }
           image={NewsDetail}
         />{" "}
-        {/*
-              <VerticalCard
+        <VerticalCard
           title={"문장을 해석할 때 기호를 넣어\n문장을 해석해보세요!"}
-          description={"추후"}
-          image={"https://via.placeholder.com/150"}
-        />
-        */}{" "}
+          description={"필요한 곳 적재적소에 기호를 넣어보세요."}
+          image={InsertSymbol}
+        />{" "}
         <VerticalCard
           title={
             "다양한 언어를 학습하세요!\n여러 나라의 뉴스를 매일매일 업데이트해요!"
           }
-          description={
-            "영자 한국뉴스말고도 곧 다양한 언어 서비스를 곧 출시됩니다!!"
-          }
+          description={"곧 다양한 언어 서비스가 출시됩니다!!"}
           image={NewNews}
         />
       </ExplainWrapper>
+      <DiveInWrapper>
+        <p id={"Dive"}>Dive in</p>
+        <p>
+          여러 뉴스들과 함께 공부할 준비가 되셨나요?
+          <br />
+          아래 버튼을 눌러 여러분들을 기다리고 있는 수많은 뉴스들을 만나보세요!
+        </p>
+        <button onClick={() => navigate("/")}>Explore Now</button>
+      </DiveInWrapper>
 
       <OurPromiseWrapper>
         <p id={"promise"}>Our promise</p>
