@@ -312,6 +312,38 @@ const PerLineComponent = ({
     setShowModal(false);
   };
 
+  const addSquareBracketsToSelection = () => {
+    if (!window.getSelection) return;
+
+    const selection = window.getSelection();
+    // 사용자가 텍스트를 실제로 선택했는지 확인
+    if (!selection.rangeCount || selection.isCollapsed) return;
+
+    const range = selection.getRangeAt(0);
+    const selectedText = range.toString();
+    const trimmedText = selectedText.trim(); // 선택한 텍스트에서 양쪽 공백 제거
+
+    // 원래 선택된 텍스트의 시작과 끝에 있는 공백을 계산
+    const leadingSpaces = selectedText.match(/^\s*/)[0];
+    const trailingSpaces = selectedText.match(/\s*$/)[0];
+
+    // 괄호를 추가한 텍스트 생성
+    const bracketedText = `${leadingSpaces}[${trimmedText}]${trailingSpaces}`;
+
+    range.deleteContents();
+
+    const textNode = document.createTextNode(bracketedText);
+    range.insertNode(textNode);
+
+    // Move the cursor after the inserted text
+    range.setStartAfter(textNode);
+    range.collapse(true);
+
+    // Deselect the text
+    window.getSelection().removeAllRanges();
+    setShowModal(false);
+  };
+
   function insertSlashAtSelection() {
     if (!window.getSelection) return;
 
@@ -360,6 +392,7 @@ const PerLineComponent = ({
                     X
                   </button>
                   <button onClick={addBracketsToSelection}>()</button>
+                  <button onClick={addSquareBracketsToSelection}>[]</button>
                   <button onClick={insertSlashAtSelection}>/</button>
                 </WordSearchModal>
               </>
