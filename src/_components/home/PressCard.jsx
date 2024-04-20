@@ -15,11 +15,14 @@ const PressCardWrapper = styled.div`
   // height: 45rem;
   //margin-bottom: 10rem;
   white-space: pre-line;
+  transition: transform 0.3s ease;
   line-height: 2.3rem;
   font-weight: 300;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-0.5rem);
   }
 `;
 
