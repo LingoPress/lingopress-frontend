@@ -62,7 +62,7 @@ const MyWordBox = styled.div`
 
 const VocabularyWrapper = styled.div`
   .desc {
-    font-size: 0.8rem;
+    font-size: 1.6rem;
     color: #666;
     text-align: right;
   }

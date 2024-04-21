@@ -19,7 +19,7 @@ const LandingPageMark = styled.p`
   background-color: ${customColors.background.button["100"]};
   border-radius: 30%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  padding: 1rem 1.6rem;
+  padding: 0.4rem 1.6rem;
   text-align: center;
   font-family: "Space Mono", sans-serif;
   cursor: pointer;
