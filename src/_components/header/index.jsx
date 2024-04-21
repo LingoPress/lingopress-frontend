@@ -1,46 +1,58 @@
 import styled from "@emotion/styled";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { authAtom } from "../../atom/user";
 import { useEffect } from "react";
 import { customColors } from "../../styles/color";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { NavLink } from "react-bootstrap";
 
-const Container = styled.header`
+const ContainerComponent = styled(Navbar)`
   background-color: ${customColors.background.subBg[
     "100"
   ]}; /* 헤더 배경색 변경 */
-  color: #000000;
-  padding: 20px;
+  padding: 3rem 0 2rem 3rem;
   display: flex;
-  justify-content: right;
-  padding-top: 40px;
   z-index: 10;
 
-  & > h1 {
-    position: absolute;
-    left: 2rem;
-    cursor: pointer;
-    font-size: 2rem;
+  .title {
+    font-size: 3rem;
     font-family: "Margarine", sans-serif;
     color: #fff;
+    cursor: pointer;
+  }
+
+  .link-group {
+    display: flex;
+    justify-content: right;
+  }
+
+  .custom-navbar-collapse {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .toggle {
+    margin-right: 3rem;
   }
 `;
 
-const Nav = styled.nav`
-  width: 60%; /* 네비게이션 너비 조정 */
-
-  display: flex;
-  justify-content: space-around; /* 간격 균등하게 조정 */
-`;
-
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   font-size: 2rem;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease; /* 링크 색상 변화 효과 */
+  margin-right: 3rem;
+  margin-left: 1rem;
 
   &:hover {
     color: ${customColors.text.subTitle["700"]};
+  }
+
+  &:focus {
+    color: white;
   }
 
   color: #fff;
@@ -66,30 +78,31 @@ export const Header = () => {
   const handleLogout = () => {
     localStorage.clear();
     setAuthStatus({ is_logged_in: false });
+    navigate("/");
   };
 
   return (
-    <Container>
-      <h1 onClick={() => navigate("/")}>LingoPress</h1>
-      <Nav>
-        <StyledLink to="/">번역하러 가기</StyledLink>
-        {/* <StyledLink to="/retry-lingopress">틀린 문장 다시 도전하기</StyledLink> */}
-        <StyledLink to="/vocabulary">단어장</StyledLink>
-        <StyledLink to="/my-lingopress">내가 번역한 뉴스들</StyledLink>
-
-        {authStatus.is_logged_in ? (
-          <StyledLink
-            onClick={() => {
-              handleLogout();
-            }}
-            to="/"
-          >
-            로그아웃
+    <ContainerComponent expand="lg">
+      <Navbar.Brand className={"title"} onClick={() => navigate("/")}>
+        LingoPress
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" className={"toggle"} />
+      <Navbar.Collapse className="justify-content-end">
+        <Nav>
+          <StyledLink onClick={() => navigate("/")}>번역하러 가기</StyledLink>
+          <StyledLink onClick={() => navigate("/vocabulary")}>
+            단어장
           </StyledLink>
-        ) : (
-          <StyledLink to="/login">로그인</StyledLink>
-        )}
-      </Nav>
-    </Container>
+          <StyledLink onClick={() => navigate("/my-lingopress")}>
+            내가 번역한 뉴스들
+          </StyledLink>
+          {authStatus.is_logged_in ? (
+            <StyledLink onClick={() => handleLogout()}>로그아웃</StyledLink>
+          ) : (
+            <StyledLink onClick={() => navigate("/login")}>로그인</StyledLink>
+          )}
+        </Nav>
+      </Navbar.Collapse>
+    </ContainerComponent>
   );
 };
