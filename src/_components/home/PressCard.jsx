@@ -7,7 +7,9 @@ const PressCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: 0 2rem 3rem;
+  position: relative;
+
   border-radius: 0.5rem;
   background-color: ${customColors.background.boxBg["100"]};
   overflow: hidden;
@@ -45,9 +47,9 @@ const Content = styled.div`
 const Title = styled.h2`
   margin-top: 2rem;
   font-size: 2rem;
-  color: #333;
   text-overflow: ellipsis;
   color: ${customColors.text.title["900"]};
+  font-weight: 700;
 `;
 
 const Description = styled.p`
@@ -67,7 +69,9 @@ const PublishedTime = styled.p`
   margin-top: 1rem;
   color: #999;
   font-size: 1.4rem;
-  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 2rem;
 `;
 
 const PressCard = ({ id, publishedAt, title, content, imageUrl }) => {
