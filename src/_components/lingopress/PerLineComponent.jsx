@@ -31,7 +31,7 @@ const ConvertLine = styled.textarea`
   box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.1);
   font-size: 1.8rem;
   resize: none;
-  height: 5.4rem;
+  height: 10rem;
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
@@ -47,7 +47,7 @@ const LineOuterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: end;
-  margin-bottom: 8rem;
+  margin-bottom: 10rem;
 `;
 
 const CheckButton = styled.button`
