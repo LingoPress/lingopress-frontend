@@ -49,9 +49,9 @@ export default function TokenRefresher() {
 
                 return refreshAPI(originalConfig);
               })
-              .then((res) => {
-                window.location.reload();
-              })
+              // .then((res) => {
+              //  window.location.reload();
+              // })
               .catch((err) => {
                 if (
                   err.response.data.code === "EXPIRED_REFRESH_TOKEN" ||
