@@ -5,6 +5,7 @@ import formatDate from "../../utils/formatDate";
 import { useNavigate } from "react-router-dom";
 import { useAtomValue } from "jotai/index";
 import { authAtom } from "../../atom/user";
+import HeatMapComponent from "../../_components/myLingopress/HeatMapComponent";
 
 const LearnedPressBox = styled.div`
   cursor: pointer;
@@ -12,8 +13,8 @@ const LearnedPressBox = styled.div`
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  margin: 20px;
-  padding: 20px;
+  margin: 2rem 0;
+  padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -49,6 +50,7 @@ const LearnedPressBox = styled.div`
 
 const MyLingopressWrapper = styled.div`
   position: relative;
+  margin: 0 2rem;
 
   .learning-rate {
     text-align: right;
@@ -107,13 +109,13 @@ const MyLingopress = () => {
   }, []);
 
   useEffect(() => {
-    if (!authStatus.is_logged_in) {
+    if (!localStorage.getItem("token")) {
       alert("로그인이 필요합니다.");
       navigate("/login");
       return;
     }
     fetchData();
-  }, [page]);
+  }, []);
 
   const fetchData = async () => {
     if (isLast) {
@@ -137,7 +139,7 @@ const MyLingopress = () => {
   return (
     <MyLingopressWrapper>
       <br />
-      <h1>내가 번역한 뉴스들</h1>
+      <h1>번역한 문장 수 그래프</h1>
 
       <br />
       <p className="learning-rate">
@@ -146,6 +148,7 @@ const MyLingopress = () => {
           학습률은 "옳게 번역한 문장 수 / 전체 문장 수" 입니다.
         </p>
       </p>
+      <HeatMapComponent />
       {myPressList.length > 0 &&
         myPressList.map((learnedPress) => (
           <LearnedPressBox
