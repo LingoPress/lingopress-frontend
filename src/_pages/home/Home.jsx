@@ -45,7 +45,7 @@ export default function Home() {
       axiosPrivate
         .get("/api/v1/learning-record/today")
         .then((res) => {
-          setTodayLearningRecord(res.data.data.learningCount);
+          setTodayLearningRecord(res.data.data.count);
         })
         .catch((err) => {
           console.log(err);
