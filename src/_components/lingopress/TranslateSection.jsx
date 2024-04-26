@@ -25,6 +25,7 @@ const TranslateSection = ({ pressData }) => {
               originalContent={item.originalLineText}
               translatedContent={item.machineTranslatedLineText}
               userTranslatedContent={item.userTranslatedLineText}
+              memo={item.memo}
               isCorrect={item.isCorrect}
             />
           ))}

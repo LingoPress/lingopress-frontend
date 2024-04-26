@@ -3,6 +3,7 @@ export const customColors = {
     button: {
       100: "#fab33e",
       300: "#cc5803",
+      0: "#f6f1f1",
     },
     subBg: {
       100: "#fab33e",

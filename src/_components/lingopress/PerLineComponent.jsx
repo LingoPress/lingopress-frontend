@@ -30,7 +30,7 @@ const ConvertLine = styled.textarea`
   width: 95%;
   box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.1);
   font-size: 1.8rem;
-  resize: none;
+  resize: vertical;
   height: 10rem;
   transition:
     border-color 0.3s ease,
@@ -47,7 +47,6 @@ const LineOuterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: end;
-  margin-bottom: 10rem;
 `;
 
 const CheckButton = styled.button`
@@ -80,7 +79,7 @@ const VerifyButton = styled.button`
 
 const MachineTranslatedLine = styled.p`
   line-height: normal;
-  position: absolute;
+  position: relative;
   margin-left: 1rem;
   margin-top: 0.5rem;
   width: 90%;
@@ -147,12 +146,55 @@ const VerifyWrapper = styled.div`
   font-size: 1.4rem;
 `;
 
+const MemoLineWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+
+  & textarea {
+    width: 88%;
+    height: 5rem;
+    margin-right: 1rem;
+    padding: 1rem 1.6rem;
+    margin-top: 1rem;
+    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+    font-size: 1.8rem;
+    resize: vertical;
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .memo_button {
+    padding: 1rem 1.6rem;
+    background-color: ${customColors.background.button[0]};
+    border-radius: 0.3rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.6rem;
+    color: black;
+  }
+`;
+
+const PerLineComponentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10rem;
+`;
+
 const PerLineComponent = ({
   originalContent,
   translatedContent,
   lineNumber,
   userTranslatedContent,
   isCorrect,
+  memo,
 }) => {
   const navigate = useNavigate();
   const props = useParams();
@@ -376,71 +418,101 @@ const PerLineComponent = ({
     setShowModal(false);
   }
 
-  return (
-    <LineOuterWrapper>
-      {originalContent ? (
-        <>
-          <LineWrapper>
-            {showModal && (
-              <>
-                <ModalOuterLayer handleCloseModal={handleCloseModal} />
-                <WordSearchModal coords={coords}>
-                  <h1>{selectedText}</h1>
-                  <p>{wordMeaning}</p>
-                  <button onClick={handleMyWord}>O</button>
-                  <button onClick={handleCloseModal} className={"close"}>
-                    X
-                  </button>
-                  <button onClick={addBracketsToSelection}>()</button>
-                  <button onClick={addSquareBracketsToSelection}>[]</button>
-                  <button onClick={insertSlashAtSelection}>/</button>
-                </WordSearchModal>
-              </>
-            )}
-            <OriginalLine onMouseUp={handleMouseUp} id={"editableText"}>
-              {originalContent}
-            </OriginalLine>
-            <ConvertLine
-              value={userTranslatedText}
-              onChange={(e) => setUserTranslatedText(e.target.value)}
-              disabled={machineTranslatedText}
-              style={{
-                backgroundColor: isUserTranslatedText
-                  ? "lightgreen"
-                  : isUserTranslatedText === false
-                    ? "lightcoral"
-                    : "white",
-              }}
-            ></ConvertLine>
-            <MachineTranslatedLine>
-              {machineTranslatedText}
-            </MachineTranslatedLine>
-          </LineWrapper>
-          <VerifyBox>
-            {machineTranslatedText && !choiceOne ? (
-              <VerifyWrapper>
-                올바르게 <br />
-                번역했나요?
-                <VerifyZone>
-                  <VerifyButton onClick={() => handleVerifyText(true)}>
-                    O
-                  </VerifyButton>
-                  <VerifyButton onClick={() => handleVerifyText(false)}>
-                    X
-                  </VerifyButton>
-                </VerifyZone>
-              </VerifyWrapper>
-            ) : null}
+  // 메모 기능
+  const [memoText, setMemoText] = useState(memo);
+  const handleMemo = () => {
+    axiosPrivate({
+      method: "post",
+      url: "/api/v1/press/memo",
+      data: {
+        pressId: props.press_id,
+        contentLineNumber: lineNumber,
+        memo: memoText,
+      },
+    })
+      .then((res) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-            <CheckButton type={"button"} onClick={() => handleTranslate()}>
-              확인
-              <br />
-              하기
-            </CheckButton>
-          </VerifyBox>
-        </>
+  return (
+    <PerLineComponentWrapper>
+      <LineOuterWrapper>
+        {originalContent ? (
+          <>
+            <LineWrapper>
+              {showModal && (
+                <>
+                  <ModalOuterLayer handleCloseModal={handleCloseModal} />
+                  <WordSearchModal coords={coords}>
+                    <h1>{selectedText}</h1>
+                    <p>{wordMeaning}</p>
+                    <button onClick={handleMyWord}>O</button>
+                    <button onClick={handleCloseModal} className={"close"}>
+                      X
+                    </button>
+                    <button onClick={addBracketsToSelection}>()</button>
+                    <button onClick={addSquareBracketsToSelection}>[]</button>
+                    <button onClick={insertSlashAtSelection}>/</button>
+                  </WordSearchModal>
+                </>
+              )}
+              <OriginalLine onMouseUp={handleMouseUp} id={"editableText"}>
+                {originalContent}
+              </OriginalLine>
+              <ConvertLine
+                value={userTranslatedText}
+                onChange={(e) => setUserTranslatedText(e.target.value)}
+                disabled={machineTranslatedText}
+                style={{
+                  backgroundColor: isUserTranslatedText
+                    ? "lightgreen"
+                    : isUserTranslatedText === false
+                      ? "lightcoral"
+                      : "white",
+                }}
+              ></ConvertLine>
+            </LineWrapper>
+            <VerifyBox>
+              {machineTranslatedText && !choiceOne ? (
+                <VerifyWrapper>
+                  올바르게 <br />
+                  번역했나요?
+                  <VerifyZone>
+                    <VerifyButton onClick={() => handleVerifyText(true)}>
+                      O
+                    </VerifyButton>
+                    <VerifyButton onClick={() => handleVerifyText(false)}>
+                      X
+                    </VerifyButton>
+                  </VerifyZone>
+                </VerifyWrapper>
+              ) : (
+                <CheckButton type={"button"} onClick={() => handleTranslate()}>
+                  확인
+                  <br />
+                  하기
+                </CheckButton>
+              )}
+            </VerifyBox>
+          </>
+        ) : null}
+      </LineOuterWrapper>
+      <MachineTranslatedLine>{machineTranslatedText}</MachineTranslatedLine>
+      {authStatus.is_logged_in ? (
+        <MemoLineWrapper>
+          <textarea
+            value={memoText}
+            onChange={(e) => setMemoText(e.target.value)}
+            placeholder={"메모장"}
+          />
+          <button className={"memo_button"} onClick={() => handleMemo()}>
+            메모하기
+          </button>
+        </MemoLineWrapper>
       ) : null}
-    </LineOuterWrapper>
+    </PerLineComponentWrapper>
   );
 };
 export default PerLineComponent;
