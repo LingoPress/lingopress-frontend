@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 
 const HeatMapWrapper = styled.div`
-  margin: 2rem;
+  margin: 5rem 2rem;
   overflow-x: scroll;
 `;
 
