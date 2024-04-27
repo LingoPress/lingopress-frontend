@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { useAtom } from "jotai/index";
 import { authAtom } from "../../atom/user";
-import { useNavigate } from "react-router-dom";
 import { customColors } from "../../styles/color";
 import ContinueWithGoogle from "../../assets/continue_google.svg";
 
@@ -53,37 +52,7 @@ const styles = {
 };
 
 function LoginForm() {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [authStatus, setAuthStatus] = useAtom(authAtom);
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    await fetchLogin();
-  };
-
-  const fetchLogin = async () => {
-    try {
-      const result = await axios.post(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/users/sign-in`,
-        {
-          username: username,
-          password: password,
-        },
-      );
-      if (result.status === 200) {
-        localStorage.setItem("token", result.data.data.accessToken);
-        localStorage.setItem("refreshToken", result.data.data.refreshToken);
-        navigate(-1);
-        setAuthStatus({ is_logged_in: true });
-        return result.data.data;
-      }
-    } catch (error) {
-      console.error(error);
-      alert(error.response.data.message);
-    }
-  };
 
   const handleGoogleLogin = async () => {
     try {
@@ -100,7 +69,7 @@ function LoginForm() {
     }
   };
   return (
-    <form onSubmit={handleLogin} style={styles.container}>
+    <div style={styles.container}>
       <h1 style={styles.h1}>
         Lingo
         <br />
@@ -119,7 +88,7 @@ function LoginForm() {
         alt={"Continue with Google"}
         onClick={() => handleGoogleLogin()}
       />
-    </form>
+    </div>
   );
 }
 
