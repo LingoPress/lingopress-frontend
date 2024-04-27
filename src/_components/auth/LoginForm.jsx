@@ -88,6 +88,13 @@ function LoginForm() {
         alt={"Continue with Google"}
         onClick={() => handleGoogleLogin()}
       />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
