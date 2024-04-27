@@ -9,7 +9,6 @@ export default function Lingopress() {
     <div
       style={{
         display: "flex",
-        margin: "3rem",
         position: "relative",
       }}
     >

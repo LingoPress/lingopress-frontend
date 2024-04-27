@@ -53,10 +53,13 @@ const VocabularyCard = styled.div`
 `;
 
 const VocabularyOuterWrapper = styled.section`
+  margin-top: 3rem;
   position: fixed;
   right: ${(props) => (props.isMobile ? null : "0.5rem")};
   bottom: ${(props) => (props.isMobile ? "2rem" : null)};
-  width: ${(props) => (props.isMobile ? "90vw" : "18vw")};
+  width: ${(props) => (props.isMobile ? "95vw" : "18vw")};
+  left: ${(props) => (props.isMobile ? "50%" : null)};
+  transform: ${(props) => (props.isMobile ? "translate(-50%, 0)" : null)};
   padding: 1.4rem;
   border: 1px solid #ccc;
   border-radius: 1rem;

@@ -39,6 +39,7 @@ const PressSection = ({ authStatus }) => {
       <section
         style={{
           width: isMobile ? "95vw" : "78vw",
+          margin: "3rem",
         }}
       >
         <PressTitle>{pressData ? pressData.title : null}</PressTitle>
