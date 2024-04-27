@@ -50,6 +50,8 @@ const LineOuterWrapper = styled.div`
 `;
 
 const CheckButton = styled.button`
+  width: 7rem;
+
   // width: 3rem;
   // height: 3rem;
   padding: 1rem 1.6rem;
@@ -157,7 +159,6 @@ const MemoLineWrapper = styled.div`
     height: 5rem;
     margin-right: 1rem;
     padding: 1rem 1.6rem;
-    margin-top: 1rem;
     box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
     border-radius: 1rem;
     font-size: 1.8rem;
@@ -173,6 +174,7 @@ const MemoLineWrapper = styled.div`
   }
 
   .memo_button {
+    width: 10rem;
     padding: 1rem 1.6rem;
     background-color: ${customColors.background.button[0]};
     border-radius: 0.3rem;
