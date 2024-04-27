@@ -24,7 +24,7 @@ const HeaderWrapper = styled.div`
   color: ${customColors.text.explain["900"]};
 
   & p {
-    font-size: 6rem;
+    font-size: 4rem;
     text-align: left;
     font-family: "Margarine", sans-serif;
     line-height: 7rem;
@@ -119,7 +119,7 @@ const OurPromiseWrapper = styled.div`
 
   #explain {
     font-family: "Margarine", sans-serif;
-    font-size: 7rem;
+    font-size: 3rem;
   }
 `;
 
@@ -173,7 +173,8 @@ const LandingPage = () => {
         <p>
           여러 뉴스들과 함께 공부할 준비가 되셨나요?
           <br />
-          아래 버튼을 눌러 여러분들을 기다리고 있는 수많은 뉴스들을 만나보세요!
+          아래 버튼을 눌러 여러분들을 기다리고 있는 <br />
+          수많은 뉴스들을 만나보세요!
         </p>
         <button onClick={() => navigate("/")}>Explore Now</button>
       </DiveInWrapper>
