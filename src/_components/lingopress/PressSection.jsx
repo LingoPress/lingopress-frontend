@@ -3,12 +3,15 @@ import { useParams } from "react-router-dom";
 import TranslateSection from "./TranslateSection";
 import styled from "@emotion/styled";
 import { axiosPrivate, axiosPublic } from "../../utils/axiosMethod";
+import { useMediaQuery } from "react-responsive";
+import Vocabulary from "./Vocabulary";
 
 const PressTitle = styled.h1`
   font-size: 2.3rem;
   margin-bottom: 5rem;
 `;
 const PressSection = ({ authStatus }) => {
+  const isMobile = useMediaQuery({ query: "(max-width:768px)" });
   const props = useParams();
   const [pressData, setPressData] = useState([]);
   useEffect(() => {
@@ -31,34 +34,37 @@ const PressSection = ({ authStatus }) => {
     responseData();
   }, [authStatus]);
   return (
-    <section
-      style={{
-        width: "78vw",
-      }}
-    >
-      <PressTitle>{pressData ? pressData.title : null}</PressTitle>
-      <TranslateSection pressData={pressData} />
-
-      <a
+    <>
+      {authStatus.is_logged_in ? <Vocabulary isMobile={isMobile} /> : null}
+      <section
         style={{
-          textDecoration: "none",
-          color: "black",
-          fontSize: "0.8rem",
-          fontWeight: "bold",
-          padding: "1rem",
-          border: "0.1rem solid black",
-          borderRadius: "1rem",
-          marginTop: "1rem",
-          marginBottom: "1rem",
+          width: isMobile ? "95vw" : "78vw",
         }}
-        href={pressData.originalUrl}
-        target="_blank"
-        rel="noreferrer"
       >
-        {" "}
-        원문 보기{" "}
-      </a>
-    </section>
+        <PressTitle>{pressData ? pressData.title : null}</PressTitle>
+        <TranslateSection pressData={pressData} />
+
+        <a
+          style={{
+            textDecoration: "none",
+            color: "black",
+            fontSize: "0.8rem",
+            fontWeight: "bold",
+            padding: "1rem",
+            border: "0.1rem solid black",
+            borderRadius: "1rem",
+            marginTop: "1rem",
+            marginBottom: "1rem",
+          }}
+          href={pressData.originalUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {" "}
+          원문 보기{" "}
+        </a>
+      </section>
+    </>
   );
 };
 

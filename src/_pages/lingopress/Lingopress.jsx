@@ -1,5 +1,4 @@
 import PressSection from "../../_components/lingopress/PressSection";
-import Vocabulary from "../../_components/lingopress/Vocabulary";
 import { useAtomValue } from "jotai/index";
 import { authAtom } from "../../atom/user";
 
@@ -11,11 +10,11 @@ export default function Lingopress() {
       style={{
         display: "flex",
         margin: "3rem",
+        position: "relative",
       }}
     >
       <br />
       <PressSection authStatus={authStatus} />
-      {authStatus.is_logged_in ? <Vocabulary /> : null}
     </div>
   );
 }

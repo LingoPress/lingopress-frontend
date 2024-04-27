@@ -54,16 +54,17 @@ const VocabularyCard = styled.div`
 
 const VocabularyOuterWrapper = styled.section`
   position: fixed;
-  right: 0.5rem;
-  width: 15vw;
+  right: ${(props) => (props.isMobile ? null : "0.5rem")};
+  bottom: ${(props) => (props.isMobile ? "2rem" : null)};
+  width: ${(props) => (props.isMobile ? "90vw" : "18vw")};
   padding: 1.4rem;
-  margin-left: 2rem;
   border: 1px solid #ccc;
-  border-radius: 0.3rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
   background-color: #fff;
   overflow-y: scroll;
-  max-height: 80vh;
+  max-height: ${(props) => (props.isMobile ? "35vh" : "80vh")};
+  z-index: 100;
 
   & > h2 {
     font-size: 2rem;
@@ -80,7 +81,7 @@ const VocabularyOuterWrapper = styled.section`
   }
 `;
 
-const Vocabulary = () => {
+const Vocabulary = ({ isMobile }) => {
   const props = useParams();
   const [wordToLearnList, setWordToLearnList] = useState([]);
   const [needToRefreshWord, setNeedToRefreshWord] = useAtom(
@@ -133,7 +134,7 @@ const Vocabulary = () => {
   };
 
   return (
-    <VocabularyOuterWrapper>
+    <VocabularyOuterWrapper isMobile={isMobile}>
       <h2>Vocabulary</h2>
       <br />
       <p>Drag the words to add them to the vocabulary.</p>
