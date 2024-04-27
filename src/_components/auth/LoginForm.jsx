@@ -4,6 +4,7 @@ import { useAtom } from "jotai/index";
 import { authAtom } from "../../atom/user";
 import { useNavigate } from "react-router-dom";
 import { customColors } from "../../styles/color";
+import ContinueWithGoogle from "../../assets/continue_google.svg";
 
 const styles = {
   container: {
@@ -11,7 +12,7 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: "80vh",
+    height: "85vh",
     // backgroundColor: "#f9f9f9",
   },
   input: {
@@ -33,7 +34,7 @@ const styles = {
     fontSize: "1.6rem",
   },
   h1: {
-    fontSize: "5rem",
+    fontSize: "10rem",
     marginBottom: "1rem",
     fontFamily: "Margarine",
   },
@@ -44,6 +45,9 @@ const styles = {
   signup: {
     marginTop: "2rem",
     fontSize: "1.6rem",
+    cursor: "pointer",
+  },
+  image: {
     cursor: "pointer",
   },
 };
@@ -81,6 +85,20 @@ function LoginForm() {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await axios.post(
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/users/oauth2/google`,
+      );
+      if (result.status === 200) {
+        console.log(result.data.data);
+        window.location.href = result.data.data;
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error.response.data.message);
+    }
+  };
   return (
     <form onSubmit={handleLogin} style={styles.container}>
       <h1 style={styles.h1}>
@@ -88,36 +106,19 @@ function LoginForm() {
         <br />
         Press
       </h1>
-      <br />
-      <br />
-      <br />
+      <br /> <br /> <br />
       <br />
       <br />
       <br />
       <h2 style={styles.h2}>
-        링고프레스로 번역, 독해, 어휘, 시사까지 한번에 공부하세요!
+        구글로그인으로 링고프레스를 간편하게 시작하세요.
       </h2>
-
-      <input
-        type="text"
-        placeholder="아이디"
-        style={styles.input}
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+      <img
+        style={styles.image}
+        src={ContinueWithGoogle}
+        alt={"Continue with Google"}
+        onClick={() => handleGoogleLogin()}
       />
-      <input
-        type="password"
-        placeholder="비밀번호"
-        style={styles.input}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type={"submit"} style={styles.button}>
-        로그인
-      </button>
-      <p onClick={() => navigate("/signup")} style={styles.signup}>
-        회원가입
-      </p>
     </form>
   );
 }
