@@ -132,17 +132,10 @@ button {
     sans-serif;
 }
 
-/* Mobile - Portrait */
-@media (max-width: 575px) {
-    html {
-        font-size: 35%;
-    }
-}
-
 /* Mobile - Landscape */
 @media (min-width: 100px) and (max-width: 739px) {
     html {
-        font-size: 45%;
+        font-size: 50%;
     }
 }
 
