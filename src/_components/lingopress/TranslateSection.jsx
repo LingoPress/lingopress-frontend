@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PerLineComponent from "./PerLineComponent";
 
-const TranslateSection = ({ pressData }) => {
+const TranslateSection = ({ pressData, isMobile }) => {
   // const [originalContent, setOriginalContent] = useState([]);
   // const [translatedContent, setTranslatedContent] = useState([]);
   const [content, setContent] = useState([]);
@@ -27,6 +27,7 @@ const TranslateSection = ({ pressData }) => {
               userTranslatedContent={item.userTranslatedLineText}
               memo={item.memo}
               isCorrect={item.isCorrect}
+              isMobile={isMobile}
             />
           ))}
         </div>

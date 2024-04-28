@@ -43,7 +43,7 @@ const PressSection = ({ authStatus }) => {
         }}
       >
         <PressTitle>{pressData ? pressData.title : null}</PressTitle>
-        <TranslateSection pressData={pressData} />
+        <TranslateSection pressData={pressData} isMobile={isMobile} />
 
         <a
           style={{
