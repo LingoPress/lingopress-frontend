@@ -52,6 +52,13 @@ const Title = styled.h2`
   font-weight: 700;
 `;
 
+const SubTitle = styled.h3`
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  color: ${customColors.text.title["500"]};
+  font-weight: 500;
+`;
+
 const Description = styled.p`
   margin-top: 1rem;
   line-height: normal;
@@ -74,7 +81,14 @@ const PublishedTime = styled.p`
   right: 2rem;
 `;
 
-const PressCard = ({ id, publishedAt, title, content, imageUrl }) => {
+const PressCard = ({
+  id,
+  publishedAt,
+  title,
+  content,
+  imageUrl,
+  translatedTitle,
+}) => {
   const formattedDate = formatDate(publishedAt);
   const navigate = useNavigate();
 
@@ -87,6 +101,7 @@ const PressCard = ({ id, publishedAt, title, content, imageUrl }) => {
       ) : null}
       <Content>
         <Title>{title}</Title>
+        <SubTitle>{translatedTitle ?? translatedTitle}</SubTitle>
         <Description>{content}</Description>
         <PublishedTime>{formattedDate}</PublishedTime>
       </Content>
