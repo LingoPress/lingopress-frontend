@@ -10,7 +10,7 @@ import { needToRefreshWordAtom } from "../../atom/needToRefresh";
 import { customColors } from "../../styles/color";
 
 const LineWrapper = styled.div`
-  width: 93%;
+  //  width: 93%;
   position: relative;
 `;
 
@@ -27,9 +27,9 @@ const ConvertLine = styled.textarea`
   border-radius: 1rem;
   padding: 1rem 1.6rem;
   margin-top: 1rem;
-  width: 95%;
-  box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.1);
-  font-size: 1.8rem;
+  width: ${({ isMobile }) => (isMobile ? "100%" : "95%")};
+  box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+  font-size: 2rem;
   resize: vertical;
   height: 10rem;
   transition:
@@ -46,12 +46,13 @@ const LineOuterWrapper = styled.div`
   min-height: 8rem;
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: ${({ isMobile }) => (isMobile ? null : "end")};
+  flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
 `;
 
 const CheckButton = styled.button`
   width: 7rem;
-
+  margin-top: 0.8rem;
   // width: 3rem;
   // height: 3rem;
   padding: 1rem 1.6rem;
@@ -159,9 +160,9 @@ const MemoLineWrapper = styled.div`
     height: 5rem;
     margin-right: 1rem;
     padding: 1rem 1.6rem;
-    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.1);
     border-radius: 1rem;
-    font-size: 1.8rem;
+    font-size: 2rem;
     resize: vertical;
     transition:
       border-color 0.3s ease,
@@ -197,6 +198,7 @@ const PerLineComponent = ({
   userTranslatedContent,
   isCorrect,
   memo,
+  isMobile,
 }) => {
   const navigate = useNavigate();
   const props = useParams();
@@ -438,9 +440,31 @@ const PerLineComponent = ({
       });
   };
 
+  // 단어 선택 모달 기능
+
+  // 문장을 단어 단위로 파싱하는 함수
+  const parseSentence = (sentence) => {
+    return sentence.split(" ");
+  };
+
+  // 단어를 클릭했을 때 호출되는 이벤트 핸들러
+  const handleWordClick = (e, text) => {
+    e.stopPropagation(); // 이벤트 전파 중지
+    if (text.length > 0) {
+      if (selectedText !== text) {
+        setWordMeaning("단어장에 등록하고 뜻 보기");
+      }
+      setSelectedText(text);
+      setShowModal(true);
+      setCoords({ x: e.clientX, y: e.clientY });
+    } else {
+      handleCloseModal();
+    }
+  };
+
   return (
     <PerLineComponentWrapper>
-      <LineOuterWrapper>
+      <LineOuterWrapper isMobile={isMobile}>
         {originalContent ? (
           <>
             <LineWrapper>
@@ -454,16 +478,33 @@ const PerLineComponent = ({
                     <button onClick={handleCloseModal} className={"close"}>
                       X
                     </button>
-                    <button onClick={addBracketsToSelection}>()</button>
-                    <button onClick={addSquareBracketsToSelection}>[]</button>
-                    <button onClick={insertSlashAtSelection}>/</button>
+                    {!isMobile ? (
+                      <>
+                        <button onClick={addBracketsToSelection}>()</button>
+                        <button onClick={addSquareBracketsToSelection}>
+                          []
+                        </button>
+                        <button onClick={insertSlashAtSelection}>/</button>
+                      </>
+                    ) : null}
                   </WordSearchModal>
                 </>
               )}
-              <OriginalLine onMouseUp={handleMouseUp} id={"editableText"}>
-                {originalContent}
+              <OriginalLine id={"editableText"}>
+                {parseSentence(originalContent).map((word, index) => (
+                  <span
+                    key={index}
+                    onMouseUp={handleMouseUp}
+                    onClickCapture={(e) => {
+                      isMobile && handleWordClick(e, word);
+                    }}
+                  >
+                    {word}{" "}
+                  </span>
+                ))}
               </OriginalLine>
               <ConvertLine
+                isMobile={isMobile}
                 value={userTranslatedText}
                 onChange={(e) => setUserTranslatedText(e.target.value)}
                 disabled={machineTranslatedText}
