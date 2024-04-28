@@ -53,6 +53,7 @@ const VocabularyCard = styled.div`
 `;
 
 const VocabularyOuterWrapper = styled.section`
+  display: ${(props) => (props.isMobile ? "none" : "block")};
   margin-top: 3rem;
   position: fixed;
   right: ${(props) => (props.isMobile ? null : "0.5rem")};
