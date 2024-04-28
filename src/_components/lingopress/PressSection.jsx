@@ -8,8 +8,14 @@ import Vocabulary from "./Vocabulary";
 
 const PressTitle = styled.h1`
   font-size: 2.3rem;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
 `;
+const PressDescription = styled.p`
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  margin-bottom: 4rem;
+`;
+
 const PressSection = ({ authStatus }) => {
   const isMobile = useMediaQuery({ query: "(max-width:768px)" });
   const props = useParams();
@@ -33,6 +39,9 @@ const PressSection = ({ authStatus }) => {
     };
     responseData();
   }, [authStatus]);
+
+  const options = { month: "long", day: "numeric", year: "numeric" };
+
   return (
     <>
       {authStatus.is_logged_in ? <Vocabulary isMobile={isMobile} /> : null}
@@ -43,27 +52,27 @@ const PressSection = ({ authStatus }) => {
         }}
       >
         <PressTitle>{pressData ? pressData.title : null}</PressTitle>
-        <TranslateSection pressData={pressData} isMobile={isMobile} />
+        <PressTitle>
+          {pressData.translatedTitle ? pressData.translatedTitle : null}
+        </PressTitle>
+        <PressDescription>
+          This{" "}
+          <a
+            style={{
+              textDecoration: "none",
+            }}
+            href={pressData.originalUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            story
+          </a>{" "}
+          by {pressData.author ? pressData.author : "anonymous user"} originally
+          appeared on Global Voices on{" "}
+          {new Date(pressData.publishedAt).toLocaleString("en-US", options)}.
+        </PressDescription>
 
-        <a
-          style={{
-            textDecoration: "none",
-            color: "black",
-            fontSize: "0.8rem",
-            fontWeight: "bold",
-            padding: "1rem",
-            border: "0.1rem solid black",
-            borderRadius: "1rem",
-            marginTop: "1rem",
-            marginBottom: "1rem",
-          }}
-          href={pressData.originalUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {" "}
-          원문 보기{" "}
-        </a>
+        <TranslateSection pressData={pressData} isMobile={isMobile} />
       </section>
     </>
   );
