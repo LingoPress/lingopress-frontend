@@ -188,7 +188,7 @@ const MemoLineWrapper = styled.div`
 const PerLineComponentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 10rem;
+  margin-bottom: 8rem;
 `;
 
 const PerLineComponent = ({
@@ -209,6 +209,10 @@ const PerLineComponent = ({
   const [choiceOne, setChoiceOne] = useState(false);
   const [isUserTranslatedText, setIsUserTranslatedText] = useState(isCorrect);
   const authStatus = useAtomValue(authAtom);
+
+  // 구분자가 제거된 원문
+  const originalContentWithoutSeparator = originalContent.replace("!@!", "");
+
   const handleTranslate = () => {
     if (authStatus.is_logged_in === false) {
       alert("로그인 후 이용해주세요");
@@ -311,7 +315,7 @@ const PerLineComponent = ({
       url: "/api/v1/words/need-to-learn",
       data: {
         word: selectedText,
-        originalText: originalContent,
+        originalText: originalContentWithoutSeparator,
         translatedText: translatedContent,
         lineNumber: lineNumber,
         pressId: props.press_id,
@@ -491,17 +495,19 @@ const PerLineComponent = ({
                 </>
               )}
               <OriginalLine id={"editableText"}>
-                {parseSentence(originalContent).map((word, index) => (
-                  <span
-                    key={index}
-                    onMouseUp={handleMouseUp}
-                    onClickCapture={(e) => {
-                      isMobile && handleWordClick(e, word);
-                    }}
-                  >
-                    {word}{" "}
-                  </span>
-                ))}
+                {parseSentence(originalContentWithoutSeparator).map(
+                  (word, index) => (
+                    <span
+                      key={index}
+                      onMouseUp={handleMouseUp}
+                      onClickCapture={(e) => {
+                        isMobile && handleWordClick(e, word);
+                      }}
+                    >
+                      {word}{" "}
+                    </span>
+                  ),
+                )}
               </OriginalLine>
               <ConvertLine
                 isMobile={isMobile}
@@ -554,6 +560,14 @@ const PerLineComponent = ({
             메모하기
           </button>
         </MemoLineWrapper>
+      ) : null}
+
+      {originalContent.indexOf(".!@!") !== -1 ? (
+        <>
+          <br />
+          <br />
+          <hr />
+        </>
       ) : null}
     </PerLineComponentWrapper>
   );
