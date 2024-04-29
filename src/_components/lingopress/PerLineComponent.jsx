@@ -28,7 +28,7 @@ const ConvertLine = styled.textarea`
   padding: 1rem 1.6rem;
   margin-top: 1rem;
   width: ${({ isMobile }) => (isMobile ? "100%" : "95%")};
-  box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.1);
   font-size: 2rem;
   resize: vertical;
   height: 10rem;
