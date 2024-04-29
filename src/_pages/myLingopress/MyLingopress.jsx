@@ -142,12 +142,6 @@ const MyLingopress = () => {
       <h1>번역한 문장 수 그래프</h1>
 
       <br />
-      <p className="learning-rate">
-        학습률?
-        <p className="learning-rate-desc">
-          학습률은 "옳게 번역한 문장 수 / 전체 문장 수" 입니다.
-        </p>
-      </p>
       <HeatMapComponent />
       {myPressList.length > 0 &&
         myPressList.map((learnedPress) => (
@@ -159,13 +153,11 @@ const MyLingopress = () => {
             <p>{learnedPress.press.published_at}</p>
             <div className={"etcWrapper"}>
               <p>
-                {" "}
-                학습률:{" "}
-                {(
-                  learnedPress.learnedContentLine /
-                  learnedPress.press.totalContentLine
-                ).toFixed(2) * 100}
-                %
+                잘 번역한 문장: {learnedPress.learnedContentLine}/
+                {learnedPress.press.totalContentLine}줄
+                <br />
+                해석을 시도한 문장: {learnedPress.translatedContentLine}/
+                {learnedPress.press.totalContentLine}줄
               </p>
               <p className={"updatedAt"}>
                 최근 학습일 {formatDate(learnedPress.updatedAt)}
