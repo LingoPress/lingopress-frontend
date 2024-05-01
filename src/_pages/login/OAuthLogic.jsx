@@ -26,6 +26,10 @@ const OAuthLogic = () => {
         localStorage.setItem("token", result.data.data.accessToken);
         localStorage.setItem("refreshToken", result.data.data.refreshToken);
         setAuthStatus({ is_logged_in: true });
+        if (result.data.data.isNewUser === true) {
+          navigate("/whatis");
+          return;
+        }
         navigate("/");
       }
     } catch (error) {
