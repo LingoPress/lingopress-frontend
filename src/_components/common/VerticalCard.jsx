@@ -5,12 +5,12 @@ const VerticalCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4rem;
+  padding: 1rem 1rem 3rem;
   border-radius: 0.5rem;
   background-color: ${customColors.background.boxBg["0"]};
   overflow: hidden;
-  //  width: 40rem;
-  //height: 36rem;
+  // width: 40rem;
+  height: 40rem;
   margin-bottom: 3rem;
   white-space: pre-line;
   line-height: 2.3rem;
@@ -31,13 +31,17 @@ const VerticalCardWrapper = styled.div`
 
   h3 {
     font-size: 2rem;
-    color: ${customColors.text.cardTitle["100"]};
+    color: ${customColors.text.title["200"]};
     margin-bottom: 3rem;
+    font-weight: 600;
+    line-height: 1.5;
   }
 
   p {
     font-size: 1.6rem;
-    color: ${customColors.text.explain["500"]};
+    color: ${customColors.text.subTitle["200"]};
+    font-weight: 600;
+    line-height: 1.5;
   }
 `;
 

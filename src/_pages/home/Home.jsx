@@ -14,7 +14,7 @@ const SubTitle = styled.h2`
   font-weight: 400;
 `;
 
-const LandingPageMark = styled.p`
+export const LandingPageMark = styled.p`
   position: fixed;
   right: 2rem;
   bottom: 2rem;

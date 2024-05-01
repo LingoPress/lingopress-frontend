@@ -6,6 +6,8 @@ import NewNews from "../../assets/new_news.gif";
 import WordSearch from "../../assets/word_search.gif";
 import NewsDetail from "../../assets/news_detail.gif";
 import InsertSymbol from "../../assets/insert_symbol.gif";
+import Memo from "../../assets/memo.gif";
+import { useMediaQuery } from "react-responsive";
 
 const HeaderWrapper = styled.div`
   align-content: center;
@@ -15,7 +17,7 @@ const HeaderWrapper = styled.div`
   flex: none;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 10rem;
+  height: ${(props) => (props.isMobile ? "20rem" : "35rem")};
   justify-content: center;
   overflow: hidden;
   padding: 10rem 0;
@@ -24,10 +26,11 @@ const HeaderWrapper = styled.div`
   color: ${customColors.text.explain["900"]};
 
   & p {
-    font-size: 4rem;
-    text-align: left;
-    font-family: "Margarine", sans-serif;
-    line-height: 7rem;
+    font-size: ${(props) => (props.isMobile ? "3rem" : "6.4rem")};
+    text-align: center;
+    font-weight: 700;
+    // font-family: "Margarine", sans-serif;
+    line-height: 1.4;
   }
 `;
 
@@ -98,73 +101,68 @@ const LandingPageWrapper = styled.div`
   width: 100%;
 `;
 
-const OurPromiseWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 10rem;
-  margin-bottom: 10rem;
-
-  & p {
-    color: ${customColors.text.title["900"]};
-  }
-
-  #promise {
-    font-family: "Space Mono", sans-serif;
-
-    font-size: 2rem;
-    margin-bottom: 5rem;
-    text-align: left;
-  }
-
-  #explain {
-    font-family: "Margarine", sans-serif;
-    font-size: 3rem;
-  }
-`;
-
 const LandingPage = () => {
+  const isMobile = useMediaQuery({ query: "(max-width:768px)" });
+
   const navigate = useNavigate();
   return (
     <LandingPageWrapper>
-      <HeaderWrapper>
+      <HeaderWrapper isMobile={isMobile}>
         <div>
           <p>
-            Dive into the multi-language <br />
-            news ocean.
+            <span
+              style={{
+                fontFamily: "Margarine",
+              }}
+            >
+              LingoPress
+            </span>
+            와 함께
+            <br />
+            <span
+              style={{
+                fontFamily: "Margarine",
+              }}
+            >
+              news
+            </span>
+            로 재밌게
           </p>
         </div>
       </HeaderWrapper>
 
       <ExplainWrapper>
         <VerticalCard
-          title={
-            "단어를 선택해서 간편하게 뜻을 확인하고\n내 단어장에 바로 넣어보세요!"
-          }
+          title={"선택해서 뜻을 확인하고 바로 내 단어장에"}
           description={
-            "CHAT GPT가 선택한 단어를 '문장에 적절한 뜻'으로 알려줍니다!"
+            "CHAT GPT가 선택한 단어를\n'문장에 적절한 뜻'으로 알려줍니다."
           }
           image={WordSearch}
         />{" "}
         <VerticalCard
           title={
-            "내가 번역한 문장과 인공지능이 번역해준 문장을\n비교하면서 학습하세요!"
+            "인공지능이 번역해준 문장과 \n내가 번역한 문장을 비교하면서 학습하기"
           }
           description={
-            "추후 인공지능이 번역 정확도도 판단해주도록 준비중이에요."
+            "추후 인공지능이 번역 정확도도\n판단해주도록 준비중이에요."
           }
           image={NewsDetail}
         />{" "}
         <VerticalCard
-          title={"문장을 해석할 때 기호를 넣어\n문장을 해석해보세요!"}
-          description={"필요한 곳 적재적소에 기호를 넣어보세요."}
+          title={"해석할 때 기호 넣기"}
+          description={"필요한 곳 어디든 기호를 넣어보세요."}
           image={InsertSymbol}
         />{" "}
         <VerticalCard
-          title={
-            "다양한 언어를 학습하세요!\n여러 나라의 뉴스를 매일매일 업데이트해요!"
+          title={"문장별 메모장과 함께"}
+          description={
+            "모르는 문법이나 기억할 만한 것들을 \n바로바로 메모하세요."
           }
-          description={"곧 다양한 언어 서비스가 출시됩니다!!"}
+          image={Memo}
+        />
+        <VerticalCard
+          title={"여러 나라의 수많은 뉴스가 \n매일매일 업데이트!"}
+          description={"곧 다양한 언어 서비스가 출시됩니다."}
           image={NewNews}
         />
       </ExplainWrapper>
@@ -178,15 +176,6 @@ const LandingPage = () => {
         </p>
         <button onClick={() => navigate("/")}>Explore Now</button>
       </DiveInWrapper>
-
-      <OurPromiseWrapper>
-        <p id={"promise"}>Our promise</p>
-        <p id={"explain"}>
-          Study with news to <br />
-          get more familiar with
-          <br /> learning another language.
-        </p>
-      </OurPromiseWrapper>
     </LandingPageWrapper>
   );
 };

@@ -19,9 +19,11 @@ export const customColors = {
   text: {
     title: {
       900: "#000000",
+      200: "rgb(51, 61, 75)",
     },
     subTitle: {
       700: "#e2711d",
+      200: "rgb(107, 118, 132)",
     },
     explain: {
       0: "#000000",
