@@ -10,7 +10,7 @@ const VerticalCardWrapper = styled.div`
   background-color: ${customColors.background.boxBg["0"]};
   overflow: hidden;
   //  width: 40rem;
-  height: 36rem;
+  //height: 36rem;
   margin-bottom: 3rem;
   white-space: pre-line;
   line-height: 2.3rem;
