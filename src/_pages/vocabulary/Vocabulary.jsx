@@ -20,7 +20,7 @@ const MyWordBox = styled.div`
 
   .영단어:hover + .뜻 {
     opacity: 1;
-    transition: 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     font-size: 2rem;
     color: #666;
   }
@@ -28,13 +28,12 @@ const MyWordBox = styled.div`
   .영단어 {
     font-size: 2.4rem;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
   }
 
   .뜻 {
     opacity: 0;
-    font-weight: bold;
-    transition: opacity 0.5s ease-in-out;
+    font-size: 2rem;
     margin-bottom: 10px;
   }
 
@@ -107,7 +106,8 @@ const Vocabulary = () => {
       <br />
       <br />
       <p className={"desc"}>
-        영단어 위에 커서를 올리면 뜻을 확인하실 수 있습니다.
+        영단어 위에 커서를 올리면 뜻을 확인하세요.
+        <br />뜻 수정은 미니 단어장에서 할 수 있어요.
       </p>
 
       <MyWordsWrapper>
@@ -116,9 +116,9 @@ const Vocabulary = () => {
             <h1 className={"영단어"}>{word.word}</h1>
             <p className={"뜻"}>{word.translatedWord}</p>
             <p className={"원문"}>원문: {word.originalLineText}</p>
-            <p className={"학습유무"}>
+            {/* <p className={"학습유무"}>
               학습 유무: {word.isLearned ? "O" : "X"}{" "}
-            </p>
+            </p> */}
             <p
               className={"뉴스보러가기"}
               onClick={() => navigate(`/lingopress/${word.pressId}`)}
