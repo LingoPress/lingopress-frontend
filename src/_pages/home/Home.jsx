@@ -43,7 +43,7 @@ export default function Home() {
     if (authStatus.is_logged_in === true) {
       // 오늘 학습한 문장 수 불러오기
       axiosPrivate
-        .get("/api/v1/learning-record/today")
+        .get("/v1/learning-record/today")
         .then((res) => {
           setTodayLearningRecord(res.data.data.count);
         })

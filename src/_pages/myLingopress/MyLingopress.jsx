@@ -125,7 +125,7 @@ const MyLingopress = () => {
     setIsLoading(true);
 
     const result = await axiosPrivate({
-      url: "/api/v1/press/learned",
+      url: "/v1/press/learned",
       method: "get",
       params: {
         page: page,

@@ -251,7 +251,7 @@ const PerLineComponent = ({
 
     axiosPrivate({
       method: "post",
-      url: "/api/v1/press/translate",
+      url: "/v1/press/translate",
       data: requestData,
     }).catch((err) => {
       console.log("@@@ error: ", err.response);
@@ -312,7 +312,7 @@ const PerLineComponent = ({
     // 모르는 단어 등록. 이때 단어,문장, 문장 라인 번호, 뉴스 번호 등이 기록되어야함.
     axiosPrivate({
       method: "post",
-      url: "/api/v1/words/need-to-learn",
+      url: "/v1/words/need-to-learn",
       data: {
         word: selectedText,
         originalText: originalContentWithoutSeparator,
@@ -431,7 +431,7 @@ const PerLineComponent = ({
   const handleMemo = () => {
     axiosPrivate({
       method: "post",
-      url: "/api/v1/press/memo",
+      url: "/v1/press/memo",
       data: {
         pressId: props.press_id,
         contentLineNumber: lineNumber,

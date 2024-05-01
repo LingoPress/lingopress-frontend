@@ -57,7 +57,7 @@ function LoginForm() {
   const handleGoogleLogin = async () => {
     try {
       const result = await axios.post(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/users/oauth2/google`,
+        `${process.env.REACT_APP_BACKEND_API_URL}/v1/users/oauth2/google`,
       );
       if (result.status === 200) {
         console.log(result.data.data);

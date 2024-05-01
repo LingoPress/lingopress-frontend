@@ -31,7 +31,7 @@ export default function TokenRefresher() {
         if (status === 401) {
           if (code === "EXPIRED_TOKEN") {
             await axios({
-              url: `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/users/reissue`,
+              url: `${process.env.REACT_APP_BACKEND_API_URL}/v1/users/reissue`,
               method: "post",
               data: {
                 accessToken: localStorage.getItem("token"),

@@ -95,7 +95,7 @@ const Vocabulary = ({ isMobile }) => {
   useEffect(() => {
     axiosPrivate({
       method: "get",
-      url: `/api/v1/words/need-to-learn/${props.press_id}`,
+      url: `/v1/words/need-to-learn/${props.press_id}`,
     }).then((response) => {
       setWordToLearnList(response.data.data);
       setNeedToRefreshWord(false);
@@ -106,7 +106,7 @@ const Vocabulary = ({ isMobile }) => {
     if (needToRefreshWord) {
       axiosPrivate({
         method: "get",
-        url: `/api/v1/words/need-to-learn/${props.press_id}`,
+        url: `/v1/words/need-to-learn/${props.press_id}`,
       }).then((response) => {
         setWordToLearnList(response.data.data);
         setNeedToRefreshWord(false);
@@ -118,7 +118,7 @@ const Vocabulary = ({ isMobile }) => {
     if (word) {
       axiosPrivate({
         method: "put",
-        url: `/api/v1/words/${wordId}`,
+        url: `/v1/words/${wordId}`,
         data: {
           word,
         },
@@ -131,7 +131,7 @@ const Vocabulary = ({ isMobile }) => {
   const handleDelete = (wordId) => {
     axiosPrivate({
       method: "delete",
-      url: `/api/v1/words/${wordId}`,
+      url: `/v1/words/${wordId}`,
     }).then(() => {
       setNeedToRefreshWord(true);
     });

@@ -97,7 +97,7 @@ const Vocabulary = () => {
   }, []);
 
   const fetchData = async () => {
-    const result = await axiosPrivate.get(`/api/v1/words/need-to-learn`);
+    const result = await axiosPrivate.get(`/v1/words/need-to-learn`);
     console.log(result.data);
     setMyWords(result.data.data);
   };

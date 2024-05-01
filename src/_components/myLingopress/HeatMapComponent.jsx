@@ -14,7 +14,7 @@ const HeatMapComponent = () => {
   useEffect(() => {
     axiosPrivate({
       method: "get",
-      url: `/api/v1/learning-record/between?startDate=2024-01-01&endDate=2024-12-31`,
+      url: `/v1/learning-record/between?startDate=2024-01-01&endDate=2024-12-31`,
     })
       .then((res) => {
         console.log(res.data.data);

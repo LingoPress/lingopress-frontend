@@ -27,11 +27,11 @@ const PressSection = ({ authStatus }) => {
       if (authStatus.is_logged_in !== null) {
         if (authStatus.is_logged_in === false) {
           result = await axiosPublic.get(
-            `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/press/${props.press_id}`,
+            `${process.env.REACT_APP_BACKEND_API_URL}/v1/press/${props.press_id}`,
           );
         } else {
           result = await axiosPrivate.get(
-            `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/press/${props.press_id}`,
+            `${process.env.REACT_APP_BACKEND_API_URL}/v1/press/${props.press_id}`,
           );
         }
         setPressData(result.data.data);
