@@ -72,13 +72,12 @@ const Description = styled.p`
   -webkit-box-orient: vertical; /*box의 배열 방향을 정함*/
 `;
 
-const PublishedTime = styled.p`
+const PressInfo = styled.p`
   margin-top: 1rem;
   color: #999;
   font-size: 1.4rem;
   position: absolute;
   bottom: 0;
-  right: 2rem;
 `;
 
 const PressCard = ({
@@ -88,6 +87,7 @@ const PressCard = ({
   content,
   imageUrl,
   translatedTitle,
+  totalContentLine,
 }) => {
   const formattedDate = formatDate(publishedAt);
   const navigate = useNavigate();
@@ -103,7 +103,15 @@ const PressCard = ({
         <Title>{title}</Title>
         <SubTitle>{translatedTitle ?? translatedTitle}</SubTitle>
         <Description>{content}</Description>
-        <PublishedTime>{formattedDate}</PublishedTime>
+        <PressInfo style={{ left: "2rem" }}>{totalContentLine}문장</PressInfo>
+
+        <PressInfo
+          style={{
+            right: "2rem",
+          }}
+        >
+          {formattedDate}
+        </PressInfo>
       </Content>
     </PressCardWrapper>
   );
