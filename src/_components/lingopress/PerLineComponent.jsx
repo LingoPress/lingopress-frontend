@@ -35,7 +35,8 @@ const ConvertLine = styled.textarea`
   height: 10rem;
   transition:
     border-color 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    background-color 0.8s ease;
 
   &:focus {
     outline: none;
@@ -58,7 +59,11 @@ const CheckButton = styled.button`
   // height: 3rem;
   padding: 1rem 1.6rem;
 
-  background-color: ${customColors.background.button[100]};
+  background-color: ${({ choiceOne }) =>
+    choiceOne
+      ? customColors.background.button[800]
+      : customColors.background.button[100]};
+
   border-radius: 0.3rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 1.6rem;
@@ -562,7 +567,11 @@ const PerLineComponent = ({
                   </VerifyZone>
                 </VerifyWrapper>
               ) : (
-                <CheckButton type={"button"} onClick={() => handleTranslate()}>
+                <CheckButton
+                  choiceOne={choiceOne}
+                  type={"button"}
+                  onClick={() => handleTranslate()}
+                >
                   확인
                   <br />
                   하기
