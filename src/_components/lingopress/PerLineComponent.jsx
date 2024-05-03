@@ -8,6 +8,7 @@ import countWords from "../../utils/wordCount";
 import ModalOuterLayer from "../ModalOuterLayer";
 import { needToRefreshWordAtom } from "../../atom/needToRefresh";
 import { customColors } from "../../styles/color";
+import { FaComment } from "react-icons/fa";
 
 const LineWrapper = styled.div`
   //  width: 93%;
@@ -151,6 +152,14 @@ const VerifyWrapper = styled.div`
 
 const MemoLineWrapper = styled.div`
   display: flex;
+  visibility: ${({ usingMemo }) => (usingMemo ? "visible" : "hidden")};
+  opacity: ${({ usingMemo }) => (usingMemo ? 1 : 0)};
+  transform: ${({ usingMemo }) =>
+    usingMemo ? "translateY(0)" : "translateY(-3rem)"};
+  transition:
+    visibility 0.3s,
+    transform 0.3s,
+    opacity 0.3s;
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
@@ -211,7 +220,7 @@ const PerLineComponent = ({
   const authStatus = useAtomValue(authAtom);
 
   // 구분자가 제거된 원문
-  const originalContentWithoutSeparator = originalContent.replace("!@!", "");
+  const originalContentWithoutSeparator = originalContent.replace("\n", "");
 
   const handleTranslate = () => {
     if (authStatus.is_logged_in === false) {
@@ -427,6 +436,7 @@ const PerLineComponent = ({
   }
 
   // 메모 기능
+  const [usingMemo, setUsingMemo] = useState(memo);
   const [memoText, setMemoText] = useState(memo);
   const handleMemo = () => {
     axiosPrivate({
@@ -508,6 +518,20 @@ const PerLineComponent = ({
                     </span>
                   ),
                 )}
+                <FaComment
+                  style={{
+                    marginLeft: "1rem",
+                    cursor: "pointer",
+                    transition: "color 0.3s ease-in-out",
+                  }}
+                  size={25}
+                  color={
+                    usingMemo
+                      ? customColors.background.button["100"]
+                      : customColors.background.button["800"]
+                  }
+                  onClick={() => setUsingMemo(!usingMemo)}
+                />
               </OriginalLine>
               <ConvertLine
                 isMobile={isMobile}
@@ -549,20 +573,19 @@ const PerLineComponent = ({
         ) : null}
       </LineOuterWrapper>
       <MachineTranslatedLine>{machineTranslatedText}</MachineTranslatedLine>
-      {authStatus.is_logged_in ? (
-        <MemoLineWrapper>
-          <textarea
-            value={memoText}
-            onChange={(e) => setMemoText(e.target.value)}
-            placeholder={"메모장"}
-          />
-          <button className={"memo_button"} onClick={() => handleMemo()}>
-            메모하기
-          </button>
-        </MemoLineWrapper>
-      ) : null}
 
-      {originalContent.indexOf(".!@!") !== -1 ? (
+      <MemoLineWrapper usingMemo={usingMemo}>
+        <textarea
+          value={memoText}
+          onChange={(e) => setMemoText(e.target.value)}
+          placeholder={"메모장"}
+        />
+        <button className={"memo_button"} onClick={() => handleMemo()}>
+          메모하기
+        </button>
+      </MemoLineWrapper>
+
+      {originalContent.indexOf("\n") !== -1 ? (
         <>
           <br />
           <br />

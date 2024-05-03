@@ -4,6 +4,7 @@ export const customColors = {
       100: "#fab33e",
       300: "#cc5803",
       0: "#f6f1f1",
+      800: "#6d6d6d",
     },
     subBg: {
       100: "#fab33e",
