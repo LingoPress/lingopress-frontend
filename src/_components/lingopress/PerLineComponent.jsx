@@ -241,6 +241,7 @@ const PerLineComponent = ({
     if (authStatus.is_logged_in === false) {
       alert("로그인 후 이용해주세요");
       navigate("/login");
+      return;
     }
     // 텍스트 입력 여부 확인
     else if (
