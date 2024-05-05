@@ -153,6 +153,13 @@ const VerifyWrapper = styled.div`
   align-items: center;
   margin-bottom: 1.2rem;
   font-size: 1.4rem;
+
+  #similarity {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: ${customColors.text.subTitle["200"]};
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const MemoLineWrapper = styled.div`
@@ -224,8 +231,11 @@ const PerLineComponent = ({
   const [isUserTranslatedText, setIsUserTranslatedText] = useState(isCorrect);
   const authStatus = useAtomValue(authAtom);
 
+  const [similarity, setSimilarity] = useState(0.0);
+
   // 구분자가 제거된 원문
   const originalContentWithoutSeparator = originalContent.replace("\n", "");
+  const translatedContentWithoutSeparator = translatedContent.replace("\n", "");
 
   const handleTranslate = () => {
     if (authStatus.is_logged_in === false) {
@@ -233,10 +243,33 @@ const PerLineComponent = ({
       navigate("/login");
     }
     // 텍스트 입력 여부 확인
-    else if (userTranslatedText === "") {
+    else if (
+      userTranslatedText === "" ||
+      userTranslatedText === " " ||
+      userTranslatedText === null ||
+      userTranslatedText === undefined
+    ) {
       alert("텍스트를 입력해주세요.");
       return;
     }
+
+    // 유사도 분석 api 호출
+
+    axiosPrivate({
+      method: "post",
+      url: "/v1/press/similarity",
+      data: {
+        original_text: translatedContentWithoutSeparator,
+        compared_text: userTranslatedText,
+      },
+    })
+      .then((res) => {
+        console.log(res.data.data);
+        setSimilarity(res.data.data.similarity);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // 번역 확인 문구 출력
     setMachineTranslatedText(translatedContent);
   };
@@ -555,6 +588,9 @@ const PerLineComponent = ({
             <VerifyBox>
               {machineTranslatedText && !choiceOne ? (
                 <VerifyWrapper>
+                  <p id={"similarity"}>
+                    정확도는 {similarity.toFixed(2) * 100}%{" "}
+                  </p>
                   올바르게 <br />
                   번역했나요?
                   <VerifyZone>
