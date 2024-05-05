@@ -60,7 +60,6 @@ function LoginForm() {
         `${process.env.REACT_APP_BACKEND_API_URL}/v1/users/oauth2/google`,
       );
       if (result.status === 200) {
-        console.log(result.data.data);
         window.location.href = result.data.data;
       }
     } catch (error) {

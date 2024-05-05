@@ -45,7 +45,6 @@ const LandingModal = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    console.log(authStatus.is_logged_in);
     if (
       authStatus.is_logged_in === true ||
       localStorage.getItem("token") !== null

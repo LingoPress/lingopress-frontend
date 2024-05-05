@@ -17,11 +17,10 @@ const HeatMapComponent = () => {
       url: `/v1/learning-record/between?startDate=2024-01-01&endDate=2024-12-31`,
     })
       .then((res) => {
-        console.log(res.data.data);
         setLearningCountList(res.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("@@@ error: ", err.response);
       });
   }, []);
   return (

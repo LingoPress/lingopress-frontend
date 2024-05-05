@@ -48,7 +48,7 @@ export default function Home() {
           setTodayLearningRecord(res.data.data.count);
         })
         .catch((err) => {
-          console.log(err);
+          console.log("@@@ error: ", err.response);
         });
     }
   }, [authStatus]);

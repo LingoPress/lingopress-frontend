@@ -78,7 +78,6 @@ const PressSection = () => {
   };
 
   useEffect(() => {
-    console.log(page);
     fetchData(page, sortCriteria, sortType);
   }, [page]);
 
@@ -87,12 +86,10 @@ const PressSection = () => {
     setPressData([]);
     setIsLast(false);
     if (type === "SortCriteriaType") {
-      console.log(value);
       setSortCriteria(value);
     }
     if (type === "SortOrderType") {
       setSortType(value);
-      console.log(value);
     }
   };
 

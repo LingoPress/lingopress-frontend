@@ -264,11 +264,10 @@ const PerLineComponent = ({
       },
     })
       .then((res) => {
-        console.log(res.data.data);
         setSimilarity(res.data.data.similarity);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("@@@ error: ", err.response);
       });
     // 번역 확인 문구 출력
     setMachineTranslatedText(translatedContent);
@@ -488,7 +487,7 @@ const PerLineComponent = ({
     })
       .then((res) => {})
       .catch((err) => {
-        console.log(err);
+        console.log("@@@ error: ", err.response);
       });
   };
 
