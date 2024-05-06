@@ -27,7 +27,7 @@ export default function TokenRefresher() {
         const code = error.response.data.code;
         const msg = error.response.data.message;
         const status = error.response.status;
-        console.log("@@@ error: ", error.response);
+        //        console.log("@@@ error: ", error.response);
         if (status === 401) {
           if (code === "EXPIRED_TOKEN") {
             await axios({

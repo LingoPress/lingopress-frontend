@@ -269,7 +269,9 @@ const PerLineComponent = ({
         setSimilarity(res.data.data.similarity);
       })
       .catch((err) => {
-        console.log("@@@ error: ", err.response);
+        if (err.response.data.code === "SIMILARITY_LIMIT_EXCEEDED") {
+          setSimilarity(-100);
+        }
       });
     // 번역 확인 문구 출력
     setMachineTranslatedText(translatedContent);
@@ -589,10 +591,24 @@ const PerLineComponent = ({
             <VerifyBox>
               {machineTranslatedText && !choiceOne ? (
                 <VerifyWrapper>
-                  <div id={"similarity"}>
-                    정확도는
-                    <Counter to={similarity.toFixed(2) * 100} from={0} />
-                  </div>
+                  {similarity === -100 ? (
+                    <div
+                      id={"similarity"}
+                      style={{
+                        fontSize: "1.2rem",
+                        textAlign: "center",
+                      }}
+                    >
+                      일일 분석량
+                      <br />
+                      한도 초과
+                    </div>
+                  ) : (
+                    <div id={"similarity"}>
+                      정확도는
+                      <Counter to={similarity.toFixed(2) * 100} from={0} />
+                    </div>
+                  )}
                   올바르게 <br />
                   번역했나요?
                   <VerifyZone>
