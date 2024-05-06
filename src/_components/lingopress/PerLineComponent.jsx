@@ -9,6 +9,7 @@ import ModalOuterLayer from "../ModalOuterLayer";
 import { needToRefreshWordAtom } from "../../atom/needToRefresh";
 import { customColors } from "../../styles/color";
 import { FaComment } from "react-icons/fa";
+import Counter from "./Counter";
 
 const LineWrapper = styled.div`
   //  width: 93%;
@@ -588,9 +589,10 @@ const PerLineComponent = ({
             <VerifyBox>
               {machineTranslatedText && !choiceOne ? (
                 <VerifyWrapper>
-                  <p id={"similarity"}>
-                    정확도는 {similarity.toFixed(2) * 100}%{" "}
-                  </p>
+                  <div id={"similarity"}>
+                    정확도는
+                    <Counter to={similarity.toFixed(2) * 100} from={0} />
+                  </div>
                   올바르게 <br />
                   번역했나요?
                   <VerifyZone>
