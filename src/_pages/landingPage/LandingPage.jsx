@@ -140,11 +140,9 @@ const LandingPage = () => {
           image={WordSearch}
         />{" "}
         <VerticalCard
-          title={
-            "인공지능이 번역해준 문장과 \n내가 번역한 문장을 비교하면서 학습하기"
-          }
+          title={"인공지능이 판단하는 번역 정확도"}
           description={
-            "추후 인공지능이 번역 정확도도\n판단해주도록 준비중이에요."
+            "인공지능이 번역해준 문장과 \n내가 번역한 문장을 비교하면서 학습하기"
           }
           image={NewsDetail}
         />{" "}
