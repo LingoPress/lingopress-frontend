@@ -6,11 +6,11 @@ import styled from "@emotion/styled";
 import { Layout } from "./_layout/defaultLayout";
 import Login from "./_pages/login/Login";
 import SignUp from "./_pages/signUp/SignUp";
-import MyLingopress from "./_pages/myLingopress/MyLingopress";
 import Vocabulary from "./_pages/vocabulary/Vocabulary";
 import RouteChangeTracker from "./utils/RouteChangeTracker";
 import LandingPage from "./_pages/landingPage/LandingPage";
 import OAuthLogic from "./_pages/login/OAuthLogic";
+import MyPage from "./_pages/myPage/MyPage";
 
 const NotFound = styled.div`
   text-align: center;
@@ -27,8 +27,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/login/oauth2/google" element={<OAuthLogic />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/my-lingopress" element={<MyLingopress />} />
         <Route path="/vocabulary" element={<Vocabulary />} />
+        <Route path="/my-page" element={<MyPage />} />
+        <Route path="/my-page/:option" element={<MyPage />} />
         <Route
           path={"*"}
           element={

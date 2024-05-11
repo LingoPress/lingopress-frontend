@@ -11,6 +11,7 @@ export const customColors = {
     },
     mainBg: {
       0: "#ffffff",
+      100: "#ececec",
     },
     boxBg: {
       0: "#f6f1f1",

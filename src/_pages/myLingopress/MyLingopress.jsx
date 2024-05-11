@@ -50,7 +50,9 @@ const LearnedPressBox = styled.div`
 
 const MyLingopressWrapper = styled.div`
   position: relative;
-  margin: 0 2rem;
+  padding: 0 2rem;
+  // width: 80rem;
+  width: 100%;
 
   .learning-rate {
     text-align: right;

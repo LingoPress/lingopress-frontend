@@ -90,14 +90,17 @@ export const Header = () => {
       <Navbar.Collapse className="justify-content-end">
         <Nav>
           <StyledLink onClick={() => navigate("/")}>번역하러 가기</StyledLink>
-          <StyledLink onClick={() => navigate("/vocabulary")}>
-            단어장
-          </StyledLink>
-          <StyledLink onClick={() => navigate("/my-lingopress")}>
-            내가 번역한 뉴스들
-          </StyledLink>
+
           {authStatus.is_logged_in ? (
-            <StyledLink onClick={() => handleLogout()}>로그아웃</StyledLink>
+            <>
+              <StyledLink onClick={() => navigate("/vocabulary")}>
+                단어장
+              </StyledLink>
+              <StyledLink onClick={() => navigate("/my-page")}>
+                마이페이지
+              </StyledLink>
+              <StyledLink onClick={() => handleLogout()}>로그아웃</StyledLink>
+            </>
           ) : (
             <StyledLink onClick={() => navigate("/login")}>로그인</StyledLink>
           )}
