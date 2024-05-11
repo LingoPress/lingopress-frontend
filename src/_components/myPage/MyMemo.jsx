@@ -142,7 +142,14 @@ const MyMemo = () => {
       {memos.length > 0 &&
         memos.map((memo) => (
           <LearnedPressBox key={memo.id}>
-            <h1>{memo.memo}</h1>
+            <h1
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              {memo.memo}
+            </h1>
+            <br />
             <h2>{memo.originalLineText}</h2>
             <h2>{memo.machineTranslatedLineText}</h2>
             <p
