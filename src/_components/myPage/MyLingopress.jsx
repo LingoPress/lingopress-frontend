@@ -5,7 +5,7 @@ import formatDate from "../../utils/formatDate";
 import { useNavigate } from "react-router-dom";
 import { useAtomValue } from "jotai/index";
 import { authAtom } from "../../atom/user";
-import HeatMapComponent from "../../_components/myLingopress/HeatMapComponent";
+import HeatMapComponent from "./HeatMapComponent";
 
 const LearnedPressBox = styled.div`
   cursor: pointer;

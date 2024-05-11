@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import MyLingopress from "../myLingopress/MyLingopress";
+import MyLingopress from "../../_components/myPage/MyLingopress";
 import { customColors } from "../../styles/color";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import MyMemo from "../../_components/myMemo/MyMemo";
+import MyMemo from "../../_components/myPage/MyMemo";
 
 const MyPageWrapper = styled.div`
   display: ${({ isMobile }) => (isMobile ? "block" : "flex")};
