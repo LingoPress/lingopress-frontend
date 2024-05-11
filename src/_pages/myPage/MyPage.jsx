@@ -4,6 +4,7 @@ import { customColors } from "../../styles/color";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import MyMemo from "../../_components/myMemo/MyMemo";
 
 const MyPageWrapper = styled.div`
   display: ${({ isMobile }) => (isMobile ? "block" : "flex")};
@@ -68,6 +69,7 @@ const MyPage = () => {
       </MyNav>
       <MyPageContentWrapper>
         {option === "my-lingopress" && <MyLingopress isMobile={isMobile} />}
+        {option === "my-memo" && <MyMemo isMobile={isMobile} />}
       </MyPageContentWrapper>
     </MyPageWrapper>
   );
