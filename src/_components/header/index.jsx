@@ -80,8 +80,8 @@ export const Header = () => {
     }
 
     // 언어 설정
-    if (localStorage.getItem("menuLanguage") !== null) {
-      i18n.changeLanguage(localStorage.getItem("menuLanguage"));
+    if (localStorage.getItem("userLanguage") !== null) {
+      i18n.changeLanguage(localStorage.getItem("userLanguage"));
     }
   }, []);
 

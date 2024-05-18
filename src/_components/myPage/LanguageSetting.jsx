@@ -11,30 +11,30 @@ const LanguageBox = ({ language }) => {
 
 const LanguageSetting = () => {
   const [checked, setChecked] = useState(false);
-  const [studyLanguageValue, setStudyLanguageValue] = useState("ENGLISH");
-  const [menuLanguageValue, setMenuLanguageValue] = useState("KOREAN");
+  const [targetLanguageValue, setTargetLanguageValue] = useState("ENGLISH");
+  const [userLanguageValue, setUserLanguageValue] = useState("KOREAN");
   const { t } = useTranslation();
-  const studyLanguage = [
+  const targetLanguage = [
     { name: "한국어", value: "KOREAN" },
     { name: "English", value: "ENGLISH" },
     { name: "日本語", value: "JAPANESE" },
   ];
 
-  const menuLanguage = [
+  const userLanguage = [
     { name: "한국어", value: "KOREAN" },
     { name: "English", value: "ENGLISH" },
     { name: "日本語", value: "JAPANESE" },
   ];
 
   useEffect(() => {
-    localStorage.getItem("studyLanguage") &&
-      setStudyLanguageValue(localStorage.getItem("studyLanguage"));
-    localStorage.getItem("menuLanguage") &&
-      setMenuLanguageValue(localStorage.getItem("menuLanguage"));
+    localStorage.getItem("targetLanguage") &&
+      setTargetLanguageValue(localStorage.getItem("targetLanguage"));
+    localStorage.getItem("userLanguage") &&
+      setUserLanguageValue(localStorage.getItem("userLanguage"));
   }, []);
 
-  const changeMenuLanguage = (value) => {
-    setMenuLanguageValue(value);
+  const changeUserLanguage = (value) => {
+    setUserLanguageValue(value);
     i18n.changeLanguage(value);
   };
 
@@ -43,12 +43,12 @@ const LanguageSetting = () => {
       url: "/v1/users/language",
       method: "patch",
       data: {
-        target_language: studyLanguageValue,
-        user_language: menuLanguageValue,
+        target_language: targetLanguageValue,
+        user_language: userLanguageValue,
       },
     }).then((res) => {
-      localStorage.setItem("studyLanguage", studyLanguageValue);
-      localStorage.setItem("menuLanguage", menuLanguageValue);
+      localStorage.setItem("targetLanguage", targetLanguageValue);
+      localStorage.setItem("userLanguage", userLanguageValue);
       alert(t("mypage.Language settings have been saved"));
     });
   };
@@ -65,7 +65,7 @@ const LanguageSetting = () => {
     >
       <h1>{t("mypage.Choose a language to study")}</h1>
       <ButtonGroup>
-        {studyLanguage.map((radio, idx) => (
+        {targetLanguage.map((radio, idx) => (
           <ToggleButton
             size={"lg"}
             key={idx}
@@ -74,8 +74,8 @@ const LanguageSetting = () => {
             variant={"outline-success"}
             name="study-radio"
             value={radio.value}
-            checked={studyLanguageValue === radio.value}
-            onChange={(e) => setStudyLanguageValue(e.currentTarget.value)}
+            checked={targetLanguageValue === radio.value}
+            onChange={(e) => setTargetLanguageValue(e.currentTarget.value)}
           >
             {radio.name}
           </ToggleButton>
@@ -86,7 +86,7 @@ const LanguageSetting = () => {
       <br />
       <h1>{t("mypage.Choose a menu language")}</h1>
       <ButtonGroup>
-        {menuLanguage.map((radio, idx) => (
+        {userLanguage.map((radio, idx) => (
           <ToggleButton
             size={"lg"}
             key={idx}
@@ -95,8 +95,8 @@ const LanguageSetting = () => {
             variant={"outline-success"}
             name="menu-radio"
             value={radio.value}
-            checked={menuLanguageValue === radio.value}
-            onChange={(e) => changeMenuLanguage(e.currentTarget.value)}
+            checked={userLanguageValue === radio.value}
+            onChange={(e) => changeUserLanguage(e.currentTarget.value)}
           >
             {radio.name}
           </ToggleButton>
