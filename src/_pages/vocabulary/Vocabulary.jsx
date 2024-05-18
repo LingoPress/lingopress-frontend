@@ -4,6 +4,7 @@ import { useAtomValue } from "jotai/index";
 import { authAtom } from "../../atom/user";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
+import { useTranslation } from "react-i18next";
 
 const MyWordBox = styled.div`
   display: flex;
@@ -79,6 +80,7 @@ const Vocabulary = () => {
   const authStatus = useAtomValue(authAtom);
   const navigate = useNavigate();
   const [myWords, setMyWords] = useState([]);
+  const { t } = useTranslation();
   useEffect(() => {
     document.title = "단어장";
     return () => {
@@ -114,7 +116,9 @@ const Vocabulary = () => {
           <MyWordBox key={word.id}>
             <h1 className={"영단어"}>{word.word}</h1>
             <p className={"뜻"}>{word.translatedWord}</p>
-            <p className={"원문"}>원문: {word.originalLineText}</p>
+            <p className={"원문"}>
+              {t("vocabulary.original sentence")}: {word.originalLineText}
+            </p>
             {/* <p className={"학습유무"}>
               학습 유무: {word.isLearned ? "O" : "X"}{" "}
             </p> */}
@@ -122,7 +126,7 @@ const Vocabulary = () => {
               className={"뉴스보러가기"}
               onClick={() => navigate(`/lingopress/${word.pressId}`)}
             >
-              해당 뉴스 보러가기
+              {t("vocabulary.Go to the news")}
             </p>
           </MyWordBox>
         ))}

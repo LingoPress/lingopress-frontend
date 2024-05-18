@@ -1,0 +1,58 @@
+{
+  "header": {
+    "mypage": "マイページ",
+    "logout": "ログアウト",
+    "login": "ログイン",
+    "register": "会員登録",
+    "language": "言語設定",
+    "go_to_translate": "翻訳しに行く",
+    "vocabulary": "単語帳"
+  },
+  "sort": {
+    "date": "日付",
+    "news_line_count": "ニュース文の数",
+    "press": "ニュース",
+    "novel": "小説",
+    "ASC": "昇順",
+    "DESC": "降順"
+  },
+  "press": {
+    "line": "文",
+    "vocabulary_warning": "単語翻訳機能は実験中です！\n意味が正確でないか、翻訳されないことがあります。\n翻訳が間違っている場合は直接修正してください。",
+    "checking": "確認する",
+    "memo": "メモする",
+    "no_text_warning": "テキストを入力してください。",
+    "accuracy": "正確度は",
+    "translate_correctly": "正しく翻訳されましたか？"
+  },
+  "home": {
+    "check_your_status_N": "今日は一文も翻訳していませんね..!",
+    "check_your_status_fighting": "\uD83D\uDD25希望のニュースをクリックして翻訳を始めましょう\uD83D\uDD25",
+    "check_your_status_Y_head": "\uD83D\uDD25今日はすでに ",
+    "check_your_status_Y_tail": " 文を翻訳しました！\uD83D\uDD25",
+    "login_message": "Google ログインで Lingopress を簡単に始めましょう。"
+  },
+  "mypage": {
+    "Graph of the number of sentences translated": "翻訳された文の数のグラフ",
+    "Well-translated sentences": "上手に翻訳された文",
+    "Sentences that attempted to interpret": "解釈を試みた文",
+    "Recent study days": "最近の勉強日数",
+    "News I've translated": "私が翻訳したニュース",
+    "My memos": "私のメモ",
+    "Language settings": "言語設定",
+    "Giving feedback": "フィードバック",
+    "Withdraw": "退会",
+    "Choose a language to study": "勉強する言語を選んでください",
+    "Choose a menu language": "メニューの言語を選んでください",
+    "Language settings have been saved": "言語設定が保存されました。",
+    "save": "保存"
+  },
+  "common": {
+    "sentences": "文",
+    "Interpreted sentences": "解釈された文"
+  },
+  "vocabulary": {
+    "Go to the news": "ニュースへ移動",
+    "original sentence": "元の文章"
+  }
+}

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import MyMemo from "../../_components/myPage/MyMemo";
 import LanguageSetting from "../../_components/myPage/LanguageSetting";
 import { axiosPrivate } from "../../utils/axiosMethod";
+import { useTranslation } from "react-i18next";
 
 const MyPageWrapper = styled.div`
   display: ${({ isMobile }) => (isMobile ? "block" : "flex")};
@@ -47,7 +48,7 @@ const MyPage = () => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: "(max-width:768px)" });
   const { option } = useParams();
-  console.log(option);
+  const { t } = useTranslation();
   useEffect(() => {
     if (!option) {
       navigate("/my-page/my-lingopress");
@@ -75,16 +76,19 @@ const MyPage = () => {
     <MyPageWrapper isMobile={isMobile}>
       <MyNav isMobile={isMobile}>
         <NavItem onClick={() => navigate("/my-page/my-lingopress")}>
-          내가 번역한 뉴스들
+          {t("mypage.News I've translated")}
         </NavItem>
         <NavItem onClick={() => navigate("/my-page/my-memo")}>
-          내 메모들
+          {t("mypage.My memos")}
         </NavItem>
         <NavItem onClick={() => navigate("/my-page/language")}>
-          언어 설정
+          {t("mypage.Language settings")}
         </NavItem>
-        <NavItem href="mailto: dev.lingopress@gmail.com">의견 제시하기</NavItem>
-        <NavItem onClick={() => deleteUser()}>탈퇴하기</NavItem>
+        <NavItem href="mailto: dev.lingopress@gmail.com">
+          {" "}
+          {t("mypage.Giving feedback")}
+        </NavItem>
+        <NavItem onClick={() => deleteUser()}> {t("mypage.Withdraw")}</NavItem>
       </MyNav>
       <MyPageContentWrapper>
         {option === "my-lingopress" && <MyLingopress isMobile={isMobile} />}

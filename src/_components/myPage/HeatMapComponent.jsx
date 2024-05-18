@@ -3,6 +3,7 @@ import Tooltip from "@uiw/react-tooltip";
 import { axiosPrivate } from "../../utils/axiosMethod";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
+import { useTranslation } from "react-i18next";
 
 const HeatMapWrapper = styled.div`
   margin: 5rem 2rem;
@@ -11,6 +12,7 @@ const HeatMapWrapper = styled.div`
 
 const HeatMapComponent = () => {
   const [learningCountList, setLearningCountList] = useState([]);
+  const { t } = useTranslation();
   useEffect(() => {
     axiosPrivate({
       method: "get",
@@ -50,7 +52,7 @@ const HeatMapComponent = () => {
           return (
             <Tooltip
               placement="top"
-              content={`${data.date}. 해석한 문장: ${data.count || 0}`}
+              content={`${data.date}. ${t("common.Interpreted sentences")}: ${data.count || 0}`}
             >
               <rect {...props} />
             </Tooltip>

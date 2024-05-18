@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import formatDate from "../../utils/formatDate";
 import { customColors } from "../../styles/color";
+import { useTranslation } from "react-i18next";
 
 const PressCardWrapper = styled.div`
   display: flex;
@@ -91,6 +92,7 @@ const PressCard = ({
 }) => {
   const formattedDate = formatDate(publishedAt);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <PressCardWrapper onClick={() => navigate(`/lingopress/${id}`)}>
@@ -103,7 +105,9 @@ const PressCard = ({
         <Title>{title}</Title>
         <SubTitle>{translatedTitle ?? translatedTitle}</SubTitle>
         <Description>{content}</Description>
-        <PressInfo style={{ left: "2rem" }}>{totalContentLine}문장</PressInfo>
+        <PressInfo style={{ left: "2rem" }}>
+          {totalContentLine} {t(`press.line`)}
+        </PressInfo>
 
         <PressInfo
           style={{

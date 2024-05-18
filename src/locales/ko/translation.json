@@ -1,0 +1,58 @@
+{
+  "header": {
+    "mypage": "마이페이지",
+    "logout": "로그아웃",
+    "login": "로그인",
+    "register": "회원가입",
+    "language": "언어설정",
+    "go_to_translate": "번역하러 가기",
+    "vocabulary": "단어장"
+  },
+  "sort": {
+    "date": "날짜",
+    "news_line_count": "뉴스 문장 수",
+    "press": "뉴스",
+    "novel": "소설",
+    "ASC": "오름차순",
+    "DESC": "내림차순"
+  },
+  "press": {
+    "line": "문장",
+    "vocabulary_warning": "단어 번역기능은 실험 중입니다!\n뜻이 정확하지 않거나 번역되지 않을 수 있어요.\n번역이 잘못된 경우 직접 수정해주세요.",
+    "checking": "확인\n하기",
+    "memo": "메모하기",
+    "no_text_warning": "텍스트를 입력해주세요.",
+    "accuracy": "정확도는",
+    "translate_correctly": "올바르게 번역했나요?"
+  },
+  "home": {
+    "check_your_status_N": "오늘은 한문장도 번역하지 않았군요..!",
+    "check_your_status_fighting": "\uD83D\uDD25원하는 뉴스를 클릭해 번역을 시작해보세요\uD83D\uDD25",
+    "check_your_status_Y_head": "\uD83D\uDD25벌써 오늘 ",
+    "check_your_status_Y_tail": "문장을 번역했어요!\uD83D\uDD25",
+    "login_message": "구글 로그인으로 링고프레스를 간편하게 시작하세요."
+  },
+  "mypage": {
+    "Graph of the number of sentences translated": "번역한 문장 수 그래프",
+    "Well-translated sentences": "잘 번역한 문장",
+    "Sentences that attempted to interpret": "번역을 시도한 문장",
+    "Recent study days": "최근 학습 일수",
+    "News I've translated": "내가 번역한 뉴스",
+    "My memos": "내 메모",
+    "Language settings": "언어 설정",
+    "Giving feedback": "의견 제시하기",
+    "Withdraw": "탈퇴하기",
+    "Choose a language to study": "공부할 언어를 선택하세요",
+    "Choose a menu language": "메뉴 언어를 선택하세요",
+    "Language settings have been saved": "언어 설정이 저장되었습니다.",
+    "save": "저장"
+  },
+  "common": {
+    "sentences": "문장",
+    "Interpreted sentences": "해석한 문장"
+  },
+  "vocabulary": {
+    "Go to the news": "해당 뉴스 보러가기",
+    "original sentence": "원문"
+  }
+}

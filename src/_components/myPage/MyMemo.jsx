@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { useAtomValue } from "jotai/index";
 import { authAtom } from "../../atom/user";
+import { useTranslation } from "react-i18next";
 
 const LearnedPressBox = styled.div`
   cursor: pointer;
@@ -82,6 +83,8 @@ const MyMemo = () => {
 
   const [memos, setMemos] = useState([]);
 
+  const { t } = useTranslation();
+
   // 페이지 타이틀 변경
   useEffect(() => {
     document.title = "내 메모 모아보기";
@@ -156,7 +159,7 @@ const MyMemo = () => {
               className={"뉴스보러가기"}
               onClick={() => navigate(`/lingopress/${memo.pressId}`)}
             >
-              해당 뉴스 보러가기
+              {t("vocabulary.Go to the news")}
             </p>
           </LearnedPressBox>
         ))}

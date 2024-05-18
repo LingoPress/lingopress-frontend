@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAtom } from "jotai/index";
 import { needToRefreshWordAtom } from "../../atom/needToRefresh";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const VocabularyCard = styled.div`
   position: relative;
@@ -92,6 +93,8 @@ const Vocabulary = ({ isMobile }) => {
     needToRefreshWordAtom,
   );
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     axiosPrivate({
       method: "get",
@@ -142,11 +145,7 @@ const Vocabulary = ({ isMobile }) => {
       <h2>Vocabulary</h2>
       <br />
       <p>Drag the words to add them to the vocabulary.</p>
-      <p className={"warning"}>
-        단어 번역기능은 실험 중입니다! <br />
-        뜻이 정확하지 않거나 번역되지 않을 수 있어요. <br />
-        번역이 잘못된 경우 직접 수정해주세요.
-      </p>
+      <p className={"warning"}>{t("press.vocabulary_warning")}</p>
 
       {wordToLearnList.map((word) => (
         <VocabularyCard key={word.id}>

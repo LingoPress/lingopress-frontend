@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAtomValue } from "jotai/index";
 import { authAtom } from "../../atom/user";
 import HeatMapComponent from "./HeatMapComponent";
+import { useTranslation } from "react-i18next";
 
 const LearnedPressBox = styled.div`
   cursor: pointer;
@@ -84,6 +85,8 @@ const MyLingopress = () => {
 
   const [myPressList, setMyPressList] = useState([]);
 
+  const { t } = useTranslation();
+
   // 페이지 타이틀 변경
   useEffect(() => {
     document.title = "내가 번역한 뉴스들";
@@ -141,7 +144,7 @@ const MyLingopress = () => {
   return (
     <MyLingopressWrapper>
       <br />
-      <h1>번역한 문장 수 그래프</h1>
+      <h1>{t("mypage.Graph of the number of sentences translated")}</h1>
 
       <br />
       <HeatMapComponent />
@@ -155,14 +158,19 @@ const MyLingopress = () => {
             <p>{learnedPress.press.published_at}</p>
             <div className={"etcWrapper"}>
               <p>
-                잘 번역한 문장: {learnedPress.learnedContentLine}/
-                {learnedPress.press.totalContentLine}줄
+                {t("mypage.Well-translated sentences")}:{" "}
+                {learnedPress.learnedContentLine}/
+                {learnedPress.press.totalContentLine}
+                {t("common.sentences")}
                 <br />
-                해석을 시도한 문장: {learnedPress.translatedContentLine}/
-                {learnedPress.press.totalContentLine}줄
+                {t("mypage.Sentences that attempted to interpret")}:{" "}
+                {learnedPress.translatedContentLine}/
+                {learnedPress.press.totalContentLine}
+                {t("common.sentences")}
               </p>
               <p className={"updatedAt"}>
-                최근 학습일 {formatDate(learnedPress.updatedAt)}
+                {t("mypage.Recent study days")}{" "}
+                {formatDate(learnedPress.updatedAt)}
               </p>
             </div>
           </LearnedPressBox>

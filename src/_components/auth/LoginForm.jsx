@@ -4,6 +4,7 @@ import { useAtom } from "jotai/index";
 import { authAtom } from "../../atom/user";
 import { customColors } from "../../styles/color";
 import ContinueWithGoogle from "../../assets/continue_google.svg";
+import { useTranslation } from "react-i18next";
 
 const styles = {
   container: {
@@ -53,6 +54,7 @@ const styles = {
 
 function LoginForm() {
   const [authStatus, setAuthStatus] = useAtom(authAtom);
+  const { t } = useTranslation();
 
   const handleGoogleLogin = async () => {
     try {
@@ -78,9 +80,7 @@ function LoginForm() {
       <br />
       <br />
       <br />
-      <h2 style={styles.h2}>
-        구글로그인으로 링고프레스를 간편하게 시작하세요.
-      </h2>
+      <h2 style={styles.h2}>{t("home.login_message")}</h2>
       <img
         style={styles.image}
         src={ContinueWithGoogle}

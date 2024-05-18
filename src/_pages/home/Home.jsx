@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useAtomValue } from "jotai/index";
 import { authAtom } from "../../atom/user";
 import { axiosPrivate } from "../../utils/axiosMethod";
+import { useTranslation } from "react-i18next";
 
 const SubTitle = styled.h2`
   font-size: 2rem;
@@ -39,6 +40,8 @@ export default function Home() {
 
   const [todayLearningRecord, setTodayLearningRecord] = useState(0);
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (authStatus.is_logged_in === true) {
       // 오늘 학습한 문장 수 불러오기
@@ -61,11 +64,17 @@ export default function Home() {
       {/*  <LandingModal /> */}
       <br />
       {todayLearningRecord ? (
-        <SubTitle>🔥벌써 오늘 {todayLearningRecord}문장 도전 중🔥</SubTitle>
+        <SubTitle>
+          {t("home.check_your_status_Y_head")}
+          {todayLearningRecord}
+          {t("home.check_your_status_Y_tail")}
+        </SubTitle>
       ) : (
         <SubTitle>
-          오늘은 한문장도 번역하지 않았군요..! <br />
-          🔥원하는 뉴스를 클릭해 번역을 시작해보세요🔥
+          {t("home.check_your_status_N")}
+          <br />
+          <br />
+          {t("home.check_your_status_fighting")}
         </SubTitle>
       )}
       <br />

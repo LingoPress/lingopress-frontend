@@ -1,0 +1,58 @@
+{
+  "header": {
+    "mypage": "mypage",
+    "logout": "logout",
+    "login": "login",
+    "register": "register",
+    "language": "language",
+    "go_to_translate": "go to translate",
+    "vocabulary": "vocabulary"
+  },
+  "sort": {
+    "date": "date",
+    "news_line_count": "news line count",
+    "news": "news",
+    "novel": "novel",
+    "ASC": "Ascending",
+    "DESC": "Descending"
+  },
+  "press": {
+    "line": "sentences",
+    "vocabulary_warning": "Word translation is experimental!\nThe meanings may not be exact or may not translate.\nIf you find a translation incorrect, please correct it yourself.",
+    "checking": "Verify",
+    "memo": "memo",
+    "no_text_warning": "Please enter text.",
+    "accuracy": "Accuracy is",
+    "translate_correctly": "Did I translate correctly?"
+  },
+  "home": {
+    "check_your_status_N": "You haven't translated a single sentence today..!",
+    "check_your_status_fighting": "\uD83D\uDD25Click on the news you want to start translating\uD83D\uDD25",
+    "check_your_status_Y_head": "\uD83D\uDD25You've already translated ",
+    "check_your_status_Y_tail": " sentences today!\uD83D\uDD25",
+    "login_message": "Start LingoPress easily with Google login."
+  },
+  "mypage": {
+    "Graph of the number of sentences translated": "Graph of the number of sentences translated",
+    "Well-translated sentences": "Well-translated sentences",
+    "Sentences that attempted to interpret": "Sentences that attempted to interpret",
+    "Recent study days": "Recent study days",
+    "News I've translated": "News I've translated",
+    "My memos": "My memos",
+    "Language settings": "Language settings",
+    "Giving feedback": "Giving feedback",
+    "Withdraw": "Withdraw",
+    "Choose a language to study": "Choose a language to study",
+    "Choose a menu language": "Choose a menu language",
+    "Language settings have been saved": "Language settings have been saved",
+    "save": "Save"
+  },
+  "common": {
+    "sentences": "sentences",
+    "Interpreted sentences": "Interpreted sentences"
+  },
+  "vocabulary": {
+    "Go to the news": "Go to the news",
+    "original sentence": "original sentence"
+  }
+}

@@ -3,6 +3,7 @@ import axios from "axios";
 import PressCard from "./PressCard";
 import styled from "@emotion/styled";
 import { Dropdown } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const SortCriteriaType = [
   ["publishedAt", "날짜"],
@@ -29,6 +30,8 @@ const OrderOptionWrapper = styled.div`
 `;
 
 const PressSection = () => {
+  const { t } = useTranslation();
+
   const [pressData, setPressData] = useState([]);
   const [isLast, setIsLast] = useState(false);
   const [page, setPage] = useState(0);
@@ -103,7 +106,9 @@ const PressSection = () => {
             id="dropdown-basic"
             style={{ marginRight: "1rem" }}
           >
-            {sortCriteria[1]}
+            {sortCriteria[0] === "publishedAt"
+              ? t("sort.date")
+              : t("sort.news_line_count")}
           </Dropdown.Toggle>
 
           <Dropdown.Menu
@@ -116,20 +121,20 @@ const PressSection = () => {
                 searchParamChange("SortCriteriaType", SortCriteriaType[0])
               }
             >
-              날짜
+              {t("sort.date")}
             </Dropdown.Item>
             <Dropdown.Item
               onClick={() =>
                 searchParamChange("SortCriteriaType", SortCriteriaType[1])
               }
             >
-              뉴스 문장 수
+              {t("sort.news_line_count")}
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown>
           <Dropdown.Toggle size="lg" variant="Secondary" id="dropdown-basic">
-            {sortType[1]}
+            {sortType[0] === "desc" ? t("sort.DESC") : t("sort.ASC")}
           </Dropdown.Toggle>
 
           <Dropdown.Menu
@@ -142,14 +147,14 @@ const PressSection = () => {
                 searchParamChange("SortOrderType", SortOrderType[0])
               }
             >
-              내림차순
+              {t("sort.DESC")}
             </Dropdown.Item>
             <Dropdown.Item
               onClick={() =>
                 searchParamChange("SortOrderType", SortOrderType[1])
               }
             >
-              오름차순
+              {t("sort.ASC")}
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
