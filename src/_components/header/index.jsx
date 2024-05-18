@@ -108,7 +108,7 @@ export const Header = () => {
               <StyledLink onClick={() => navigate("/vocabulary")}>
                 {t(`header.vocabulary`)}
               </StyledLink>
-              <StyledLink onClick={() => navigate("/my-page")}>
+              <StyledLink onClick={() => navigate("/my-page/my-lingopress")}>
                 {t(`header.mypage`)}
               </StyledLink>
               <StyledLink onClick={() => handleLogout()}>
