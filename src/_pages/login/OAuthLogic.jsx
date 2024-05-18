@@ -25,6 +25,8 @@ const OAuthLogic = () => {
       if (result.status === 200) {
         localStorage.setItem("token", result.data.data.accessToken);
         localStorage.setItem("refreshToken", result.data.data.refreshToken);
+        localStorage.setItem("targetLanguage", result.data.data.targetLanguage);
+        localStorage.setItem("userLanguage", result.data.data.userLanguage);
         setAuthStatus({ is_logged_in: true });
         if (result.data.data.isNewUser === true) {
           navigate("/whatis");
