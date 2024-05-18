@@ -10,6 +10,8 @@ import { needToRefreshWordAtom } from "../../atom/needToRefresh";
 import { customColors } from "../../styles/color";
 import { FaComment } from "react-icons/fa";
 import Counter from "./Counter";
+import { t } from "i18next";
+import { Trans } from "react-i18next";
 
 const LineWrapper = styled.div`
   //  width: 93%;
@@ -240,7 +242,7 @@ const PerLineComponent = ({
 
   const handleTranslate = () => {
     if (authStatus.is_logged_in === false) {
-      alert("로그인 후 이용해주세요");
+      alert(t("alert.login_first"));
       navigate("/login");
       return;
     }
@@ -251,7 +253,7 @@ const PerLineComponent = ({
       userTranslatedText === null ||
       userTranslatedText === undefined
     ) {
-      alert("텍스트를 입력해주세요.");
+      alert(t("alert.input_text_first"));
       return;
     }
 
@@ -312,7 +314,9 @@ const PerLineComponent = ({
   const [showModal, setShowModal] = useState(false);
   const [selectedText, setSelectedText] = useState("");
   const [coords, setCoords] = useState({ x: 0, y: 0 });
-  const [wordMeaning, setWordMeaning] = useState("단어장에 등록하고 뜻 보기");
+  const [wordMeaning, setWordMeaning] = useState(
+    t("alert.Add to vocabulary and view meaning"),
+  );
   const [needToRefreshWord, setNeedToRefreshWord] = useAtom(
     needToRefreshWordAtom,
   );
@@ -320,7 +324,7 @@ const PerLineComponent = ({
     const text = window.getSelection().toString().trim();
     if (text.length > 0) {
       if (selectedText !== text) {
-        setWordMeaning("단어장에 등록하고 뜻 보기");
+        setWordMeaning(t("alert.Add to vocabulary and view meaning"));
       }
 
       setSelectedText(text);
@@ -333,7 +337,7 @@ const PerLineComponent = ({
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setWordMeaning("단어장에 등록하고 뜻 보기");
+    setWordMeaning(t("alert.Add to vocabulary and view meaning"));
   };
 
   // edge의 미니 메뉴 기능 끄기.
@@ -345,17 +349,17 @@ const PerLineComponent = ({
 
   const handleMyWord = () => {
     if (authStatus.is_logged_in === false) {
-      alert("로그인 후 이용해주세요");
+      alert(t("alert.login_first"));
       navigate("/login");
     }
     // 텍스트 입력 여부 확인
     else if (selectedText === "" || selectedText === " ") {
-      alert("텍스트를 입력해주세요.");
+      alert(t("alert.input_text_first"));
       return;
     }
 
     if (countWords(selectedText) > 4) {
-      alert("4단어 이상 선택할 수 없습니다.");
+      alert(t("alert.You cannot select more than 4 words"));
       handleCloseModal();
       return;
     }
@@ -507,7 +511,7 @@ const PerLineComponent = ({
     e.stopPropagation(); // 이벤트 전파 중지
     if (text.length > 0) {
       if (selectedText !== text) {
-        setWordMeaning("단어장에 등록하고 뜻 보기");
+        setWordMeaning(t("alert.Add to vocabulary and view meaning"));
       }
       setSelectedText(text);
       setShowModal(true);
@@ -599,18 +603,15 @@ const PerLineComponent = ({
                         textAlign: "center",
                       }}
                     >
-                      일일 분석량
-                      <br />
-                      한도 초과
+                      <Trans i18nKey={"press.today similarity api over"} />
                     </div>
                   ) : (
                     <div id={"similarity"}>
-                      정확도는
+                      {t("press.accuracy")}
                       <Counter to={similarity.toFixed(2) * 100} from={0} />
                     </div>
-                  )}
-                  올바르게 <br />
-                  번역했나요?
+                  )}{" "}
+                  <Trans i18nKey={"press.translate_correctly"} />
                   <VerifyZone>
                     <VerifyButton onClick={() => handleVerifyText(true)}>
                       O
@@ -626,9 +627,7 @@ const PerLineComponent = ({
                   type={"button"}
                   onClick={() => handleTranslate()}
                 >
-                  확인
-                  <br />
-                  하기
+                  <Trans i18nKey={"press.checking"} />
                 </CheckButton>
               )}
             </VerifyBox>
@@ -644,7 +643,7 @@ const PerLineComponent = ({
           placeholder={"메모장"}
         />
         <button className={"memo_button"} onClick={() => handleMemo()}>
-          메모하기
+          <Trans i18nKey={"press.memo"} />
         </button>
       </MemoLineWrapper>
 

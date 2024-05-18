@@ -23,7 +23,8 @@
     "memo": "メモする",
     "no_text_warning": "テキストを入力してください。",
     "accuracy": "正確度は",
-    "translate_correctly": "正しく翻訳されましたか？"
+    "translate_correctly": "正しく翻訳されましたか？",
+    "today similarity api over": "1日の分析量が超過しました。"
   },
   "home": {
     "check_your_status_N": "今日は一文も翻訳していませんね..!",
@@ -54,5 +55,11 @@
   "vocabulary": {
     "Go to the news": "ニュースへ移動",
     "original sentence": "元の文章"
+  },
+  "alert": {
+    "login_first": "ログインしてください。",
+    "input_text_first": "テキストを入力してください。",
+    "Add to vocabulary and view meaning": "単語帳に追加して意味を表示する",
+    "You cannot select more than 4 words": "4つ以上の単語を選択することはできません。"
   }
 }

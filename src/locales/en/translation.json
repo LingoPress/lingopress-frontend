@@ -23,7 +23,8 @@
     "memo": "memo",
     "no_text_warning": "Please enter text.",
     "accuracy": "Accuracy is",
-    "translate_correctly": "Did I translate correctly?"
+    "translate_correctly": "Did I translate correctly?",
+    "today similarity api over": "Daily analysis limit<br/>exceeded."
   },
   "home": {
     "check_your_status_N": "You haven't translated a single sentence today..!",
@@ -54,5 +55,11 @@
   "vocabulary": {
     "Go to the news": "Go to the news",
     "original sentence": "original sentence"
+  },
+  "alert": {
+    "login_first": "Please log in first.",
+    "input_text_first": "Please input text first.",
+    "Add to vocabulary and view meaning": "Add to vocabulary and view meaning",
+    "You cannot select more than 4 words": "You cannot select more than 4 words"
   }
 }
