@@ -28,7 +28,7 @@
   "home": {
     "check_your_status_N": "오늘은 한문장도 번역하지 않았군요..!",
     "check_your_status_fighting": "\uD83D\uDD25원하는 뉴스를 클릭해 번역을 시작해보세요\uD83D\uDD25",
-    "check_your_status_Y_head": "\uD83D\uDD25벌써 오늘 ",
+    "check_your_status_Y_head": "\uD83D\uDD25오늘 벌써 ",
     "check_your_status_Y_tail": "문장을 번역했어요!\uD83D\uDD25",
     "login_message": "구글 로그인으로 링고프레스를 간편하게 시작하세요."
   },
