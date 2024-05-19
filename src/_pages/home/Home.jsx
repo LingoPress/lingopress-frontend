@@ -81,7 +81,7 @@ export default function Home() {
       <br />
       <br />
       <LandingPageMark onClick={() => navigate("/whatis")}>?</LandingPageMark>
-      <PressSection />
+      <PressSection authStatus={authStatus} />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import PressCard from "./PressCard";
 import styled from "@emotion/styled";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { axiosPrivate, axiosPublic } from "../../utils/axiosMethod";
 
 const SortCriteriaType = [
   ["publishedAt", "날짜"],
@@ -29,7 +29,7 @@ const OrderOptionWrapper = styled.div`
   margin-bottom: 2rem;
 `;
 
-const PressSection = () => {
+const PressSection = ({ authStatus }) => {
   const { t } = useTranslation();
 
   const [pressData, setPressData] = useState([]);
@@ -65,16 +65,29 @@ const PressSection = () => {
     }
     setIsLoading(true);
 
-    const result = await axios.get(
-      `${process.env.REACT_APP_BACKEND_API_URL}/v1/press`,
-      {
+    let result;
+    if (authStatus) {
+      result = await axiosPrivate({
+        method: "get",
+        url: "/v1/press",
         params: {
           page: pageValue,
           sort: sortCriteria[0],
           order: sortType[0],
         },
-      },
-    );
+      });
+    } else {
+      result = await axiosPublic({
+        method: "get",
+        url: "/v1/press",
+        params: {
+          page: pageValue,
+          sort: sortCriteria[0],
+          order: sortType[0],
+        },
+      });
+    }
+
     setPressData((pressData) => [...pressData, ...result.data.data.content]);
     setIsLast(result.data.data.last);
     setIsLoading(false);
