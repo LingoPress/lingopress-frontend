@@ -82,6 +82,9 @@ export const Header = () => {
     // 언어 설정
     if (localStorage.getItem("userLanguage") !== null) {
       i18n.changeLanguage(localStorage.getItem("userLanguage"));
+    } else {
+      const userLanguage = navigator.language || navigator.userLanguage;
+      i18n.changeLanguage(userLanguage);
     }
   }, []);
 

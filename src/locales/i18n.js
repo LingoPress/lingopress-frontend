@@ -7,13 +7,13 @@ import translationKO from "./ko/translation.json";
 import translationJA from "./ja/translation.json";
 
 const resources = {
-  ENGLISH: {
+  en: {
     translation: translationEN,
   },
-  KOREAN: {
+  ko: {
     translation: translationKO,
   },
-  JAPANESE: {
+  ja: {
     translation: translationJA,
   },
 };

@@ -15,15 +15,15 @@ const LanguageSetting = () => {
   const [userLanguageValue, setUserLanguageValue] = useState("KOREAN");
   const { t } = useTranslation();
   const targetLanguage = [
-    { name: "한국어", value: "KOREAN" },
-    { name: "English", value: "ENGLISH" },
-    { name: "日本語", value: "JAPANESE" },
+    { name: "한국어", value: "ko" },
+    { name: "English", value: "en" },
+    { name: "日本語", value: "ja" },
   ];
 
   const userLanguage = [
-    { name: "한국어", value: "KOREAN" },
-    { name: "English", value: "ENGLISH" },
-    { name: "日本語", value: "JAPANESE" },
+    { name: "한국어", value: "ko" },
+    { name: "English", value: "en" },
+    { name: "日本語", value: "ja" },
   ];
 
   useEffect(() => {
