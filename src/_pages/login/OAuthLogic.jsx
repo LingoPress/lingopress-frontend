@@ -4,10 +4,12 @@ import { useEffect } from "react";
 import { useAtom } from "jotai/index";
 import { authAtom } from "../../atom/user";
 import i18n from "i18next";
+import { languageAtom } from "../../atom/language";
 
 const OAuthLogic = () => {
   const navigate = useNavigate();
   const [authStatus, setAuthStatus] = useAtom(authAtom);
+  const [languageStatus, setLanguageStatus] = useAtom(languageAtom);
 
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
@@ -28,6 +30,10 @@ const OAuthLogic = () => {
         localStorage.setItem("refreshToken", result.data.data.refreshToken);
         localStorage.setItem("targetLanguage", result.data.data.targetLanguage);
         localStorage.setItem("userLanguage", result.data.data.userLanguage);
+        setLanguageStatus({
+          targetLanguage: result.data.data.targetLanguage,
+          userLanguage: result.data.data.userLanguage,
+        });
         i18n.changeLanguage(result.data.data.userLanguage);
         setAuthStatus({ is_logged_in: true });
         if (result.data.data.isNewUser === true) {
