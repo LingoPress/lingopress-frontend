@@ -238,7 +238,9 @@ const PerLineComponent = ({
 
   // 구분자가 제거된 원문
   const originalContentWithoutSeparator = originalContent.replace("\n", "");
-  const translatedContentWithoutSeparator = translatedContent.replace("\n", "");
+  const translatedContentWithoutSeparator = translatedContent
+    ? translatedContent.replace("\n", "")
+    : null;
 
   const handleTranslate = () => {
     if (authStatus.is_logged_in === false) {
@@ -263,12 +265,21 @@ const PerLineComponent = ({
       method: "post",
       url: "/v1/press/similarity",
       data: {
-        original_text: translatedContentWithoutSeparator,
-        compared_text: userTranslatedText,
+        machineTranslatedText: translatedContentWithoutSeparator,
+        userTranslatedText: userTranslatedText,
+        originalText: originalContentWithoutSeparator,
+        press_id: props.press_id,
+        line_number: lineNumber,
       },
     })
       .then((res) => {
         setSimilarity(res.data.data.similarity);
+        console.log(translatedContent);
+        if (!translatedContent) {
+          setMachineTranslatedText(res.data.data.translatedLineText);
+        } else {
+          setMachineTranslatedText(translatedContent);
+        }
       })
       .catch((err) => {
         if (err.response.data.code === "SIMILARITY_LIMIT_EXCEEDED") {
@@ -276,7 +287,6 @@ const PerLineComponent = ({
         }
       });
     // 번역 확인 문구 출력
-    setMachineTranslatedText(translatedContent);
   };
 
   /**
