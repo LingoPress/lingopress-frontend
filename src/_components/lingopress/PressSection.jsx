@@ -20,6 +20,14 @@ const PressSection = ({ authStatus }) => {
   const isMobile = useMediaQuery({ query: "(max-width:768px)" });
   const props = useParams();
   const [pressData, setPressData] = useState([]);
+
+  useEffect(() => {
+    axiosPublic
+      .get(`${process.env.REACT_APP_BACKEND_API_URL}/v1/press/warming-up`)
+      .then((r) => {
+        //
+      });
+  }, []);
   useEffect(() => {
     // 뉴스정보 가져오기
     const responseData = async () => {
