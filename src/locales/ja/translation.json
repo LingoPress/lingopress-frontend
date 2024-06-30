@@ -31,7 +31,11 @@
     "check_your_status_fighting": "\uD83D\uDD25希望のニュースをクリックして翻訳を始めましょう\uD83D\uDD25",
     "check_your_status_Y_head": "\uD83D\uDD25今日はすでに ",
     "check_your_status_Y_tail": " 文を翻訳しました！\uD83D\uDD25",
-    "login_message": "Google ログインで Lingopress を簡単に始めましょう。"
+    "login_message": "Google ログインで Lingopress を簡単に始めましょう。",
+    "뉴스": "ニュース",
+    "소설": "小説",
+    "뉴스_설명": "毎日更新されるニュースを翻訳してください。",
+    "소설_설명": "さまざまな小説を翻訳してください。"
   },
   "mypage": {
     "Graph of the number of sentences translated": "翻訳された文の数のグラフ",

@@ -31,7 +31,11 @@
     "check_your_status_fighting": "\uD83D\uDD25Click on the news you want to start translating\uD83D\uDD25",
     "check_your_status_Y_head": "\uD83D\uDD25You've already translated ",
     "check_your_status_Y_tail": " sentences today!\uD83D\uDD25",
-    "login_message": "Start LingoPress easily with Google login."
+    "login_message": "Start LingoPress easily with Google login.",
+    "뉴스": "News",
+    "소설": "Novel",
+    "뉴스_설명": "Translate daily updated news.",
+    "소설_설명": "Translate various novels."
   },
   "mypage": {
     "Graph of the number of sentences translated": "Graph of the number of sentences translated",

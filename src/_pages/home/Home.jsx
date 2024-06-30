@@ -1,12 +1,15 @@
 import PressSection from "../../_components/home/PressSection";
 import styled from "@emotion/styled";
 import { customColors } from "../../styles/color";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAtomValue } from "jotai/index";
 import { authAtom } from "../../atom/user";
 import { axiosPrivate } from "../../utils/axiosMethod";
 import { useTranslation } from "react-i18next";
+import VerticalCard from "../../_components/common/VerticalCard";
+import CoverNovelImage from "../../assets/cover_novel.png";
+import CoverNewsImage from "../../assets/cover_news.png";
 
 const SubTitle = styled.h2`
   font-size: 2rem;
@@ -35,7 +38,18 @@ export const LandingPageMark = styled.p`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }
 `;
+
+const CategoryWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  height: 70vh;
+`;
+
 export default function Home() {
+  const props = useParams();
+
   const authStatus = useAtomValue(authAtom);
 
   const [todayLearningRecord, setTodayLearningRecord] = useState(0);
@@ -81,7 +95,25 @@ export default function Home() {
       <br />
       <br />
       <LandingPageMark onClick={() => navigate("/whatis")}>?</LandingPageMark>
-      <PressSection authStatus={authStatus} />
+      {/* 뉴스 or 소설 고르기 */}
+      {props.category ? (
+        <PressSection authStatus={authStatus} category={props.category} />
+      ) : (
+        <CategoryWrap>
+          <VerticalCard
+            title={t("home.뉴스")}
+            description={t("home.뉴스_설명")}
+            goto={"/news"}
+            image={CoverNewsImage}
+          />
+          <VerticalCard
+            title={t("home.소설")}
+            description={t("home.소설_설명")}
+            goto={"/novel"}
+            image={CoverNovelImage}
+          />
+        </CategoryWrap>
+      )}
     </div>
   );
 }

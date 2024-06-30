@@ -31,7 +31,11 @@
     "check_your_status_fighting": "\uD83D\uDD25원하는 뉴스를 클릭해 번역을 시작해보세요\uD83D\uDD25",
     "check_your_status_Y_head": "\uD83D\uDD25오늘 벌써 ",
     "check_your_status_Y_tail": "문장을 번역했어요!\uD83D\uDD25",
-    "login_message": "구글 로그인으로 링고프레스를 간편하게 시작하세요."
+    "login_message": "구글 로그인으로 링고프레스를 간편하게 시작하세요.",
+    "뉴스": "뉴스",
+    "소설": "소설",
+    "뉴스_설명": "매일 업데이트되는 뉴스를 번역해보세요.",
+    "소설_설명": "여러 소설을 번역해보세요."
   },
   "mypage": {
     "Graph of the number of sentences translated": "번역한 문장 수 그래프",

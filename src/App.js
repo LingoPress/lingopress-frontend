@@ -22,6 +22,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/:category" element={<Home />} />
         <Route path="/whatis" element={<LandingPage />} />
         <Route path="/lingopress/:press_id" element={<Lingopress />} />
         <Route path="/login" element={<Login />} />
