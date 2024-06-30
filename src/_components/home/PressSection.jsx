@@ -29,7 +29,7 @@ const OrderOptionWrapper = styled.div`
   margin-bottom: 2rem;
 `;
 
-const PressSection = ({ authStatus }) => {
+const PressSection = ({ authStatus, category }) => {
   const { t } = useTranslation();
 
   const [pressData, setPressData] = useState([]);
@@ -74,6 +74,7 @@ const PressSection = ({ authStatus }) => {
           page: pageValue,
           sort: sortCriteria[0],
           order: sortType[0],
+          category: category ? category : null,
         },
       });
     } else {
@@ -112,65 +113,73 @@ const PressSection = ({ authStatus }) => {
   return (
     <>
       <OrderOptionWrapper>
-        <Dropdown>
-          <Dropdown.Toggle
-            size="lg"
-            variant="Secondary"
-            id="dropdown-basic"
-            style={{ marginRight: "1rem" }}
-          >
-            {sortCriteria[0] === "publishedAt"
-              ? t("sort.date")
-              : t("sort.news_line_count")}
-          </Dropdown.Toggle>
+        {category === "news" ? (
+          <>
+            <Dropdown>
+              <Dropdown.Toggle
+                size="lg"
+                variant="Secondary"
+                id="dropdown-basic"
+                style={{ marginRight: "1rem" }}
+              >
+                {sortCriteria[0] === "publishedAt"
+                  ? t("sort.date")
+                  : t("sort.news_line_count")}
+              </Dropdown.Toggle>
 
-          <Dropdown.Menu
-            style={{
-              fontSize: "1.4rem",
-            }}
-          >
-            <Dropdown.Item
-              onClick={() =>
-                searchParamChange("SortCriteriaType", SortCriteriaType[0])
-              }
-            >
-              {t("sort.date")}
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={() =>
-                searchParamChange("SortCriteriaType", SortCriteriaType[1])
-              }
-            >
-              {t("sort.news_line_count")}
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-        <Dropdown>
-          <Dropdown.Toggle size="lg" variant="Secondary" id="dropdown-basic">
-            {sortType[0] === "desc" ? t("sort.DESC") : t("sort.ASC")}
-          </Dropdown.Toggle>
+              <Dropdown.Menu
+                style={{
+                  fontSize: "1.4rem",
+                }}
+              >
+                <Dropdown.Item
+                  onClick={() =>
+                    searchParamChange("SortCriteriaType", SortCriteriaType[0])
+                  }
+                >
+                  {t("sort.date")}
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() =>
+                    searchParamChange("SortCriteriaType", SortCriteriaType[1])
+                  }
+                >
+                  {t("sort.news_line_count")}
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown>
+              <Dropdown.Toggle
+                size="lg"
+                variant="Secondary"
+                id="dropdown-basic"
+              >
+                {sortType[0] === "desc" ? t("sort.DESC") : t("sort.ASC")}
+              </Dropdown.Toggle>
 
-          <Dropdown.Menu
-            style={{
-              fontSize: "1.4rem",
-            }}
-          >
-            <Dropdown.Item
-              onClick={() =>
-                searchParamChange("SortOrderType", SortOrderType[0])
-              }
-            >
-              {t("sort.DESC")}
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={() =>
-                searchParamChange("SortOrderType", SortOrderType[1])
-              }
-            >
-              {t("sort.ASC")}
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+              <Dropdown.Menu
+                style={{
+                  fontSize: "1.4rem",
+                }}
+              >
+                <Dropdown.Item
+                  onClick={() =>
+                    searchParamChange("SortOrderType", SortOrderType[0])
+                  }
+                >
+                  {t("sort.DESC")}
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() =>
+                    searchParamChange("SortOrderType", SortOrderType[1])
+                  }
+                >
+                  {t("sort.ASC")}
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </>
+        ) : null}
       </OrderOptionWrapper>
       <PressSectionWrapper>
         {pressData.length > 0
