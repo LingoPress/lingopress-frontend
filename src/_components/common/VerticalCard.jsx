@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { customColors } from "../../styles/color";
+import { useNavigate } from "react-router-dom";
 
 const VerticalCardWrapper = styled.div`
   display: flex;
@@ -45,9 +46,10 @@ const VerticalCardWrapper = styled.div`
   }
 `;
 
-const VerticalCard = ({ title, description, image }) => {
+const VerticalCard = ({ title, description, image, goto }) => {
+  const navigate = useNavigate();
   return (
-    <VerticalCardWrapper>
+    <VerticalCardWrapper onClick={() => navigate(goto)}>
       <img src={image} alt={title} />
       <div>
         <h3>{title}</h3>
