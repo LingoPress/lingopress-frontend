@@ -63,22 +63,29 @@ const PressSection = ({ authStatus }) => {
         <PressTitle>
           {pressData.translatedTitle ? pressData.translatedTitle : null}
         </PressTitle>
-        <PressDescription>
-          This{" "}
-          <a
-            style={{
-              textDecoration: "none",
-            }}
-            href={pressData.originalUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            story
-          </a>{" "}
-          by {pressData.author ? pressData.author : "anonymous user"} originally
-          appeared on Global Voices on{" "}
-          {new Date(pressData.publishedAt).toLocaleString("en-US", options)}.
-        </PressDescription>
+
+        {pressData.category === "NEWS" ? (
+          <PressDescription>
+            This{" "}
+            <a
+              style={{
+                textDecoration: "none",
+              }}
+              href={pressData.originalUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              story
+            </a>{" "}
+            by {pressData.author ? pressData.author : "anonymous user"}{" "}
+            originally appeared on Global Voices on{" "}
+            {new Date(pressData.publishedAt).toLocaleString("en-US", options)}.
+          </PressDescription>
+        ) : (
+          <PressDescription>
+            by {pressData.author ? pressData.author : "anonymous user"}{" "}
+          </PressDescription>
+        )}
 
         <TranslateSection pressData={pressData} isMobile={isMobile} />
       </section>
