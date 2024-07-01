@@ -114,7 +114,7 @@ const PressCard = ({
             right: "2rem",
           }}
         >
-          {formattedDate}
+          {formattedDate ? formattedDate : ""}
         </PressInfo>
       </Content>
     </PressCardWrapper>
