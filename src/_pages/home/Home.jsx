@@ -42,9 +42,10 @@ export const LandingPageMark = styled.p`
 const CategoryWrap = styled.div`
   display: flex;
   justify-content: center;
-  gap: 1rem;
   margin-top: 2rem;
-  height: 70vh;
+  min-height: 70vh;
+  flex-wrap: wrap;
+  gap: 5rem;
 `;
 
 export default function Home() {
