@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { axiosPrivate, axiosPublic } from "../../utils/axiosMethod";
+import { useNavigate } from "react-router-dom";
 
 const SortCriteriaType = [
   ["publishedAt", "날짜"],
@@ -29,7 +30,32 @@ const OrderOptionWrapper = styled.div`
   margin-bottom: 2rem;
 `;
 
+const EnrollVideoButton = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  color: #495057;
+  border: 1px solid #ced4da;
+
+  &:hover {
+    background-color: #e9ecef;
+  }
+
+  &:active {
+    background-color: #dee2e6;
+  }
+
+  transition: background-color 0.3s;
+`;
+
 const PressSection = ({ authStatus, category }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [pressData, setPressData] = useState([]);
@@ -178,6 +204,13 @@ const PressSection = ({ authStatus, category }) => {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+          </>
+        ) : null}
+        {category === "youtube" ? (
+          <>
+            <EnrollVideoButton onClick={() => navigate("/enroll_video")}>
+              동영상 등록
+            </EnrollVideoButton>
           </>
         ) : null}
       </OrderOptionWrapper>
