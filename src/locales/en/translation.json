@@ -34,8 +34,10 @@
     "login_message": "Start LingoPress easily with Google login.",
     "뉴스": "News",
     "소설": "Novel",
+    "영상": "Video",
     "뉴스_설명": "Translate daily updated news.",
-    "소설_설명": "Translate various novels."
+    "소설_설명": "Translate various novels.",
+    "영상_설명": "Try translating your favorite YouTube videos."
   },
   "mypage": {
     "Graph of the number of sentences translated": "Graph of the number of sentences translated",
@@ -60,10 +62,18 @@
     "Go to the news": "Go to the news",
     "original sentence": "original sentence"
   },
+  "EnrollVideo": {
+    "제목": "Study foreign languages with your favorite overseas videos",
+    "설명": "You can extract subtitles from the desired video and study. We will notify you by email when the learning is ready! <br /> *Please change the language in the settings according to the video language.",
+    "placeholder": "Paste the Youtube URL to learn",
+    "요청성공": "We will notify you by email when the learning is ready!"
+  },
   "alert": {
     "login_first": "Please log in first.",
     "input_text_first": "Please input text first.",
     "Add to vocabulary and view meaning": "Add to vocabulary and view meaning",
-    "You cannot select more than 4 words": "You cannot select more than 4 words"
+    "You cannot select more than 4 words": "You cannot select more than 4 words",
+    "URL을 입력해주세요.": "Please enter the URL.",
+    "유효한 유튜브 링크를 입력해주세요.": "Please enter a valid YouTube link."
   }
 }

@@ -34,8 +34,10 @@
     "login_message": "Google ログインで Lingopress を簡単に始めましょう。",
     "뉴스": "ニュース",
     "소설": "小説",
+    "영상": "ビデオ",
     "뉴스_설명": "毎日更新されるニュースを翻訳してください。",
-    "소설_설명": "さまざまな小説を翻訳してください。"
+    "소설_설명": "さまざまな小説を翻訳してください。",
+    "영상_설명": "お気に入りのYouTube動画を翻訳してみてください。"
   },
   "mypage": {
     "Graph of the number of sentences translated": "翻訳された文の数のグラフ",
@@ -60,10 +62,18 @@
     "Go to the news": "ニュースへ移動",
     "original sentence": "元の文章"
   },
+  "EnrollVideo": {
+    "제목": "お気に入りの海外ビデオで外国語を勉強しましょう",
+    "설명": "希望のビデオから字幕を抽出して勉強できます。学習の準備ができたら、メールでお知らせします！<br /> *ビデオの言語に合わせて設定で言語を変更してください。",
+    "placeholder": "学習するYoutubeのURLを貼り付ける",
+    "요청성공": "学習の準備ができたら、メールでお知らせします！"
+  },
   "alert": {
     "login_first": "ログインしてください。",
     "input_text_first": "テキストを入力してください。",
     "Add to vocabulary and view meaning": "単語帳に追加して意味を表示する",
-    "You cannot select more than 4 words": "4つ以上の単語を選択することはできません。"
+    "You cannot select more than 4 words": "4つ以上の単語を選択することはできません。",
+    "URLを入力してください。": "URLを入力してください。",
+    "有効なYouTubeリンクを入力してください。": "有効なYouTubeリンクを入力してください。"
   }
 }

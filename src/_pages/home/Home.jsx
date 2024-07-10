@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import VerticalCard from "../../_components/common/VerticalCard";
 import CoverNovelImage from "../../assets/cover_novel.png";
 import CoverNewsImage from "../../assets/cover_news.png";
+import YoutubeImage from "../../assets/youtube.png";
 
 const SubTitle = styled.h2`
   font-size: 2rem;
@@ -112,6 +113,12 @@ export default function Home() {
             description={t("home.소설_설명")}
             goto={"/novel"}
             image={CoverNovelImage}
+          />
+          <VerticalCard
+            title={t("home.영상")}
+            description={t("home.영상_설명")}
+            goto={"/youtube"}
+            image={YoutubeImage}
           />
         </CategoryWrap>
       )}
