@@ -117,7 +117,7 @@ export default function Home() {
           <VerticalCard
             title={t("home.영상")}
             description={t("home.영상_설명")}
-            goto={"/youtube"}
+            goto={"/enroll_video"}
             image={YoutubeImage}
           />
         </CategoryWrap>

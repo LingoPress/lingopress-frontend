@@ -8,6 +8,7 @@ import { useAtomValue } from "jotai/index";
 import { authAtom } from "../atom/user";
 import { t } from "i18next";
 import { Trans } from "react-i18next";
+import { LuListVideo } from "react-icons/lu";
 
 const VideoUrlBox = styled.div`
   display: flex;
@@ -56,6 +57,15 @@ const Description = styled.p`
   text-align: center;
 `;
 
+const VideoListBox = styled.div`
+  position: relative;
+  display: flex;
+  margin-top: 2rem;
+  left: 5rem;
+  width: 20vw;
+  justify-content: space-between;
+`;
+
 const EnrollVideo = () => {
   const navigate = useNavigate();
   const [videoUrl, setVideoUrl] = useState("");
@@ -90,27 +100,37 @@ const EnrollVideo = () => {
     }
   };
   return (
-    <EnrollVideoWrap style={{ minHeight: "85vh" }}>
-      <Title>
-        <Trans i18nKey={"EnrollVideo.제목"} />
-      </Title>
-      <VideoUrlBox>
-        <UrlInputBox
-          placeholder={t("EnrollVideo.placeholder")}
-          value={videoUrl}
-          onChange={(e) => setVideoUrl(e.target.value)}
+    <>
+      <VideoListBox>
+        <LuListVideo
+          style={{ cursor: "pointer" }}
+          size={60}
+          onClick={() => navigate("/youtube")}
         />
-        <FaArrowAltCircleRight
-          style={{ marginRight: "1rem" }}
-          size={30}
-          onClick={() => sendVideoRequest()}
-        />
-      </VideoUrlBox>
-      <Description>
-        <Trans i18nKey={"EnrollVideo.설명"} />
-        <br />
-      </Description>
-    </EnrollVideoWrap>
+      </VideoListBox>
+      <EnrollVideoWrap style={{ minHeight: "75vh" }}>
+        <Title>
+          <Trans i18nKey={"EnrollVideo.제목"} />
+        </Title>
+        <VideoUrlBox>
+          <UrlInputBox
+            placeholder={t("EnrollVideo.placeholder")}
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value)}
+          />
+          <FaArrowAltCircleRight
+            style={{ marginRight: "1rem" }}
+            size={30}
+            onClick={() => sendVideoRequest()}
+          />
+        </VideoUrlBox>
+        <Description>
+          <Trans i18nKey={"EnrollVideo.설명"} />
+          <br />
+        </Description>
+        <div style={{ height: "20vh" }} />
+      </EnrollVideoWrap>
+    </>
   );
 };
 
