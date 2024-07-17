@@ -12,6 +12,7 @@ import { FaComment } from "react-icons/fa";
 import Counter from "./Counter";
 import { t } from "i18next";
 import { Trans } from "react-i18next";
+import formatSecondsToMMSS from "../../utils/formatSecondsToMMSS";
 
 const LineWrapper = styled.div`
   //  width: 93%;
@@ -215,6 +216,16 @@ const PerLineComponentWrapper = styled.div`
   margin-bottom: 8rem;
 `;
 
+const TimelineWrap = styled.div`
+  font-size: 1.6rem;
+  display: flex;
+
+  & > div {
+    cursor: pointer;
+    color: ${customColors.text.subTitle["700"]};
+  }
+`;
+
 const PerLineComponent = ({
   originalContent,
   translatedContent,
@@ -223,6 +234,9 @@ const PerLineComponent = ({
   isCorrect,
   memo,
   isMobile,
+  handlePlayFrom,
+  startSecond,
+  endSecond,
 }) => {
   const navigate = useNavigate();
   const props = useParams();
@@ -537,6 +551,17 @@ const PerLineComponent = ({
         {originalContent ? (
           <>
             <LineWrapper>
+              {endSecond ? (
+                <TimelineWrap>
+                  <div onClick={() => handlePlayFrom(startSecond)}>
+                    {formatSecondsToMMSS(startSecond)}
+                  </div>
+                  ~
+                  <div onClick={() => handlePlayFrom(endSecond)}>
+                    {formatSecondsToMMSS(endSecond)}
+                  </div>
+                </TimelineWrap>
+              ) : null}
               {showModal && (
                 <>
                   <ModalOuterLayer handleCloseModal={handleCloseModal} />
