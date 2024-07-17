@@ -64,7 +64,7 @@
   },
   "EnrollVideo": {
     "제목": "Study foreign languages with your favorite overseas videos",
-    "설명": "You can extract subtitles from the desired video and study. We will notify you by email when the learning is ready! <br /> *Please change the language in the settings according to the video language.",
+    "설명": "You can extract subtitles from the desired video and study. We will notify you by email when the learning is ready! <br /> *Only English voice.",
     "placeholder": "Paste the Youtube URL to learn",
     "요청성공": "We will notify you by email when the learning is ready!"
   },
