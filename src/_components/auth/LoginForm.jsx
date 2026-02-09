@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useAtom } from "jotai/index";
 import { authAtom } from "../../atom/user";
 import { customColors } from "../../styles/color";
 import ContinueWithGoogle from "../../assets/continue_google.svg";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const styles = {
   container: {
@@ -53,8 +54,41 @@ const styles = {
 };
 
 function LoginForm() {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const [authStatus, setAuthStatus] = useAtom(authAtom);
   const { t } = useTranslation();
+
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    await fetchLogin();
+  };
+
+  const fetchLogin = async () => {
+    try {
+      const result = await axios.post(
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/users/sign-in`,
+        {
+          username: username,
+          password: password,
+        },
+      );
+      if (result.status === 200) {
+        localStorage.setItem("token", result.data.data.accessToken);
+        localStorage.setItem("refreshToken", result.data.data.refreshToken);
+        navigate(-1);
+        setAuthStatus({ is_logged_in: true });
+        return result.data.data;
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error.response.data.message);
+    }
+  };
+
 
   const handleGoogleLogin = async () => {
     try {
@@ -70,7 +104,7 @@ function LoginForm() {
     }
   };
   return (
-    <div style={styles.container}>
+    <form onSubmit={handleLogin} style={styles.container}>
       <h1 style={styles.h1}>
         Lingo
         <br />
@@ -81,6 +115,26 @@ function LoginForm() {
       <br />
       <br />
       <h2 style={styles.h2}>{t("home.login_message")}</h2>
+      <input
+        type="text"
+        placeholder="아이디"
+        style={styles.input}
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="비밀번호"
+        style={styles.input}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button type={"submit"} style={styles.button}>
+        로그인
+      </button>
+      <p onClick={() => navigate("/signup")} style={styles.signup}>
+        회원가입
+      </p>
       <img
         style={styles.image}
         src={ContinueWithGoogle}
@@ -94,7 +148,7 @@ function LoginForm() {
       <br />
       <br />
       <br />
-    </div>
+    </form>
   );
 }
 
