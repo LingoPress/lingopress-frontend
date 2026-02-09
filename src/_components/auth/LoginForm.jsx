@@ -70,7 +70,7 @@ function LoginForm() {
   const fetchLogin = async () => {
     try {
       const result = await axios.post(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/v1/users/sign-in`,
+        `${process.env.REACT_APP_BACKEND_API_URL}/v1/users/sign-in`,
         {
           username: username,
           password: password,
