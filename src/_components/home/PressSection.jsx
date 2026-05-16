@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import PressCard from "./PressCard";
 import styled from "@emotion/styled";
-import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { axiosPrivate, axiosPublic } from "../../utils/axiosMethod";
 import { useNavigate } from "react-router-dom";
@@ -30,43 +29,96 @@ const OrderOptionWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
   max-width: 118rem;
   margin: 0 auto 2rem;
   padding: 0 2rem;
 
-  .dropdown-toggle {
-    border: 1px solid #cbd5e1;
-    border-radius: 999px;
-    color: #0f172a;
-    background: #ffffff;
-    font-size: 1.35rem;
-    font-weight: 700;
-    padding: 0.8rem 1.4rem;
+  @media (max-width: 640px) {
+    justify-content: stretch;
+    flex-direction: column;
+    align-items: stretch;
   }
 `;
 
-const EnrollVideoButton = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  cursor: pointer;
-  font-size: 1.4rem;
-  font-weight: 800;
-  padding: 0.9rem 1.4rem;
+const SelectControl = styled.label`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-width: 14rem;
+  height: 4.2rem;
+  border: 1px solid #cbd5e1;
   border-radius: 999px;
-  background-color: #2563eb;
-  color: #ffffff;
-  border: 1px solid #2563eb;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 0.8rem 2rem rgba(15, 23, 42, 0.06);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 
   &:hover {
-    background-color: #1d4ed8;
+    border-color: rgba(37, 99, 235, 0.45);
+    box-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.1);
+    transform: translateY(-1px);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 1.4rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-right: 2px solid #475569;
+    border-bottom: 2px solid #475569;
+    transform: rotate(45deg) translateY(-2px);
+    pointer-events: none;
+  }
+
+  select {
+    width: 100%;
+    height: 100%;
+    padding: 0 3.2rem 0 1.6rem;
+    border: 0;
+    outline: 0;
+    appearance: none;
+    background: transparent;
+    color: #0f172a;
+    cursor: pointer;
+    font-size: 1.35rem;
+    font-weight: 800;
+  }
+`;
+
+const EnrollVideoButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.2rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 900;
+  padding: 0.9rem 1.6rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border: 0;
+  box-shadow: 0 1rem 2.2rem rgba(37, 99, 235, 0.22);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    filter 0.2s ease;
+
+  &:hover {
+    filter: brightness(0.98);
+    box-shadow: 0 1.2rem 2.8rem rgba(37, 99, 235, 0.3);
+    transform: translateY(-1px);
   }
 
   &:active {
-    background-color: #1e40af;
+    transform: translateY(0);
   }
-
-  transition: background-color 0.3s;
 `;
 
 const PressSection = ({ authStatus, category }) => {
@@ -156,69 +208,38 @@ const PressSection = ({ authStatus, category }) => {
       <OrderOptionWrapper>
         {category === "news" ? (
           <>
-            <Dropdown>
-              <Dropdown.Toggle
-                size="lg"
-                variant="Secondary"
-                id="dropdown-basic"
-                style={{ marginRight: "1rem" }}
-              >
-                {sortCriteria[0] === "publishedAt"
-                  ? t("sort.date")
-                  : t("sort.news_line_count")}
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu
-                style={{
-                  fontSize: "1.4rem",
+            <SelectControl>
+              <select
+                aria-label="정렬 기준"
+                value={sortCriteria[0]}
+                onChange={(event) => {
+                  const nextValue = SortCriteriaType.find(
+                    ([value]) => value === event.target.value,
+                  );
+                  searchParamChange("SortCriteriaType", nextValue);
                 }}
               >
-                <Dropdown.Item
-                  onClick={() =>
-                    searchParamChange("SortCriteriaType", SortCriteriaType[0])
-                  }
-                >
-                  {t("sort.date")}
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() =>
-                    searchParamChange("SortCriteriaType", SortCriteriaType[1])
-                  }
-                >
-                  {t("sort.news_line_count")}
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown>
-              <Dropdown.Toggle
-                size="lg"
-                variant="Secondary"
-                id="dropdown-basic"
-              >
-                {sortType[0] === "desc" ? t("sort.DESC") : t("sort.ASC")}
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu
-                style={{
-                  fontSize: "1.4rem",
+                <option value="publishedAt">{t("sort.date") || "날짜"}</option>
+                <option value="totalContentLine">
+                  {t("sort.news_line_count") || "뉴스 문장 수"}
+                </option>
+              </select>
+            </SelectControl>
+            <SelectControl>
+              <select
+                aria-label="정렬 방향"
+                value={sortType[0]}
+                onChange={(event) => {
+                  const nextValue = SortOrderType.find(
+                    ([value]) => value === event.target.value,
+                  );
+                  searchParamChange("SortOrderType", nextValue);
                 }}
               >
-                <Dropdown.Item
-                  onClick={() =>
-                    searchParamChange("SortOrderType", SortOrderType[0])
-                  }
-                >
-                  {t("sort.DESC")}
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() =>
-                    searchParamChange("SortOrderType", SortOrderType[1])
-                  }
-                >
-                  {t("sort.ASC")}
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+                <option value="desc">{t("sort.DESC") || "내림차순"}</option>
+                <option value="asc">{t("sort.ASC") || "오름차순"}</option>
+              </select>
+            </SelectControl>
           </>
         ) : null}
         {category === "youtube" ? (

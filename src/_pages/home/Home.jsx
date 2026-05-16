@@ -28,15 +28,18 @@ export const LandingPageMark = styled.p`
   bottom: 2.4rem;
   font-size: 2.1rem;
   z-index: 1000;
-  background-color: ${customColors.background.button["100"]};
+  background:
+    linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
   border-radius: 999px;
-  box-shadow: 0 1rem 2rem rgba(37, 99, 235, 0.28);
-  width: 4.8rem;
-  height: 4.8rem;
+  box-shadow: 0 1.2rem 2.8rem rgba(15, 23, 42, 0.22);
+  width: 5rem;
+  height: 5rem;
   display: grid;
   place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
   text-align: center;
   font-family: "Space Mono", sans-serif;
+  font-weight: 700;
   cursor: pointer;
   transition:
     box-shadow 0.2s ease,
@@ -44,7 +47,7 @@ export const LandingPageMark = styled.p`
   color: white;
 
   &:hover {
-    box-shadow: 0 1.4rem 2.6rem rgba(37, 99, 235, 0.36);
+    box-shadow: 0 1.4rem 3.2rem rgba(15, 23, 42, 0.3);
     transform: translateY(-2px);
   }
 `;
@@ -67,15 +70,6 @@ const CategoryWrap = styled.div`
 const HomeWrapper = styled.div`
   min-height: 85vh;
   padding: clamp(4rem, 8vw, 8rem) 0 2rem;
-`;
-
-const IntroText = styled.p`
-  color: ${customColors.text.subTitle[200]};
-  font-size: 1.55rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  margin-bottom: 1.4rem;
-  text-align: center;
 `;
 
 export default function Home() {
@@ -107,7 +101,6 @@ export default function Home() {
       {/* 랜딩 모달 */}
       {/* 유저가 비 로그인 상태일 때, 그리고 오늘하루 보지않기 클릭시 로컬스토리지에 해당 값 저장 */}
       {/*  <LandingModal /> */}
-      <IntroText>LingoPress Learning Desk</IntroText>
       {todayLearningRecord ? (
         <SubTitle>
           {t("home.check_your_status_Y_head")}

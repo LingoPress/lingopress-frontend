@@ -61,20 +61,33 @@ const LineOuterWrapper = styled.div`
 `;
 
 const CheckButton = styled.button`
-  min-width: 8rem;
+  min-width: 11rem;
   margin-top: 0.8rem;
-  padding: 1rem 1.6rem;
+  padding: 1.1rem 1.8rem;
 
-  background-color: ${({ choiceOne }) =>
+  background: ${({ choiceOne }) =>
     choiceOne
       ? customColors.background.button[800]
-      : customColors.background.button[100]};
+      : "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)"};
 
   border-radius: 999px;
-  box-shadow: 0 0.8rem 2rem rgba(37, 99, 235, 0.18);
+  box-shadow: ${({ choiceOne }) =>
+    choiceOne ? "none" : "0 1rem 2.2rem rgba(37, 99, 235, 0.24)"};
   font-size: 1.45rem;
-  font-weight: 800;
+  font-weight: 900;
   color: white;
+  white-space: nowrap;
+  transition:
+    box-shadow 0.2s ease,
+    filter 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    filter: ${({ choiceOne }) => (choiceOne ? "none" : "brightness(0.98)")};
+    box-shadow: ${({ choiceOne }) =>
+      choiceOne ? "none" : "0 1.3rem 2.8rem rgba(37, 99, 235, 0.32)"};
+    transform: ${({ choiceOne }) => (choiceOne ? "none" : "translateY(-1px)")};
+  }
 `;
 
 const VerifyBox = styled.div`

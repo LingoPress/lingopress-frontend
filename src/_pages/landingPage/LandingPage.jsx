@@ -47,10 +47,6 @@ const DiveInWrapper = styled.div`
     line-height: 1.7;
   }
 
-  & button {
-    background-color: ${customColors.background.button};
-  }
-
   #Dive {
     font-family: "Margarine", sans-serif;
     font-weight: 700;
@@ -60,16 +56,27 @@ const DiveInWrapper = styled.div`
   }
 
   & button {
-    padding: 1.2rem 2.4rem;
+    padding: 1.2rem 2.6rem;
     border-radius: 999px;
     font-size: 1.6rem;
     color: white;
-    background-color: ${customColors.background.button["100"]};
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     border: none;
     cursor: pointer;
     margin-top: 3rem;
     font-family: "Space Mono", sans-serif;
-    font-weight: 700;
+    font-weight: 900;
+    box-shadow: 0 1rem 2.2rem rgba(37, 99, 235, 0.24);
+    transition:
+      box-shadow 0.2s ease,
+      filter 0.2s ease,
+      transform 0.2s ease;
+
+    &:hover {
+      filter: brightness(0.98);
+      box-shadow: 0 1.3rem 2.8rem rgba(37, 99, 235, 0.32);
+      transform: translateY(-1px);
+    }
   }
 `;
 const ExplainWrapper = styled.div`

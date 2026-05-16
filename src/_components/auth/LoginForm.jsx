@@ -3,10 +3,10 @@ import axios from "axios";
 import { useAtom } from "jotai/index";
 import { authAtom } from "../../atom/user";
 import { customColors } from "../../styles/color";
-import ContinueWithGoogle from "../../assets/continue_google.svg";
 import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = styled.div`
   min-height: 85vh;
@@ -71,19 +71,26 @@ const Input = styled.input`
 `;
 
 const SubmitButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   height: 4.8rem;
   margin-top: 0.4rem;
   border-radius: 999px;
-  background: ${customColors.background.button[100]};
+  background:
+    linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   color: #ffffff;
   font-size: 1.5rem;
   font-weight: 900;
+  box-shadow: 0 1rem 2.2rem rgba(37, 99, 235, 0.24);
   transition:
-    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease,
     transform 0.2s ease;
 
   &:hover {
-    background: ${customColors.background.button[300]};
+    filter: brightness(0.98);
+    box-shadow: 0 1.3rem 2.8rem rgba(37, 99, 235, 0.32);
     transform: translateY(-1px);
   }
 
@@ -113,13 +120,33 @@ const Divider = styled.div`
 `;
 
 const GoogleButton = styled.button`
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   width: 100%;
-  border-radius: 0.7rem;
+  height: 4.8rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #ffffff;
+  color: ${customColors.text.title[900]};
+  font-size: 1.45rem;
+  font-weight: 900;
+  box-shadow: 0 0.8rem 2rem rgba(15, 23, 42, 0.06);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 
-  img {
-    width: min(100%, 28rem);
+  &:hover {
+    border-color: rgba(37, 99, 235, 0.35);
+    box-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.1);
+    transform: translateY(-1px);
+  }
+
+  svg {
+    width: 2.2rem;
+    height: 2.2rem;
   }
 `;
 
@@ -246,7 +273,8 @@ function LoginForm() {
         <Divider>또는</Divider>
 
         <GoogleButton type="button" onClick={handleGoogleLogin}>
-          <img src={ContinueWithGoogle} alt={"Continue with Google"} />
+          <FcGoogle aria-hidden="true" />
+          Google로 계속하기
         </GoogleButton>
 
         <SignUpText>
