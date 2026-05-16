@@ -13,40 +13,69 @@ import CoverNewsImage from "../../assets/cover_news.png";
 import YoutubeImage from "../../assets/youtube.png";
 
 const SubTitle = styled.h2`
-  font-size: 2rem;
-  margin-left: 2rem;
+  font-size: clamp(2.1rem, 3vw, 3.4rem);
+  margin: 0 auto;
   text-align: center;
-  font-weight: 400;
+  font-weight: 800;
+  line-height: 1.35;
+  color: ${customColors.text.title[900]};
+  max-width: 78rem;
 `;
 
 export const LandingPageMark = styled.p`
   position: fixed;
-  right: 2rem;
-  bottom: 2rem;
-  font-size: 3rem;
+  right: 2.4rem;
+  bottom: 2.4rem;
+  font-size: 2.1rem;
   z-index: 1000;
   background-color: ${customColors.background.button["100"]};
-  border-radius: 30%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  padding: 0.4rem 1.6rem;
+  border-radius: 999px;
+  box-shadow: 0 1rem 2rem rgba(37, 99, 235, 0.28);
+  width: 4.8rem;
+  height: 4.8rem;
+  display: grid;
+  place-items: center;
   text-align: center;
   font-family: "Space Mono", sans-serif;
   cursor: pointer;
-  transition: box-shadow 0.3s ease-in-out;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
   color: white;
 
   &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1.4rem 2.6rem rgba(37, 99, 235, 0.36);
+    transform: translateY(-2px);
   }
 `;
 
 const CategoryWrap = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(24rem, 1fr));
   justify-content: center;
-  margin-top: 2rem;
-  min-height: 70vh;
-  flex-wrap: wrap;
-  gap: 5rem;
+  margin: 4rem auto 8rem;
+  max-width: 112rem;
+  gap: 2.4rem;
+  padding: 0 2rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    max-width: 44rem;
+  }
+`;
+
+const HomeWrapper = styled.div`
+  min-height: 85vh;
+  padding: clamp(4rem, 8vw, 8rem) 0 2rem;
+`;
+
+const IntroText = styled.p`
+  color: ${customColors.text.subTitle[200]};
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-bottom: 1.4rem;
+  text-align: center;
 `;
 
 export default function Home() {
@@ -74,11 +103,11 @@ export default function Home() {
 
   const navigate = useNavigate();
   return (
-    <div style={{ minHeight: "85vh" }}>
+    <HomeWrapper>
       {/* 랜딩 모달 */}
       {/* 유저가 비 로그인 상태일 때, 그리고 오늘하루 보지않기 클릭시 로컬스토리지에 해당 값 저장 */}
       {/*  <LandingModal /> */}
-      <br />
+      <IntroText>LingoPress Learning Desk</IntroText>
       {todayLearningRecord ? (
         <SubTitle>
           {t("home.check_your_status_Y_head")}
@@ -93,9 +122,6 @@ export default function Home() {
           {t("home.check_your_status_fighting")}
         </SubTitle>
       )}
-      <br />
-      <br />
-      <br />
       <LandingPageMark onClick={() => navigate("/whatis")}>?</LandingPageMark>
       {/* 뉴스 or 소설 고르기 */}
       {props.category ? (
@@ -122,6 +148,6 @@ export default function Home() {
           />
         </CategoryWrap>
       )}
-    </div>
+    </HomeWrapper>
   );
 }

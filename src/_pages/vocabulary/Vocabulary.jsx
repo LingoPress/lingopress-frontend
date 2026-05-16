@@ -13,10 +13,11 @@ const MyWordBox = styled.div`
   justify-content: center;
   margin: 2rem;
   padding: 2rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.8rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1.2rem 3rem rgba(15, 23, 42, 0.07);
   transition: 0.3s;
-  background-color: #fafafa;
+  background-color: #ffffff;
   position: relative;
 
   .영단어:hover + .뜻 {
@@ -28,7 +29,7 @@ const MyWordBox = styled.div`
 
   .영단어 {
     font-size: 2.4rem;
-    color: #333;
+    color: #0f172a;
     margin-bottom: 0.5rem;
   }
 
@@ -61,10 +62,15 @@ const MyWordBox = styled.div`
 `;
 
 const VocabularyWrapper = styled.div`
+  max-width: 92rem;
+  margin: 0 auto;
+  padding: 4rem 2rem 8rem;
+
   .desc {
-    font-size: 1.6rem;
-    color: #666;
+    font-size: 1.45rem;
+    color: #64748b;
     text-align: right;
+    line-height: 1.7;
   }
 `;
 

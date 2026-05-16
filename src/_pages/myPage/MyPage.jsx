@@ -11,9 +11,10 @@ import { useTranslation } from "react-i18next";
 
 const MyPageWrapper = styled.div`
   display: ${({ isMobile }) => (isMobile ? "block" : "flex")};
-  width: 80vw;
+  width: min(112rem, calc(100% - 4rem));
   justify-content: center;
-  margin: 0 auto;
+  gap: 2rem;
+  margin: 4rem auto 8rem;
 `;
 
 const MyNav = styled.nav`
@@ -21,23 +22,30 @@ const MyNav = styled.nav`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin: 2rem auto;
+  margin: 0 auto;
   min-width: 20rem;
-  height: 40rem;
+  height: fit-content;
   padding: 1rem;
 
-  border-radius: 5rem;
+  border-radius: 0.8rem;
   background-color: ${customColors.background.mainBg["0"]};
   border: 1px solid ${customColors.background.mainBg["100"]};
-  border-bottom: 1px solid #e9ecef;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1.2rem 3rem rgba(15, 23, 42, 0.07);
 `;
 const NavItem = styled.a`
-  font-size: 1.5rem;
-  font-weight: 600;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 0.6rem;
+  font-size: 1.45rem;
+  font-weight: 800;
   cursor: pointer;
-  color: black;
+  color: ${customColors.text.subTitle[200]};
   text-decoration: none;
+
+  &:hover {
+    color: ${customColors.text.title[900]};
+    background: #eef2ff;
+  }
 `;
 
 const MyPageContentWrapper = styled.div`

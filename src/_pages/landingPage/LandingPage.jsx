@@ -12,25 +12,24 @@ import { useMediaQuery } from "react-responsive";
 const HeaderWrapper = styled.div`
   align-content: center;
   align-items: end;
-  background-color: ${customColors.background.subBg["100"]};
+  background: #0f172a;
   display: flex;
   flex: none;
   flex-direction: row;
   flex-wrap: wrap;
-  height: ${(props) => (props.isMobile ? "20rem" : "35rem")};
+  min-height: ${(props) => (props.isMobile ? "28rem" : "42rem")};
   justify-content: center;
   overflow: hidden;
-  padding: 10rem 0;
+  padding: 8rem 2rem;
   position: relative;
   width: 100%;
   color: ${customColors.text.explain["900"]};
 
   & p {
-    font-size: ${(props) => (props.isMobile ? "3rem" : "6.4rem")};
+    font-size: ${(props) => (props.isMobile ? "3.2rem" : "6rem")};
     text-align: center;
-    font-weight: 700;
-    // font-family: "Margarine", sans-serif;
-    line-height: 1.4;
+    font-weight: 900;
+    line-height: 1.2;
   }
 `;
 
@@ -42,10 +41,10 @@ const DiveInWrapper = styled.div`
   margin-bottom: 10rem;
 
   & p {
-    color: ${customColors.text.subTitle["700"]};
-    font-size: 2rem;
+    color: ${customColors.text.subTitle["200"]};
+    font-size: 1.7rem;
     text-align: center;
-    line-height: 3rem;
+    line-height: 1.7;
   }
 
   & button {
@@ -55,29 +54,32 @@ const DiveInWrapper = styled.div`
   #Dive {
     font-family: "Margarine", sans-serif;
     font-weight: 700;
-    font-size: 4.8rem;
-    margin-bottom: 4rem;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: ${customColors.text.title[900]};
   }
 
   & button {
     padding: 1.2rem 2.4rem;
-    border-radius: 0.6rem;
+    border-radius: 999px;
     font-size: 1.6rem;
     color: white;
-    background-color: ${customColors.background.button["300"]};
+    background-color: ${customColors.background.button["100"]};
     border: none;
     cursor: pointer;
-    margin-top: 6rem;
+    margin-top: 3rem;
     font-family: "Space Mono", sans-serif;
+    font-weight: 700;
   }
 `;
 const ExplainWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
   align-items: center;
   justify-content: center;
-  margin: 10rem 7rem;
-  gap: 5rem;
+  width: min(118rem, calc(100% - 4rem));
+  margin: 7rem auto;
+  gap: 2.4rem;
 
   & h2 {
     font-size: 3.2rem;

@@ -12,18 +12,21 @@ import { MdLanguage } from "react-icons/md";
 import i18n from "i18next";
 
 const ContainerComponent = styled(Navbar)`
-  background-color: ${customColors.background.subBg[
-    "100"
-  ]}; /* 헤더 배경색 변경 */
-  padding: 3rem 0 2rem 3rem;
+  background-color: rgba(248, 250, 252, 0.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid ${customColors.border[100]};
+  padding: 1.4rem clamp(1.6rem, 4vw, 5rem);
   display: flex;
+  position: sticky;
+  top: 0;
   z-index: 10;
 
   .title {
-    font-size: 3rem;
+    font-size: 2.7rem;
     font-family: "Margarine", sans-serif;
-    color: #fff;
+    color: ${customColors.text.title[900]};
     cursor: pointer;
+    letter-spacing: 0;
   }
 
   .link-group {
@@ -38,27 +41,45 @@ const ContainerComponent = styled(Navbar)`
   }
 
   .toggle {
-    margin-right: 3rem;
+    border: 1px solid ${customColors.border[100]};
+    border-radius: 0.8rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      padding-top: 1.6rem;
+    }
   }
 `;
 
 const StyledLink = styled(NavLink)`
-  font-size: 2rem;
+  font-size: 1.45rem;
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease; /* 링크 색상 변화 효과 */
-  margin-right: 3rem;
-  margin-left: 1rem;
+  font-weight: 700;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+  margin: 0 0 0 0.8rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 999px;
+  color: ${customColors.text.subTitle[200]};
+  cursor: pointer;
 
   &:hover {
-    color: ${customColors.text.subTitle["700"]};
+    color: ${customColors.text.title[900]};
+    background-color: #eef2ff;
+    transform: translateY(-1px);
   }
 
   &:focus {
-    color: white;
+    color: ${customColors.text.title[900]};
   }
 
-  color: #fff;
+  svg {
+    display: block;
+  }
 `;
 
 export const Header = () => {

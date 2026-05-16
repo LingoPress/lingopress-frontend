@@ -8,20 +8,42 @@ import Vocabulary from "./Vocabulary";
 import ReactPlayer from "react-player/youtube";
 
 const PressTitle = styled.h1`
-  font-size: 2.3rem;
+  font-size: clamp(2.2rem, 3vw, 3.4rem);
   margin-bottom: 1rem;
+  color: #0f172a;
+  font-weight: 900;
+  line-height: 1.28;
 `;
 const PressDescription = styled.p`
   margin-top: 2rem;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   margin-bottom: 4rem;
+  color: #64748b;
+  line-height: 1.7;
+
+  a {
+    color: #2563eb;
+    font-weight: 800;
+  }
 `;
 
 const YoutubeVideoWrap = styled.div`
   position: relative;
   width: 30rem;
-  padding-top: 25px;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  border-radius: 0.8rem;
+  box-shadow: 0 1.6rem 4rem rgba(15, 23, 42, 0.12);
+`;
+
+const ArticleSection = styled.section`
+  width: ${({ isMobile }) => (isMobile ? "calc(100vw - 2rem)" : "min(92rem, 78vw)")};
+  margin: 4rem auto 8rem;
+  padding: ${({ isMobile }) => (isMobile ? "2rem 1.4rem" : "4rem")};
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.8rem;
+  box-shadow: 0 1.8rem 5rem rgba(15, 23, 42, 0.08);
 `;
 
 const PressSection = ({ authStatus }) => {
@@ -64,12 +86,7 @@ const PressSection = ({ authStatus }) => {
   return (
     <>
       {authStatus.is_logged_in ? <Vocabulary isMobile={isMobile} /> : null}
-      <section
-        style={{
-          width: isMobile ? "95vw" : "78vw",
-          margin: "3rem",
-        }}
-      >
+      <ArticleSection isMobile={isMobile}>
         {pressData.category === "YOUTUBE" ? (
           <YoutubeVideoWrap
             style={{
@@ -125,7 +142,7 @@ const PressSection = ({ authStatus }) => {
           isMobile={isMobile}
           handlePlayFrom={handlePlayFrom}
         />
-      </section>
+      </ArticleSection>
     </>
   );
 };

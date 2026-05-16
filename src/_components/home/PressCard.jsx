@@ -7,67 +7,72 @@ import { useTranslation } from "react-i18next";
 const PressCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 0 2rem 3rem;
+  align-items: stretch;
+  padding: 0;
   position: relative;
 
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
   background-color: ${customColors.background.boxBg["100"]};
   overflow: hidden;
-  width: 40rem;
-  // height: 45rem;
-  //margin-bottom: 10rem;
+  min-height: 43rem;
   white-space: pre-line;
-  transition: transform 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
   line-height: 2.3rem;
   font-weight: 300;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid ${customColors.border[100]};
+  box-shadow: 0 1.2rem 3rem rgba(15, 23, 42, 0.07);
 
   &:hover {
-    transform: translateY(-0.5rem);
+    border-color: rgba(37, 99, 235, 0.32);
+    box-shadow: 0 1.8rem 4rem rgba(15, 23, 42, 0.12);
+    transform: translateY(-0.4rem);
   }
 `;
 
 const ImageContainer = styled.div`
   overflow: hidden;
-  width: 40rem;
+  width: 100%;
 `;
 
 const Image = styled.img`
-  border-radius: 10px;
   width: 100%;
-  height: 25rem;
+  height: 21rem;
   object-fit: cover;
 `;
 
 const Content = styled.div`
   width: 100%;
+  padding: 2rem 2rem 4.8rem;
 `;
 
 const Title = styled.h2`
-  margin-top: 2rem;
-  font-size: 2rem;
+  font-size: 1.85rem;
   text-overflow: ellipsis;
   color: ${customColors.text.title["900"]};
-  font-weight: 700;
+  font-weight: 800;
+  line-height: 1.35;
 `;
 
 const SubTitle = styled.h3`
   margin-top: 1rem;
-  font-size: 1.6rem;
-  color: ${customColors.text.title["500"]};
-  font-weight: 500;
+  font-size: 1.45rem;
+  color: ${customColors.text.subTitle["200"]};
+  font-weight: 700;
+  line-height: 1.5;
 `;
 
 const Description = styled.p`
-  margin-top: 1rem;
-  line-height: normal;
+  margin-top: 1.2rem;
+  line-height: 1.7;
   color: ${customColors.text.explain["500"]};
-  max-height: 6rem;
+  max-height: 7.5rem;
   white-space: normal;
   overflow: hidden;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   display: -webkit-box;
   -webkit-line-clamp: 3; /*보여줄 줄의 수를 정함*/
   -webkit-box-orient: vertical; /*box의 배열 방향을 정함*/
@@ -75,10 +80,11 @@ const Description = styled.p`
 
 const PressInfo = styled.p`
   margin-top: 1rem;
-  color: #999;
-  font-size: 1.4rem;
+  color: ${customColors.text.subTitle[200]};
+  font-size: 1.25rem;
+  font-weight: 700;
   position: absolute;
-  bottom: 0;
+  bottom: 1.8rem;
 `;
 
 const PressCard = ({

@@ -14,12 +14,12 @@ const VideoUrlBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70%;
-  padding: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.1);
-
-  border-radius: 2rem;
+  width: min(72rem, 100%);
+  padding: 1rem 1rem 1rem 1.6rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1.6rem 4rem rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  border-radius: 0.8rem;
   margin-bottom: 1rem;
   font-size: 2rem;
   cursor: pointer;
@@ -31,7 +31,8 @@ const UrlInputBox = styled.input`
   padding: 0 1rem;
   border: 0 solid black;
   border-radius: 0.5rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  color: #0f172a;
 
   :focus {
     outline: none;
@@ -39,9 +40,11 @@ const UrlInputBox = styled.input`
 `;
 
 const Title = styled.h1`
-  font-size: 4rem;
-  font-weight: 700;
-  margin-bottom: 8rem;
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  font-weight: 900;
+  margin-bottom: 4rem;
+  color: #0f172a;
+  text-align: center;
 `;
 
 const EnrollVideoWrap = styled.div`
@@ -49,20 +52,21 @@ const EnrollVideoWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 6rem 2rem;
 `;
 
 const Description = styled.p`
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   text-align: center;
+  color: #64748b;
+  line-height: 1.7;
 `;
 
 const VideoListBox = styled.div`
   position: relative;
   display: flex;
-  margin-top: 2rem;
-  left: 5rem;
-  width: 20vw;
+  margin: 3rem auto 0;
+  width: min(72rem, calc(100% - 4rem));
   justify-content: space-between;
 `;
 

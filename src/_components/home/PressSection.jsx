@@ -17,38 +17,53 @@ const SortOrderType = [
 ];
 
 const PressSectionWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
   justify-content: center;
-  gap: 5rem;
+  gap: 2.4rem;
+  max-width: 118rem;
+  margin: 0 auto 7rem;
+  padding: 0 2rem;
 `;
 
 const OrderOptionWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-right: 2rem;
-  margin-bottom: 2rem;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: 118rem;
+  margin: 0 auto 2rem;
+  padding: 0 2rem;
+
+  .dropdown-toggle {
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    color: #0f172a;
+    background: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 700;
+    padding: 0.8rem 1.4rem;
+  }
 `;
 
 const EnrollVideoButton = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-right: 2rem;
-  margin-bottom: 2rem;
   cursor: pointer;
-  font-size: 1.6rem;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  background-color: #f8f9fa;
-  color: #495057;
-  border: 1px solid #ced4da;
+  font-size: 1.4rem;
+  font-weight: 800;
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: 1px solid #2563eb;
 
   &:hover {
-    background-color: #e9ecef;
+    background-color: #1d4ed8;
   }
 
   &:active {
-    background-color: #dee2e6;
+    background-color: #1e40af;
   }
 
   transition: background-color 0.3s;

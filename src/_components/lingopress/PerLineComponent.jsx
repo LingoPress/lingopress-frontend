@@ -15,13 +15,14 @@ import { Trans } from "react-i18next";
 import formatSecondsToMMSS from "../../utils/formatSecondsToMMSS";
 
 const LineWrapper = styled.div`
-  //  width: 93%;
   position: relative;
+  flex: 1;
 `;
 
 const OriginalLine = styled.p`
-  line-height: normal;
-  font-size: 2rem;
+  line-height: 1.75;
+  font-size: 1.85rem;
+  color: ${customColors.text.title[900]};
 
   &:focus {
     outline: none;
@@ -29,12 +30,14 @@ const OriginalLine = styled.p`
 `;
 
 const ConvertLine = styled.textarea`
-  border-radius: 1rem;
-  padding: 1rem 1.6rem;
-  margin-top: 1rem;
+  border-radius: 0.8rem;
+  padding: 1.4rem 1.6rem;
+  margin-top: 1.4rem;
   width: ${({ isMobile }) => (isMobile ? "100%" : "95%")};
-  box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.1);
-  font-size: 2rem;
+  border: 1px solid ${customColors.border[100]};
+  box-shadow: 0 0.8rem 2.4rem rgba(15, 23, 42, 0.06);
+  font-size: 1.75rem;
+  line-height: 1.55;
   resize: vertical;
   height: 10rem;
   transition:
@@ -44,7 +47,8 @@ const ConvertLine = styled.textarea`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgb(226, 113, 29);
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
   }
 `;
 
@@ -57,10 +61,8 @@ const LineOuterWrapper = styled.div`
 `;
 
 const CheckButton = styled.button`
-  width: 7rem;
+  min-width: 8rem;
   margin-top: 0.8rem;
-  // width: 3rem;
-  // height: 3rem;
   padding: 1rem 1.6rem;
 
   background-color: ${({ choiceOne }) =>
@@ -68,9 +70,10 @@ const CheckButton = styled.button`
       ? customColors.background.button[800]
       : customColors.background.button[100]};
 
-  border-radius: 0.3rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1.6rem;
+  border-radius: 999px;
+  box-shadow: 0 0.8rem 2rem rgba(37, 99, 235, 0.18);
+  font-size: 1.45rem;
+  font-weight: 800;
   color: white;
 `;
 
@@ -84,19 +87,22 @@ const VerifyButton = styled.button`
   margin-top: 0.5rem;
   margin-right: 0.5rem;
   background-color: #fff;
-  border: 0.1rem solid #ccc;
-  border-radius: 0.3rem;
-  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
-  font-size: 1.6rem;
+  border: 0.1rem solid ${customColors.border[200]};
+  border-radius: 999px;
+  box-shadow: 0 0.5rem 1.2rem rgba(15, 23, 42, 0.08);
+  font-size: 1.45rem;
+  font-weight: 800;
+  padding: 0.7rem 1.2rem;
 `;
 
 const MachineTranslatedLine = styled.p`
-  line-height: normal;
+  line-height: 1.7;
   position: relative;
   margin-left: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   width: 90%;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  color: ${customColors.text.subTitle[200]};
 `;
 
 const VerifyZone = styled.div`
@@ -107,10 +113,11 @@ const WordSearchModal = styled.div`
   position: fixed;
   top: ${({ coords }) => coords.y - 110}px;
   left: ${({ coords }) => coords.x}px;
-  padding: 0.6rem;
+  padding: 1rem;
   border-radius: 8px;
   background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid ${customColors.border[100]};
+  box-shadow: 0 1.4rem 3rem rgba(15, 23, 42, 0.16);
   z-index: 1000;
 
   h1 {
@@ -129,7 +136,7 @@ const WordSearchModal = styled.div`
     margin-top: 0.8rem;
     padding: 0.6rem 1rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 999px;
     background-color: ${customColors.background.button[100]};
     cursor: pointer;
     color: #ffffff;
@@ -185,9 +192,11 @@ const MemoLineWrapper = styled.div`
     height: 5rem;
     margin-right: 1rem;
     padding: 1rem 1.6rem;
-    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.1);
-    border-radius: 1rem;
-    font-size: 2rem;
+    box-shadow: 0 0.8rem 2.4rem rgba(15, 23, 42, 0.06);
+    border: 1px solid ${customColors.border[100]};
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    line-height: 1.5;
     resize: vertical;
     transition:
       border-color 0.3s ease,
@@ -195,30 +204,36 @@ const MemoLineWrapper = styled.div`
 
     &:focus {
       outline: none;
-      box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.6);
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
     }
   }
 
   .memo_button {
-    width: 10rem;
+    min-width: 9rem;
     padding: 1rem 1.6rem;
     background-color: ${customColors.background.button[0]};
-    border-radius: 0.3rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 1.6rem;
-    color: black;
+    border-radius: 999px;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: ${customColors.background.button[300]};
   }
 `;
 
 const PerLineComponentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 8rem;
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid ${customColors.border[100]};
 `;
 
 const TimelineWrap = styled.div`
-  font-size: 1.6rem;
+  font-size: 1.35rem;
+  font-weight: 800;
   display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
 
   & > div {
     cursor: pointer;

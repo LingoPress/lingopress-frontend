@@ -10,9 +10,13 @@ const Container = styled.div`
   background-color: ${customColors.background.mainBg[0]};
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  flex: 1;
+`;
 
-const Main = styled.main``;
+const Main = styled.main`
+  min-height: calc(100vh - 18rem);
+`;
 
 export const Layout = (props) => {
   return (

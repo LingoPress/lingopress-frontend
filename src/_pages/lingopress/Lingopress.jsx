@@ -10,6 +10,7 @@ export default function Lingopress() {
       style={{
         display: "flex",
         position: "relative",
+        alignItems: "flex-start",
       }}
     >
       <br />
